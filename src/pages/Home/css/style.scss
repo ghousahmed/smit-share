@@ -1,0 +1,186 @@
+$white: #fff;
+
+$light-color: #4a4a4a;
+$body-background: #f4f4f4;
+$primary-color: #638eff;
+$primary-dark-color: #745dff;
+
+body {
+    background-color: $body-background;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.container {
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+.header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.logo {
+    img {
+        width: 100px;
+        cursor: pointer;
+    }
+}
+
+.menu-bar {
+    ul {
+        display: flex;
+        gap: 40px;
+
+        li {
+            list-style-type: none;
+            color: $light-color;
+            font-size: 14px;
+        }
+
+        .menu-btn {
+            color: $primary-color;
+            font-weight: 700;
+        }
+    }
+}
+
+.main-card {
+    display: flex;
+    background-color: $white;
+    width: 100%;
+    min-height: 400px;
+    max-height: auto;
+    margin-top: 30px;
+    box-shadow: 0 21px 33px 0 rgba(0, 0, 0, .1);
+
+    .card-sidebar {
+        background-color: #f4f4f4;
+        padding: 10px;
+
+        div {
+            margin-bottom: 20px;
+            cursor: pointer;
+            padding: 15px;
+
+            img {
+                width: 25px;
+            }
+        }
+    }
+}
+
+.card-container {
+    border: 1px solid #fff;
+    padding: 0px 50px;
+    width: 100%;
+
+    div {
+        h1 {
+            font-size: 44px;
+            font-weight: 700;
+            line-height: .85;
+            letter-spacing: .6px;
+            color: #000;
+            margin-bottom: 28px;
+        }
+    }
+
+    .text-section {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .resize-section {
+            flex: 1;
+            width: 100%;
+        }
+
+        .save-btn-section {
+            span {
+                font-size: 12px;
+                margin-right: 50px;
+                cursor: pointer;
+                font-weight: 500;
+            }
+
+            padding: 20px 0px;
+            text-align: right;
+        }
+
+        .text-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .links {
+                flex: 1
+            }
+
+            div {
+                margin-bottom: 5px;
+                span {
+                    a {
+                        color: $primary-color;
+                    }
+                }
+            }
+        }
+    }
+
+    .files-section {
+        height: 100%;
+
+        .files-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .files-btn {
+                display: flex;
+                align-items: center;
+                gap: 30px;
+
+
+                div {
+                    display: flex;
+                    align-items: center;
+                    font-size: 12px;
+                    cursor: pointer;
+
+                    &:active {
+                        opacity: 0.5;
+                    }
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+
+                .download-btn {
+                    color: $primary-color;
+
+                    svg {
+                        font-size: 20px;
+                        margin-right: 6px;
+                        margin-bottom: 2px;
+                    }
+                }
+
+                .delete-btn {
+                    color: #963a45;
+
+                    svg {
+                        font-size: 22px;
+                        margin-right: 6px;
+                        margin-bottom: 2px;
+                    }
+                }
+            }
+        }
+    }
+}
