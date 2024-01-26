@@ -1,0 +1,107 @@
+@media only screen and (max-width: 1024px) {
+  .container {
+    width: 100%;
+    padding: 20px;
+    margin: 0;
+    margin-top: 0;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    width: 100%;
+    padding: 20px;
+    margin: 0;
+    margin-top: 0;
+
+    .main-card {
+      flex-direction: column;
+      margin: 0;
+      min-height: fit-content;
+      box-shadow: none;
+      .card-sidebar {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        div {
+          display: flex;
+          margin: 0;
+          div {
+            background-color: #ebebeb;
+            border-radius: 5px 5px 0 0;
+            margin: unset;
+            &:active,
+            &:hover {
+              background-color: #fff;
+            }
+          }
+        }
+      }
+      .drop-zone {
+        height: 190px;
+      }
+    }
+    .card-container {
+      padding: 20px;
+      width: 100%;
+      min-height: 332px;
+      box-shadow: 0 21px 33px 0 rgba(0, 0, 0, 0.1);
+
+      .files-section .files-header {
+        padding: 10px 0 25px 0;
+        justify-content: end;
+      }
+
+      .text-section {
+        .resize-section {
+          min-height: 230px;
+        }
+        .save-btn-section {
+          padding: 0;
+        }
+      }
+
+      .text-area {
+        min-height: auto;
+      }
+    }
+  }
+}
+@media only screen and (max-width: 500px) {
+  .drop-zone {
+    div {
+      width: 100% !important;
+      font-size: 14px;
+      text-align: justify !important;
+    }
+  }
+  .text-footer {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 10px;
+
+    .save-btn-section {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      span {
+        font-size: 18px !important;
+        width: 100%;
+        margin: 10px auto !important;
+        text-align: center;
+      }
+      button {
+        width: 100%;
+      }
+    }
+
+    .links {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      width: 100%;
+      overflow: scroll;
+    }
+  }
+}
