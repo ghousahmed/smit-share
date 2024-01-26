@@ -1,8 +1,10 @@
+import { useTheme } from "../context/ThemeContext";
 import "./index.scss";
 
 import { useEffect, useRef } from "react";
-function TextArea({ value, onChange }) {
+function TextArea({ value, onChange, style }) {
     const textareaRef = useRef()
+    const {theme} = useTheme()
 
     const resizeTextArea = (event) => {
         textareaRef.current.style.height = "24px"
@@ -14,7 +16,7 @@ function TextArea({ value, onChange }) {
     }, [value])
 
     return (
-        <textarea value={value} onChange={onChange} ref={textareaRef} onInput={resizeTextArea} placeholder="Type something..." className="text-area"></textarea>
+        <textarea style={{ backgroundColor: theme === 'dark' ? '#23272f' : '', color: theme === 'dark' ? 'white' : '' }} value={value} onChange={onChange} ref={textareaRef} onInput={resizeTextArea} placeholder="Type something..." className="text-area"></textarea>
     )
 }
 
