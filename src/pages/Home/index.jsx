@@ -24,9 +24,19 @@ import {
   MdDelete,
   FiMenu,
 } from "../../components/index.js";
+import { useTheme } from "../../context/ThemeContext.jsx";
+import { MdLightMode } from "react-icons/md";
+
+import { MdDarkMode } from "react-icons/md";
 
 function HomePage() {
+  const { theme, toggleTheme } = useTheme();
   const screenWidth = useScreenWidth();
+
+  let styles ={
+      color: theme === 'dark' ? '#fff' : '',
+      backgroundColor: theme === 'dark' ? '#23272F' : '',
+  }
 
   const [type, setType] = useState("text");
   const [textValue, setTextValue] = useState("");
@@ -97,11 +107,12 @@ function HomePage() {
         <div className="menu-bar">
           {screenWidth.widthScreen > 768 ? (
             <ul>
-              <li>How it works</li>
-              <li>Download</li>
-              <li>Upgrade</li>
-              <li>Feedback </li>
-              <li className="menu-btn">Login / Register</li>
+              <li style={styles}>How it works</li>
+              <li style={styles}>Download</li>
+              <li style={styles}>Upgrade</li>
+              <li style={styles}>Feedback </li>
+              <li  className="menu-btn">Login / Register</li>
+              <li onClick={toggleTheme}> {theme === 'light' ? <MdDarkMode size={24} /> : <MdLightMode  size={24} color="white"/>} </li>
             </ul>
           ) : (
             <ul>
@@ -113,13 +124,13 @@ function HomePage() {
         </div>
       </div>
 
-      <div className="main-card">
-        <div className="card-sidebar">
+      <div className="main-card" style={{backgroundColor: theme === 'dark' ? 'rgb(20 23 30)' : ''}}>
+        <div className="card-sidebar" style={{backgroundColor: theme === 'dark' ? 'rgb(20 23 30)' : '' }}>
           {screenWidth.widthScreen <= 768 ? (
             type === "text" ? (
-              <h1>Text</h1>
+              <h1 style={styles}>Text</h1>
             ) : (
-              <h1>Files</h1>
+              <h1 style={styles}>Files</h1>
             )
           ) : null}
           <div>
@@ -140,15 +151,16 @@ function HomePage() {
         <div className="card-container">
           {type === "text" ? (
             <div className="text-section">
-              {screenWidth.widthScreen > 768 ? <h1>Text</h1> : null}
+              {screenWidth.widthScreen > 768 ? <h1 style={{color: theme === 'dark' ? '#fff' : ''}}>Text</h1> : null}
               <div className="resize-section">
-                <TextArea
-                  value={textValue}
-                  onChange={(e) => {
-                    setTextValue(e.target.value);
-                    setIsText(false);
-                  }}
-                />
+              <TextArea
+                
+                value={textValue}
+                onChange={(e) => {
+                  setTextValue(e.target.value);
+                  setIsText(false);
+                }}
+              />
               </div>
               <div className="text-footer">
                 <div className="links">
@@ -163,7 +175,7 @@ function HomePage() {
                   ))}
                 </div>
                 <div className="save-btn-section">
-                  <span onClick={clearText}>Clear</span>
+                  <span style={{color: theme === 'dark' ? '#fff' : ''}} onClick={clearText}>Clear</span>
                   {isText ? (
                     <ThemeButton
                       onClick={() => {
@@ -184,7 +196,7 @@ function HomePage() {
           ) : (
             <div className="files-section">
               <div className="files-header">
-                {screenWidth.widthScreen > 768 ? <h1>Files</h1> : null}
+                {screenWidth.widthScreen > 768 ? <h1 style={{color: theme === 'dark' ? '#fff' : ''}}>Files</h1> : null}
                 <div className="files-btn">
                   <div
                     onClick={() => downloadAll(files)}
