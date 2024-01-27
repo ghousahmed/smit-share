@@ -26,7 +26,7 @@ import {
 } from "../../components/index.js";
 import { useTheme } from "../../context/ThemeContext.jsx";
 import { MdLightMode } from "react-icons/md";
-
+import { Link } from "react-router-dom";
 import { MdDarkMode } from "react-icons/md";
 
 function HomePage() {
@@ -111,7 +111,7 @@ function HomePage() {
               <li style={styles}>Download</li>
               <li style={styles}>Upgrade</li>
               <li style={styles}>Feedback </li>
-              <li  className="menu-btn">Login / Register</li>
+              <li className="menu-btn"><span> <Link className="menu-btn" style={{textDecoration:"none"}} to={"/login"}> Login </Link></span>/ <span> <Link className="menu-btn" to={"/signup"} style={{textDecoration:"none"}}> Register </Link></span></li>
               <li onClick={toggleTheme}> {theme === 'light' ? <MdDarkMode size={24} /> : <MdLightMode  size={24} color="white"/>} </li>
             </ul>
           ) : (
