@@ -24,20 +24,14 @@ import {
   MdDelete,
   FiMenu,
 } from "../../components/index.js";
+
 import { useTheme } from "../../context/ThemeContext.jsx";
 import { MdLightMode } from "react-icons/md";
-
 import { MdDarkMode } from "react-icons/md";
 
 function HomePage() {
-  const { theme, toggleTheme } = useTheme();
+  const { isDark, toggleTheme } = useTheme();
   const screenWidth = useScreenWidth();
-
-  let styles ={
-      color: theme === 'dark' ? '#fff' : '',
-      backgroundColor: theme === 'dark' ? '#23272F' : '',
-  }
-
   const [type, setType] = useState("text");
   const [textValue, setTextValue] = useState("");
   const [isText, setIsText] = useState(false);
@@ -93,13 +87,19 @@ function HomePage() {
     });
   }, []);
 
+  useEffect(() => {
+    isDark
+      ? document.body.classList.add("dark")
+      : document.body.classList.remove("dark");
+  }, [isDark]);
+
   var expression =
     /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
   var regex = new RegExp(expression);
   const links = textValue.match(regex) || [];
 
   return (
-    <div className="container">
+    <div className={`container ${isDark ? "dark" : " "}`}>
       <div className="header-bar">
         <div className="logo">
           <img src={LOGO} alt="" />
@@ -107,60 +107,79 @@ function HomePage() {
         <div className="menu-bar">
           {screenWidth.widthScreen > 768 ? (
             <ul>
-              <li style={styles}>How it works</li>
-              <li style={styles}>Download</li>
-              <li style={styles}>Upgrade</li>
-              <li style={styles}>Feedback </li>
-              <li  className="menu-btn">Login / Register</li>
-              <li onClick={toggleTheme}> {theme === 'light' ? <MdDarkMode size={24} /> : <MdLightMode  size={24} color="white"/>} </li>
+              <li className={isDark ? "dark-text" : " "}>How it works</li>
+              <li className={isDark ? "dark-text" : " "}> Download</li>
+              <li className={isDark ? "dark-text" : " "}>Upgrade</li>
+              <li className={isDark ? "dark-text" : " "}>Feedback</li>
+              <li className="menu-btn">Login / Register</li>
+              <li onClick={toggleTheme}>
+                {isDark ? (
+                  <MdLightMode size={24} color="white" />
+                ) : (
+                  <MdDarkMode size={24} />
+                )}
+              </li>
             </ul>
           ) : (
             <ul>
               <li>
                 <FiMenu size={30} />
               </li>
+              <li onClick={toggleTheme}>
+                {isDark ? (
+                  <MdLightMode size={24} color="white" />
+                ) : (
+                  <MdDarkMode size={24} />
+                )}
+              </li>
             </ul>
           )}
         </div>
       </div>
 
-      <div className="main-card" style={{backgroundColor: theme === 'dark' ? 'rgb(20 23 30)' : ''}}>
-        <div className="card-sidebar" style={{backgroundColor: theme === 'dark' ? 'rgb(20 23 30)' : '' }}>
+      <div className="main-card">
+        <div className={`card-sidebar ${isDark ? "dark" : " "}`}>
           {screenWidth.widthScreen <= 768 ? (
             type === "text" ? (
-              <h1 style={styles}>Text</h1>
+              <h1 className={isDark ? "dark-text" : " "}>Text</h1>
             ) : (
-              <h1 style={styles}>Files</h1>
+              <h1 className={isDark ? "dark-text" : " "}>Files</h1>
             )
           ) : null}
           <div>
             <div
               onClick={() => setType("text")}
-              className={type === "text" ? "active" : ""}
+              className={
+                type === "text" ? (isDark ? "dark-light" : "active") : ""
+              }
             >
               <img src={type === "text" ? TEXT_COLOR : TEXT_GREY} alt="" />
             </div>
             <div
               onClick={() => setType("files")}
-              className={type === "files" ? "active" : ""}
+              className={
+                type === "files" ? (isDark ? "dark-light" : "active") : ""
+              }
             >
               <img src={type === "files" ? FILE_COLOR : FILE_GREY} alt="" />
             </div>
           </div>
         </div>
-        <div className="card-container">
+        <div className={`card-container ${isDark ? "dark-light" : " "}`}>
           {type === "text" ? (
             <div className="text-section">
-              {screenWidth.widthScreen > 768 ? <h1 style={{color: theme === 'dark' ? '#fff' : ''}}>Text</h1> : null}
+              {screenWidth.widthScreen > 768 ? (
+                <h1 className={isDark ? "dark-light" : " "}>Text</h1>
+              ) : null}
               <div className="resize-section">
-              <TextArea
-                
-                value={textValue}
-                onChange={(e) => {
-                  setTextValue(e.target.value);
-                  setIsText(false);
-                }}
-              />
+                <TextArea
+                  value={textValue}
+                  className={isDark ? "dark-lighter" : " "}
+                  onChange={(e) => {
+                    setTextValue(e.target.value);
+                    setIsText(false);
+                  }}
+                />
               </div>
               <div className="text-footer">
                 <div className="links">
@@ -175,7 +194,7 @@ function HomePage() {
                   ))}
                 </div>
                 <div className="save-btn-section">
-                  <span style={{color: theme === 'dark' ? '#fff' : ''}} onClick={clearText}>Clear</span>
+                  <span onClick={clearText}>Clear</span>
                   {isText ? (
                     <ThemeButton
                       onClick={() => {
@@ -188,6 +207,7 @@ function HomePage() {
                       onClick={saveChanges}
                       disabled={textValue ? false : true}
                       title={"Save"}
+                      className={isDark ? "dark-lighter" : " "}
                     />
                   )}
                 </div>
@@ -196,7 +216,9 @@ function HomePage() {
           ) : (
             <div className="files-section">
               <div className="files-header">
-                {screenWidth.widthScreen > 768 ? <h1 style={{color: theme === 'dark' ? '#fff' : ''}}>Files</h1> : null}
+                {screenWidth.widthScreen > 768 ? (
+                  <h1 className={isDark ? "dark-light" : " "}>Files</h1>
+                ) : null}
                 <div className="files-btn">
                   <div
                     onClick={() => downloadAll(files)}
@@ -213,6 +235,7 @@ function HomePage() {
               </div>
               {tempFiles.length || files.length ? (
                 <FilesList
+                  className={tempFiles.length || files.length ? "fixHight" : " "}
                   tempFiles={tempFiles}
                   files={files}
                   onDrop={onDrop}
