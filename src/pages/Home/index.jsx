@@ -1,6 +1,7 @@
 import "./css/style.scss";
 import "../../mediaquery/mediaQuery.scss";
 import {
+  useTheme,
   downloadAll,
   uploadFile,
   useScreenWidth,
@@ -23,11 +24,9 @@ import {
   FaDownload,
   MdDelete,
   FiMenu,
+  MdLightMode,
+  MdDarkMode,
 } from "../../components/index.js";
-
-import { useTheme } from "../../context/ThemeContext.jsx";
-import { MdLightMode } from "react-icons/md";
-import { MdDarkMode } from "react-icons/md";
 
 function HomePage() {
   const { isDark, toggleTheme } = useTheme();
@@ -37,6 +36,11 @@ function HomePage() {
   const [isText, setIsText] = useState(false);
   const [files, setFiles] = useState([]);
   const [tempFiles, setTempFiles] = useState([]);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   const onDrop = async (acceptedFiles) => {
     setTempFiles([...tempFiles, ...acceptedFiles]);
@@ -122,7 +126,7 @@ function HomePage() {
             </ul>
           ) : (
             <ul>
-              <li>
+              <li onClick={toggleMenu}>
                 <FiMenu size={30} />
               </li>
               <li onClick={toggleTheme}>
@@ -134,6 +138,19 @@ function HomePage() {
               </li>
             </ul>
           )}
+          {isMenuOpen ? (
+            <div className="mobile-menu">
+              <ul>
+                <li className={isDark ? "dark" : " "}>How it works</li>
+                <li className={isDark ? "dark" : " "}> Download</li>
+                <li className={isDark ? "dark" : " "}>Upgrade</li>
+                <li className={isDark ? "dark" : " "}>Feedback</li>
+                <li className={isDark ? "dark" : "menu-btn"}>
+                  Login / Register
+                </li>
+              </ul>
+            </div>
+          ) : null}
         </div>
       </div>
 
@@ -235,7 +252,9 @@ function HomePage() {
               </div>
               {tempFiles.length || files.length ? (
                 <FilesList
-                  className={tempFiles.length || files.length ? "fixHight" : " "}
+                  className={
+                    tempFiles.length || files.length ? "fixHight" : " "
+                  }
                   tempFiles={tempFiles}
                   files={files}
                   onDrop={onDrop}

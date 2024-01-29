@@ -10,6 +10,8 @@ import TextArea from "../components/TextArea";
 import ThemeButton from "../components/Button";
 import DropZone from "../components/DropZone";
 import FilesList from "../components/FilesList";
+import { useTheme } from "../context/ThemeContext.jsx";
+
 // Assets
 import LOGO from "../assets/logo.svg";
 import TEXT_GREY from "../assets/text-grey.svg";
@@ -20,8 +22,11 @@ import FILE_COLOR from "../assets/files-color.svg";
 import { FaDownload } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { FiMenu } from "react-icons/fi";
+import { MdLightMode } from "react-icons/md";
+import { MdDarkMode } from "react-icons/md";
 // Export
 export {
+    useTheme,
     downloadAll,
     uploadFile,
     useScreenWidth,
@@ -44,4 +49,6 @@ export {
     FaDownload,
     MdDelete,
     FiMenu,
+    MdLightMode,
+    MdDarkMode,
 };
