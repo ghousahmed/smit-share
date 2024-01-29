@@ -6,9 +6,11 @@ function TextArea({ value, onChange, className }) {
   const { isDark, toggleTheme } = useTheme();
   const textareaRef = useRef();
   const resizeTextArea = (event) => {
-    textareaRef.current.style.height = "24px";
-    textareaRef.current.style.height =
-      textareaRef.current.scrollHeight + 12 + "px";
+    textareaRef.current.value.length >= 200
+      ? ((textareaRef.current.style.height = "240px"),
+        (textareaRef.current.style.height =
+          textareaRef.current.scrollHeight + 12 + "px"))
+      : (textareaRef.current.style.height = "240px");
   };
 
   useEffect(() => {
