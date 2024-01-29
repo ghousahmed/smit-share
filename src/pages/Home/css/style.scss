@@ -32,12 +32,16 @@ body {
 .menu-bar {
   ul {
     display: flex;
+    align-items: center;
     gap: 40px;
 
     li {
       list-style-type: none;
       color: $light-color;
       font-size: 14px;
+      svg{
+        margin-top: 3px !important;
+      }
     }
 
     .menu-btn {
