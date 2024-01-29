@@ -1,3 +1,4 @@
+import { Modal } from 'antd';
 import "./css/style.scss";
 import "../../mediaquery/mediaQuery.scss";
 import {
@@ -26,7 +27,7 @@ import {
 } from "../../components/index.js";
 import { useTheme } from "../../context/ThemeContext.jsx";
 import { MdLightMode } from "react-icons/md";
-import { Link } from "react-router-dom";
+
 import { MdDarkMode } from "react-icons/md";
 
 function HomePage() {
@@ -111,7 +112,7 @@ function HomePage() {
               <li style={styles}>Download</li>
               <li style={styles}>Upgrade</li>
               <li style={styles}>Feedback </li>
-              <li className="menu-btn"><span> <Link className="menu-btn" style={{textDecoration:"none"}} to={"/login"}> Login </Link></span>/ <span> <Link className="menu-btn" to={"/signup"} style={{textDecoration:"none"}}> Register </Link></span></li>
+              <li  className="menu-btn">Login / Register</li>
               <li onClick={toggleTheme}> {theme === 'light' ? <MdDarkMode size={24} /> : <MdLightMode  size={24} color="white"/>} </li>
             </ul>
           ) : (
@@ -198,13 +199,23 @@ function HomePage() {
               <div className="files-header">
                 {screenWidth.widthScreen > 768 ? <h1 style={{color: theme === 'dark' ? '#fff' : ''}}>Files</h1> : null}
                 <div className="files-btn">
-                  <div
-                    onClick={() => downloadAll(files)}
-                    className="download-btn"
-                  >
-                    <FaDownload />
-                    Download All
-                  </div>
+    <div
+  onClick={() => {
+    if (files.length > 0) {
+      downloadAll(files);
+    } else {
+      // Use Ant Design Modal to display an information message.
+      Modal.info({
+        title: 'No Files to Download',
+        content: 'There are no files to download.',
+      });
+    }
+  }}
+  className="download-btn"
+>
+  <FaDownload />
+  Download All
+</div>
                   <div onClick={deleteAllFiles} className="delete-btn">
                     <MdDelete />
                     Delete All
