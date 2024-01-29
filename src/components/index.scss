@@ -6,6 +6,7 @@
 
 $light-color: #a1a3a1;
 $primary-dark-color: #745dff;
+$primary-color: #638eff;
 
 .text-area {
   transition: all 0.3s ease-in-out;
@@ -64,6 +65,7 @@ $primary-dark-color: #745dff;
   justify-content: center;
   align-items: center;
   border: 1.5px dashed rgba(158, 161, 161, 0.5);
+  height: 250px;
   div {
     color: rgba(158, 161, 161, 0.5);
     width: 60%;
@@ -147,4 +149,60 @@ $primary-dark-color: #745dff;
     height: 30px;
     position: absolute;
   }
+}
+.container {
+  width: 900px;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+
+.header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  img {
+    width: 100px;
+    cursor: pointer;
+  }
+}
+
+.menu-bar {
+  ul {
+    display: flex;
+    gap: 40px;
+
+    li {
+      list-style-type: none;
+      color: $light-color;
+      font-size: 14px;
+    }
+
+    .menu-btn {
+      color: $primary-color;
+      font-weight: 700;
+    }
+  }
+}
+.d-flex{
+  display: flex;
+ 
+  width: 100%  !important;
+  justify-content: center !important;
+  align-items: center !important;
+  .input-border{
+    border: 0 !important;
+    border-radius: 0px !important;
+    border-bottom: 2px solid black !important;
+    width: 450px;
+  }
+  .text{
+    color: $light-color !important;
+  }
+  .text-primary{
+    color: $primary-color !important;
+  }
+  
 }

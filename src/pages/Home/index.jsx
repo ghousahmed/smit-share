@@ -27,6 +27,7 @@ import {
   MdLightMode,
   MdDarkMode,
 } from "../../components/index.js";
+import { Link } from "react-router-dom";
 
 function HomePage() {
   const { isDark, toggleTheme } = useTheme();
