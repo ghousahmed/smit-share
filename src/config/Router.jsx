@@ -1,10 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "../pages/Home";
-
 import { ThemeProvider } from "../context/ThemeContext";
 import LoginPage from "../pages/Home/Login";
 import SignupPage from "../pages/Home/Signup";
-
 
 function AppRouter() {
     return (

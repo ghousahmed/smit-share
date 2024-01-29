@@ -1,12 +1,9 @@
-import { useTheme } from "../context/ThemeContext";
-
-function ThemeButton({ disabled, title, onClick }) {
-  const {theme} =  useTheme()
+function ThemeButton({ disabled, title, onClick, className }) {
   return (
     <button
-      style={{backgroundColor: theme === 'dark' ? '#23272f' : '#fff', color: theme === 'dark' ? 'white' : '', borderColor: disabled && "#a1a3a1" }}
+      style={{ borderColor: disabled && "#a1a3a1" }}
       disabled={disabled}
-      className="theme-btn"
+      className={`theme-btn ${className}`}
       onClick={onClick}
     >
       {title}
