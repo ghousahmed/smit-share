@@ -1,5 +1,5 @@
 import "./css/style.scss";
-import "../../mediaquery/mediaQuery.scss";
+import "../../mediaquery/mediaquery.scss";
 import {
   useTheme,
   downloadAll,
@@ -116,7 +116,23 @@ function HomePage() {
               <li className={isDark ? "dark-text" : " "}> Download</li>
               <li className={isDark ? "dark-text" : " "}>Upgrade</li>
               <li className={isDark ? "dark-text" : " "}>Feedback</li>
-              <li className="menu-btn">Login / Register</li>
+              <li className={`menu-btn ${isDark ? "dark-light" : " "}`}>
+                <Link
+                  className="menu-btn"
+                  style={{ textDecoration: "none" }}
+                  to={"/login"}
+                >
+                  Login
+                </Link>
+                /
+                <Link
+                  className="menu-btn"
+                  to={"/signup"}
+                  style={{ textDecoration: "none" }}
+                >
+                  Register
+                </Link>
+              </li>
               <li onClick={toggleTheme}>
                 {isDark ? (
                   <MdLightMode size={24} color="white" />
