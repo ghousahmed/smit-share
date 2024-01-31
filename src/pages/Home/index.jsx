@@ -1,3 +1,4 @@
+import { Modal } from 'antd';
 import "./css/style.scss";
 import "../../mediaquery/mediaQuery.scss";
 import {
@@ -258,13 +259,24 @@ function HomePage() {
                   <h1 className={isDark ? "dark-light" : " "}>{t('Files')}</h1>
                 ) : null}
                 <div className="files-btn">
-                  <div
-                    onClick={() => downloadAll(files)}
-                    className="download-btn"
-                  >
-                    <FaDownload />
-                    {t('Download All')}
-                  </div>
+
+    <div
+  onClick={() => {
+    if (files.length > 0) {
+      downloadAll(files);
+    } else {
+      // Use Ant Design Modal to display an information message.
+      Modal.info({
+        title: 'No Files to Download',
+        content: 'There are no files to download.',
+      });
+    }
+  }}
+  className="download-btn"
+>
+  <FaDownload />
+  {t('Download All')}
+</div>
                   <div onClick={deleteAllFiles} className="delete-btn">
                     <MdDelete />
                     {t('Delete All')}
