@@ -112,7 +112,11 @@ function HomePage() {
         <div className="menu-bar">
           {screenWidth.widthScreen > 768 ? (
             <ul>
-              <li className={isDark ? "dark-text" : " "}>How it works</li>
+              <li className={isDark ? "dark-text" : ""}>
+                <Link to="/how-it-works" style={{ textDecoration: 'none', color: isDark ? '#fff' : '#000' }}>
+                  How it works
+                </Link>
+              </li>
               <li className={isDark ? "dark-text" : " "}> Download</li>
               <li className={isDark ? "dark-text" : " "}>Upgrade</li>
               <li className={isDark ? "dark-text" : " "}>Feedback</li>
@@ -141,14 +145,16 @@ function HomePage() {
           )}
           {isMenuOpen ? (
             <div className="mobile-menu">
-              <ul>
-                <li className={isDark ? "dark" : " "}>How it works</li>
+              <ul style={{ backgroundColor: isDark ? '#252526' : '#fff' }}>
+              <li className={isDark ? "dark-text" : ""}>
+                <Link to="/how-it-works" style={{ textDecoration: 'none', color: isDark ? '#fff' : '#000' }}>
+                  How it works
+                </Link>
+              </li>       
                 <li className={isDark ? "dark" : " "}> Download</li>
                 <li className={isDark ? "dark" : " "}>Upgrade</li>
                 <li className={isDark ? "dark" : " "}>Feedback</li>
-                <li className={isDark ? "dark" : "menu-btn"}>
-                  Login / Register
-                </li>
+                <li className="menu-btn">Login / Register</li>
               </ul>
             </div>
           ) : null}
