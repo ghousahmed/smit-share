@@ -17,52 +17,48 @@ function SignupPage() {
       .then((userCredential) => {
         // Signed up
         const user = userCredential.user;
+        notification.success({
+          message: 'Registered Successfully',
+          description: `Welcome, ${user.email}!`,
+          duration: 2.5,
+        });
         console.log(user);
-        // ...
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        notification.error({
+          message: 'Error Occured',
+          description: `Sorry, ${errorMessage}`,
+          duration: 2.5,
+        });
         console.log(errorMessage);
-        // ..
+
       });
   };
-  const { isDark, toggleTheme } = useTheme();
+
+  const { theme, toggleTheme, isDark } = useTheme();
   const screenWidth = useScreenWidth();
-
-  useEffect(() => {
-    isDark
-      ? document.body.classList.add("dark")
-      : document.body.classList.remove("dark");
-  }, [isDark]);
-
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
   return (
-    <div className="container">
+    <div className={`container ${isDark ? "dark" : " "}`}>
       <div className="header-bar">
         <div className="logo">
-          <Link to={"/"}>
+          <Link to={"/"} >
             <img src={LOGO} alt="" />
           </Link>
         </div>
         <div className="menu-bar">
           {screenWidth.widthScreen > 768 ? (
             <ul>
-              <li>How it works</li>
-              <li>Download</li>
-              <li>Upgrade</li>
-              <li>Feedback </li>
-              <li className="menu-btn">
-                <span>
-                  <Link
-                    className="menu-btn"
-                    to={"/login"}
-                    style={{ textDecoration: "none" }}
-                  >
-                    Login
-                  </Link>
-                </span>
-                / <span> Register </span>
-              </li>
+              <li className={isDark ? "dark-text" : " "}>How it works</li>
+              <li className={isDark ? "dark-text" : " "}> Download</li>
+              <li className={isDark ? "dark-text" : " "}>Upgrade</li>
+              <li className={isDark ? "dark-text" : " "}>Feedback</li>
+              <li className="menu-btn"><span> <Link className="menu-btn" style={{ textDecoration: "none" }} to={"/login"}> Login </Link></span>/ <span> <Link className="menu-btn" to={"/signup"} style={{ textDecoration: "none" }}> Register </Link></span></li>
               <li onClick={toggleTheme}>
                 {isDark ? (
                   <MdLightMode size={24} color="white" />
@@ -73,16 +69,37 @@ function SignupPage() {
             </ul>
           ) : (
             <ul>
-              <li>
+              <li onClick={toggleMenu}>
                 <FiMenu size={30} />
+              </li>
+              <li onClick={toggleTheme}>
+                {isDark ? (
+                  <MdLightMode size={24} color="white" />
+                ) : (
+                  <MdDarkMode size={24} />
+                )}
               </li>
             </ul>
           )}
+          {isMenuOpen ? (
+            <div className="mobile-menu">
+              <ul>
+                <li className={isDark ? "dark" : " "}>How it works</li>
+                <li className={isDark ? "dark" : " "}> Download</li>
+                <li className={isDark ? "dark" : " "}>Upgrade</li>
+                <li className={isDark ? "dark" : " "}>Feedback</li>
+                <li className={isDark ? "dark" : "menu-btn"}>
+                  Login / Register
+                </li>
+              </ul>
+            </div>
+          ) : null}
         </div>
       </div>
-      <div className="main-card">
-        <SignupForm registerUser={registerUser} />
-      </div>
+      <div
+        className="main-card"
+        style={{ backgroundColor: theme === "dark" ? "rgb(20 23 30)" : "" }}
+      ><SignupForm registerUser={registerUser} /> </div>
     </div>
   );
 }

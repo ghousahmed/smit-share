@@ -7,7 +7,33 @@
 $light-color: #a1a3a1;
 $primary-dark-color: #745dff;
 $primary-color: #638eff;
+$body-background: #f4f4f4;
+$dark-theme: #252526;
+$dark-theme-light: #2d2d30;
+$dark-theme-lighter: #3e3e42;
+$white: #fff;
 
+.dark {
+  background-color: $dark-theme !important;
+  color: $white !important;
+}
+.dark-light {
+  background-color: $dark-theme-light !important;
+  color: $white !important;
+}
+.dark-lighter {
+  background-color: $dark-theme-lighter !important;
+  color: $white !important;
+  border: none !important;
+}
+.dark-text {
+  color: $white !important;
+}
+body {
+  background-color: $body-background ;
+  font-family: "Open Sans", sans-serif;
+  transition: all 0.3s ease-in-out;
+}
 .text-area {
   transition: all 0.3s ease-in-out;
   border: none;

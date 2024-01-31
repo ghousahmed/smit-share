@@ -45,18 +45,10 @@ const SignupForm = ({ registerUser }) => {
         autoComplete="off"
       >
         <Form.Item
-          label={
-            <span
-              style={{
-                fontWeight: "bold",
-              }}
-              className={isDark ? "dark-text" : " "}
-            >
-              Email
-            </span>
-          }
+          label={<span className={isDark ? "dark-light" : ""}>Email</span>}
           name="email"
           validateTrigger="onBlur"
+          className={isDark ? "dark-light" : ""}
           rules={[
             {
               required: true,
@@ -68,6 +60,7 @@ const SignupForm = ({ registerUser }) => {
               message: "Enter valid email address",
             },
           ]}
+
         >
           <Input
             prefix={<UserOutlined className="site-form-item-icon" />}
@@ -77,17 +70,9 @@ const SignupForm = ({ registerUser }) => {
         </Form.Item>
 
         <Form.Item
-          label={
-            <span
-              style={{
-                fontWeight: "bold",
-              }}
-              className={isDark ? "dark-text" : " "}
-            >
-              Password
-            </span>
-          }
+          label={<span className={isDark ? "dark-light" : ""}>Password</span>}
           name="password"
+          className={isDark ? "dark-light" : ""}
           rules={[
             {
               required: true,
@@ -112,7 +97,7 @@ const SignupForm = ({ registerUser }) => {
             span: 16,
           }}
         >
-          <ThemeButton title={"Create Free Account"} />
+          <ThemeButton title={"Register"} />
         </Form.Item>
         <Form.Item
           wrapperCol={{

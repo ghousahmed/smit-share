@@ -53,6 +53,9 @@ function HomePage() {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
   const onDrop = async (acceptedFiles) => {
     setTempFiles([...tempFiles, ...acceptedFiles]);
     let arr = [];
@@ -101,6 +104,24 @@ function HomePage() {
       }
     });
   }, []);
+  const logoutUser = () => {
+    signOut(auth).then(() => {
+      notification.success({
+        message: 'Logged Out',
+        duration: 2.5,
+      });
+      console.log(user);
+      console.log("out");
+    }).catch((error) => {
+      console.log(error);
+    });
+  }
+
+  useEffect(() => {
+    isDark
+      ? document.body.classList.add("dark")
+      : document.body.classList.remove("dark");
+  }, [isDark]);
 
   useEffect(() => {
     isDark
@@ -178,11 +199,12 @@ function HomePage() {
                 <li className={isDark ? "dark" : "menu-btn"}>
                   {t('Login / Register')}
                 </li>
-              </ul>
-            </div>
-          ) : null}
-        </div>
-      </div>
+              </ul >
+            </div >
+          ) : null
+          }
+        </div >
+      </div >
 
       <div className="main-card">
         <div className={`card-sidebar ${isDark ? "dark" : " "}`}>
@@ -242,24 +264,26 @@ function HomePage() {
                 </div>
                 <div className="save-btn-section">
                   <span onClick={clearText}>{t('Clear')}</span>
-                  {isText ? (
-                    <ThemeButton
-                      onClick={() => {
-                        navigator.clipboard.writeText(textValue);
-                      }}
-                      title={"Copy"}
-                    />
-                  ) : (
-                    <ThemeButton
-                      onClick={saveChanges}
-                      disabled={textValue ? false : true}
-                      title={t("Save")}
-                      className={isDark ? "dark-lighter" : " "}
-                    />
-                  )}
-                </div>
-              </div>
-            </div>
+                  {
+                    isText ? (
+                      <ThemeButton
+                        onClick={() => {
+                          navigator.clipboard.writeText(textValue);
+                        }}
+                        title={"Copy"}
+                      />
+                    ) : (
+                      <ThemeButton
+                        onClick={saveChanges}
+                        disabled={textValue ? false : true}
+                        title={t("Save")}
+                        className={isDark ? "dark-lighter" : " "}
+                      />
+                    )
+                  }
+                </div >
+              </div >
+            </div >
           ) : (
             <div className="files-section">
               <div className="files-header">
@@ -312,9 +336,9 @@ function HomePage() {
               )}
             </div>
           )}
-        </div>
-      </div>
-    </div>
+        </div >
+      </div >
+    </div >
   );
 }
 

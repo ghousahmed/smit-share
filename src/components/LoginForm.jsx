@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Button, Checkbox, Form, Input } from "antd";
+import { Button, Checkbox, Form, Input, message } from "antd";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import ThemeButton from "./Button";
-import { useTheme } from "../components/index.js";
+import { useTheme } from "../context/ThemeContext";
+import useScreenWidth from "../helper/screenWidth";
 import { Link } from "react-router-dom";
 import "../mediaquery/mediaquery.scss";
 
@@ -33,6 +34,8 @@ const LoginForm = ({ loginUser }) => {
         style={{
           maxWidth: 600,
           marginTop: "50px",
+          backgroundColor: isDark ? "#2d2d30" : "#fff",
+          color: isDark ? "#fff" : "",
         }}
         initialValues={{
           remember: true,
@@ -42,29 +45,21 @@ const LoginForm = ({ loginUser }) => {
         autoComplete="off"
       >
         <Form.Item
-          label={
-            <span
-              style={{
-                fontWeight: "bold",
-              }}
-              className={isDark ? "dark-text" : " "}
-            >
-              Email
-            </span>
-          }
+          label={<span className={isDark ? "dark-light" : ""}>Email</span>}
           name="email"
           validateTrigger="onBlur"
+          className={isDark ? "dark-light" : ""}
           rules={[
             {
               required: true,
               message: "Please input your email!",
             },
             {
-              pattern:
-                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-              message: "Enter valid email address",
+              pattern: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+              message: "Enter a valid email address",
             },
           ]}
+
         >
           <Input
             prefix={<UserOutlined className="site-form-item-icon" />}
@@ -74,17 +69,9 @@ const LoginForm = ({ loginUser }) => {
         </Form.Item>
 
         <Form.Item
-          label={
-            <span
-              style={{
-                fontWeight: "bold",
-              }}
-              className={isDark ? "dark-text" : " "}
-            >
-              Password
-            </span>
-          }
+          label={<span className={isDark ? "dark-light" : ""}>Password</span>}
           name="password"
+          className={isDark ? "dark-light" : ""}
           rules={[
             {
               required: true,
@@ -92,22 +79,29 @@ const LoginForm = ({ loginUser }) => {
             },
             {
               min: 6,
-              message: "Password must be greater than 6 charachter",
+              message: "Password must be greater than 6 characters",
             },
           ]}
         >
           <Input.Password
             prefix={<LockOutlined className="site-form-item-icon" />}
-            placeholder="Password "
-            className={`input-border ${isDark ? "dark-light" : " "}`}
+            placeholder="Password"
+            className="input-border"
           />
         </Form.Item>
 
-        <Form.Item name="remember" valuePropName="checked">
-          <Checkbox className={isDark ? "dark-text" : ""}>Remember me</Checkbox>
-        </Form.Item>
-
         <Form.Item
+          name="remember"
+          valuePropName="checked"
+          className={isDark ? "dark-light" : ""}
+        >
+          <Checkbox className={isDark ? "dark-light" : ""}>
+            {" "}
+            Remember me
+          </Checkbox>
+        </Form.Item>
+        <Form.Item
+          className={isDark ? "dark-light" : ""}
           wrapperCol={{
             offset: 6,
             span: 16,
@@ -115,7 +109,12 @@ const LoginForm = ({ loginUser }) => {
         >
           <ThemeButton title={"Log In"} />
         </Form.Item>
+
         <Form.Item
+          style={{
+            backgroundColor: isDark ? "#2d2d30" : "",
+            color: isDark ? "#ffff" : "",
+          }}
           wrapperCol={{
             offset: 6,
             span: 16,
@@ -133,4 +132,5 @@ const LoginForm = ({ loginUser }) => {
     </div>
   );
 };
+
 export default LoginForm;
