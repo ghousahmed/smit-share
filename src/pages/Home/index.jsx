@@ -1,6 +1,6 @@
 import { Modal } from 'antd';
 import "./css/style.scss";
-import "../../mediaquery/mediaQuery.scss";
+import "../../mediaquery/mediaquery.scss";
 import {
   useTheme,
   downloadAll,
@@ -126,7 +126,15 @@ function HomePage() {
               <li className={isDark ? "dark-text" : " "}> {t('Download')}</li>
               <li className={isDark ? "dark-text" : " "}>{t('Upgrade')}</li>
               <li className={isDark ? "dark-text" : " "}>{t('Feedback')}</li>
-              <li className="menu-btn">{t('Login / Register')}</li>
+              <li className="menu-btn">
+                <Link
+                  className="menu-btn"
+                  style={{ textDecoration: "none" }}
+                  to={"/login"}
+                >
+                  {t('Login / Register')}
+                </Link>
+              </li>
               <li>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                   <span style={{ margin: '0px 8px' }}>En</span>

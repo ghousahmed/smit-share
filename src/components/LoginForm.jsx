@@ -1,20 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Checkbox, Form, Input } from "antd";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import ThemeButton from "./Button";
-import { useTheme } from "../context/ThemeContext";
+import { useTheme } from "../components/index.js";
 import { Link } from "react-router-dom";
+import "../mediaquery/mediaquery.scss";
 
 const onFinishFailed = (errorInfo) => {
   console.log("Failed:", errorInfo);
 };
-const LoginForm = ({loginUser}) => {
+const LoginForm = ({ loginUser }) => {
   const [clientReady, setClientReady] = useState(false);
   const [form] = Form.useForm();
-  const { theme } = useTheme();
+  const { isDark, toggleTheme } = useTheme();
+  useEffect(() => {
+    isDark
+      ? document.body.classList.add("dark")
+      : document.body.classList.remove("dark");
+  }, [isDark]);
 
   return (
-    <div className="d-flex">
+    <div className={`d-flex ${isDark ? "dark-lighter" : " "}`}>
       <Form
         name="trigger"
         layout="vertical"
@@ -27,9 +33,7 @@ const LoginForm = ({loginUser}) => {
         style={{
           maxWidth: 600,
           marginTop: "50px",
-          backgroundColor: theme === 'dark' ? '#14171e' : '#fff', color: theme === 'dark' ? '#fff' : '',  
         }}
-        
         initialValues={{
           remember: true,
         }}
@@ -38,14 +42,22 @@ const LoginForm = ({loginUser}) => {
         autoComplete="off"
       >
         <Form.Item
-          label={<span style={{  backgroundColor: theme === 'dark' ? '#23272f' : '#fff', color: theme === 'dark' ? '#fff' : '',   fontWeight: 'bold' }}>Email</span>}
+          label={
+            <span
+              style={{
+                fontWeight: "bold",
+              }}
+              className={isDark ? "dark-text" : " "}
+            >
+              Email
+            </span>
+          }
           name="email"
           validateTrigger="onBlur"
           rules={[
             {
               required: true,
               message: "Please input your email!",
-              
             },
             {
               pattern:
@@ -57,12 +69,21 @@ const LoginForm = ({loginUser}) => {
           <Input
             prefix={<UserOutlined className="site-form-item-icon" />}
             placeholder="Email"
-            className="input-border"
+            className={`input-border ${isDark ? "dark-light" : " "}`}
           />
         </Form.Item>
 
         <Form.Item
-            label={<span style={{  backgroundColor: theme === 'dark' ? '#23272f' : '#fff', color: theme === 'dark' ? '#fff' : '',   fontWeight: 'bold' }}>Password</span>}
+          label={
+            <span
+              style={{
+                fontWeight: "bold",
+              }}
+              className={isDark ? "dark-text" : " "}
+            >
+              Password
+            </span>
+          }
           name="password"
           rules={[
             {
@@ -70,24 +91,20 @@ const LoginForm = ({loginUser}) => {
               message: "Please input your password!",
             },
             {
-             min:6,
+              min: 6,
               message: "Password must be greater than 6 charachter",
-            }
+            },
           ]}
         >
           <Input.Password
             prefix={<LockOutlined className="site-form-item-icon" />}
             placeholder="Password "
-            className="input-border"
+            className={`input-border ${isDark ? "dark-light" : " "}`}
           />
         </Form.Item>
 
-        <Form.Item
-          name="remember"
-          valuePropName="checked"
-       
-        >
-          <Checkbox style={{ backgroundColor: theme === 'dark' ? '#23272f' : '#fff', color: theme === 'dark' ? '#fff' : ''}}> Remember me</Checkbox>
+        <Form.Item name="remember" valuePropName="checked">
+          <Checkbox className={isDark ? "dark-text" : ""}>Remember me</Checkbox>
         </Form.Item>
 
         <Form.Item
@@ -96,7 +113,7 @@ const LoginForm = ({loginUser}) => {
             span: 16,
           }}
         >
-          <ThemeButton title={"Log In"}  />
+          <ThemeButton title={"Log In"} />
         </Form.Item>
         <Form.Item
           wrapperCol={{
@@ -104,11 +121,13 @@ const LoginForm = ({loginUser}) => {
             span: 16,
           }}
         >
-          <span className="text">
-
-          Don't have an account?
+          <span className="text">Don't have an account?</span>
+          <span>
+            {" "}
+            <Link className="text-primary" to={"/signup"}>
+              Sign Up
+            </Link>{" "}
           </span>
-          <span> <Link className="text-primary" to={"/signup"}>Sign Up</Link> </span>
         </Form.Item>
       </Form>
     </div>
