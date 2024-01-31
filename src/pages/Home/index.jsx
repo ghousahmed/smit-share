@@ -1,3 +1,4 @@
+import { Modal } from 'antd';
 import "./css/style.scss";
 import "../../mediaquery/mediaquery.scss";
 import {
@@ -28,6 +29,8 @@ import {
   MdDarkMode,
 } from "../../components/index.js";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { Switch } from "antd";
 
 function HomePage() {
   const { isDark, toggleTheme } = useTheme();
@@ -38,6 +41,13 @@ function HomePage() {
   const [files, setFiles] = useState([]);
   const [tempFiles, setTempFiles] = useState([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const { t, i18n } = useTranslation();
+
+  const handleChange = (checked) => {
+    const newLanguage = checked ? 'ur' : 'en';
+    i18n.changeLanguage(newLanguage);
+  };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -112,26 +122,29 @@ function HomePage() {
         <div className="menu-bar">
           {screenWidth.widthScreen > 768 ? (
             <ul>
-              <li className={isDark ? "dark-text" : " "}>How it works</li>
-              <li className={isDark ? "dark-text" : " "}> Download</li>
-              <li className={isDark ? "dark-text" : " "}>Upgrade</li>
-              <li className={isDark ? "dark-text" : " "}>Feedback</li>
-              <li className={`menu-btn ${isDark ? "dark-light" : " "}`}>
+              <li className={isDark ? "dark-text" : " "}>{t('How it works')}</li>
+              <li className={isDark ? "dark-text" : " "}> {t('Download')}</li>
+              <li className={isDark ? "dark-text" : " "}>{t('Upgrade')}</li>
+              <li className={isDark ? "dark-text" : " "}>{t('Feedback')}</li>
+              <li className="menu-btn">
                 <Link
                   className="menu-btn"
                   style={{ textDecoration: "none" }}
                   to={"/login"}
                 >
-                  Login
+                  {t('Login / Register')}
                 </Link>
-                /
-                <Link
-                  className="menu-btn"
-                  to={"/signup"}
-                  style={{ textDecoration: "none" }}
-                >
-                  Register
-                </Link>
+              </li>
+              <li>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <span style={{ margin: '0px 8px' }}>En</span>
+                  <Switch
+                    size="small"
+                    defaultChecked={i18n.language === 'ur'}
+                    onChange={handleChange}
+                  />
+                  <span style={{ margin: '0px 8px' }}>Ur</span>
+                </div>
               </li>
               <li onClick={toggleTheme}>
                 {isDark ? (
@@ -158,12 +171,12 @@ function HomePage() {
           {isMenuOpen ? (
             <div className="mobile-menu">
               <ul>
-                <li className={isDark ? "dark" : " "}>How it works</li>
-                <li className={isDark ? "dark" : " "}> Download</li>
-                <li className={isDark ? "dark" : " "}>Upgrade</li>
-                <li className={isDark ? "dark" : " "}>Feedback</li>
+                <li className={isDark ? "dark" : " "}>{t('How it works')}</li>
+                <li className={isDark ? "dark" : " "}> {t('Download')}</li>
+                <li className={isDark ? "dark" : " "}>{t('Upgrade')}</li>
+                <li className={isDark ? "dark" : " "}>{t('Feedback')}</li>
                 <li className={isDark ? "dark" : "menu-btn"}>
-                  Login / Register
+                  {t('Login / Register')}
                 </li>
               </ul>
             </div>
@@ -175,9 +188,9 @@ function HomePage() {
         <div className={`card-sidebar ${isDark ? "dark" : " "}`}>
           {screenWidth.widthScreen <= 768 ? (
             type === "text" ? (
-              <h1 className={isDark ? "dark-text" : " "}>Text</h1>
+              <h1 className={isDark ? "dark-text" : " "}>{t('Text')}</h1>
             ) : (
-              <h1 className={isDark ? "dark-text" : " "}>Files</h1>
+              <h1 className={isDark ? "dark-text" : " "}>{t('Files')}</h1>
             )
           ) : null}
           <div>
@@ -203,7 +216,7 @@ function HomePage() {
           {type === "text" ? (
             <div className="text-section">
               {screenWidth.widthScreen > 768 ? (
-                <h1 className={isDark ? "dark-light" : " "}>Text</h1>
+                <h1 className={isDark ? "dark-light" : " "}>{t('Text')}</h1>
               ) : null}
               <div className="resize-section">
                 <TextArea
@@ -228,7 +241,7 @@ function HomePage() {
                   ))}
                 </div>
                 <div className="save-btn-section">
-                  <span onClick={clearText}>Clear</span>
+                  <span onClick={clearText}>{t('Clear')}</span>
                   {isText ? (
                     <ThemeButton
                       onClick={() => {
@@ -240,7 +253,7 @@ function HomePage() {
                     <ThemeButton
                       onClick={saveChanges}
                       disabled={textValue ? false : true}
-                      title={"Save"}
+                      title={t("Save")}
                       className={isDark ? "dark-lighter" : " "}
                     />
                   )}
@@ -251,19 +264,29 @@ function HomePage() {
             <div className="files-section">
               <div className="files-header">
                 {screenWidth.widthScreen > 768 ? (
-                  <h1 className={isDark ? "dark-light" : " "}>Files</h1>
+                  <h1 className={isDark ? "dark-light" : " "}>{t('Files')}</h1>
                 ) : null}
                 <div className="files-btn">
                   <div
-                    onClick={() => downloadAll(files)}
+                    onClick={() => {
+                      if (files.length > 0) {
+                        downloadAll(files);
+                      } else {
+                        // Use Ant Design Modal to display an information message.
+                        Modal.info({
+                          title: 'No Files to Download',
+                          content: 'There are no files to download.',
+                        });
+                      }
+                    }}
                     className="download-btn"
                   >
                     <FaDownload />
-                    Download All
+                    {t('Download All')}
                   </div>
                   <div onClick={deleteAllFiles} className="delete-btn">
                     <MdDelete />
-                    Delete All
+                    {t('Delete All')}
                   </div>
                 </div>
               </div>
@@ -281,8 +304,8 @@ function HomePage() {
                   onDrop={onDrop}
                   textElement={
                     <>
-                      Drag and drop any files up to 2 files, 5Mbs each or{" "}
-                      <span>Browse Upgrade</span> to get more space
+                      {t('Drag and drop any files up to 2 files, 5Mbs each or')}{"  "}
+                      <span>{t('Browse Upgrade')}</span> {t('to get more space')}
                     </>
                   }
                 />
