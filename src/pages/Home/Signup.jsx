@@ -8,7 +8,7 @@ import { MdDarkMode } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { useTheme } from "../../context/ThemeContext";
 import SignupForm from "../../components/SignupForm";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { auth, createUserWithEmailAndPassword } from "../../db/index";
 function SignupPage() {
   const registerUser = (values) => {
