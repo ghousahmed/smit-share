@@ -5,14 +5,15 @@ import ThemeButton from "./Button";
 import { useTheme } from "../context/ThemeContext";
 import useScreenWidth from "../helper/screenWidth";
 import { Link } from "react-router-dom";
+import "../mediaquery/mediaquery.scss";
 
 const onFinishFailed = (errorInfo) => {
   console.log("Failed:", errorInfo);
 };
-
 const LoginForm = ({ loginUser }) => {
-  const { isDark } = useTheme();
-
+  const [clientReady, setClientReady] = useState(false);
+  const [form] = Form.useForm();
+  const { isDark, toggleTheme } = useTheme();
   useEffect(() => {
     isDark
       ? document.body.classList.add("dark")
@@ -20,7 +21,7 @@ const LoginForm = ({ loginUser }) => {
   }, [isDark]);
 
   return (
-    <div className={`d-flex ${isDark ? "dark-light" : ""}`}>
+    <div className={`d-flex ${isDark ? "dark-lighter" : " "}`}>
       <Form
         name="trigger"
         layout="vertical"
@@ -58,12 +59,12 @@ const LoginForm = ({ loginUser }) => {
               message: "Enter a valid email address",
             },
           ]}
-         
+
         >
           <Input
             prefix={<UserOutlined className="site-form-item-icon" />}
             placeholder="Email"
-            className="input-border"
+            className={`input-border ${isDark ? "dark-light" : " "}`}
           />
         </Form.Item>
 

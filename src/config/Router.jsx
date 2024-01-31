@@ -31,7 +31,7 @@ function AppRouter() {
                 login ? <Navigate to="/" /> : <LoginPage setIslogin={setIslogin} />
               }
             />
-           <Route
+            <Route
               path="/signup"
               element={login ? <Navigate to="/" /> : <SignupPage />}
             />

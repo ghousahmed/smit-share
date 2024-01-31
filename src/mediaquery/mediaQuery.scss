@@ -9,14 +9,9 @@
 
 @media only screen and (max-width: 768px) {
   .container {
-    width: 100%;
-    padding: 20px;
-    margin: 0;
-    margin-top: 0;
-
-    .main-card {
+      .main-card {
       flex-direction: column;
-      margin: 0;
+      margin-top: 10px;
       min-height: fit-content;
       box-shadow: none;
       .card-sidebar {
@@ -24,17 +19,13 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        padding-left: 20px;
         div {
           display: flex;
           margin: 0;
           div {
-            background-color: #ebebeb;
             border-radius: 5px 5px 0 0;
             margin: unset;
-            &:active,
-            &:hover {
-              background-color: #fff;
-            }
           }
         }
       }
@@ -74,6 +65,7 @@
       width: 100% !important;
       font-size: 14px;
       text-align: justify !important;
+      padding: 0 25px;
     }
   }
   .text-footer {
