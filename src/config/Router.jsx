@@ -3,6 +3,7 @@ import HomePage from "../pages/Home";
 import { ThemeProvider } from "../context/ThemeContext";
 import LoginPage from "../pages/Home/Login";
 import SignupPage from "../pages/Home/Signup";
+import PageNotExist from "../pages/PageNotExist";
 
 function AppRouter() {
     return (
@@ -15,6 +16,8 @@ function AppRouter() {
 
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/signup" element={<SignupPage />} />
+                    <Route path="*" element={<PageNotExist />} />
+
                 </Routes>
             </BrowserRouter>
         </ThemeProvider>
