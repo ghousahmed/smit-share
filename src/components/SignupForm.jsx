@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect } from "react";
 import { Form, Input } from "antd";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import ThemeButton from "./Button";
@@ -10,10 +10,15 @@ const onFinishFailed = (errorInfo) => {
 const SignupForm = ({ registerUser }) => {
   const [clientReady, setClientReady] = useState(false);
   const [form] = Form.useForm();
-  const { theme } = useTheme();
+  const { theme, toggleTheme, isDark } = useTheme();
+  useEffect(() => {
+    isDark
+      ? document.body.classList.add("dark")
+      : document.body.classList.remove("dark");
+  }, [isDark]);
 
   return (
-    <div className="d-flex">
+    <div className={`d-flex ${isDark ? "dark-light" : ""}`}>
       <Form
         name="trigger"
         layout="vertical"
@@ -35,9 +40,10 @@ const SignupForm = ({ registerUser }) => {
         autoComplete="off"
       >
         <Form.Item
-          label={<span style={{  backgroundColor: theme === 'dark' ? '#23272f' : '#fff', color: theme === 'dark' ? '#fff' : '',   fontWeight: 'bold' }}>Email</span>}
+           label={<span className={isDark ? "dark-light" : ""}>Email</span>}
           name="email"
           validateTrigger="onBlur"
+          className={isDark ? "dark-light" : ""}
           rules={[
             {
               required: true,
@@ -49,6 +55,7 @@ const SignupForm = ({ registerUser }) => {
               message: "Enter valid email address",
             },
           ]}
+       
         >
           <Input
             prefix={<UserOutlined className="site-form-item-icon" />}
@@ -58,8 +65,9 @@ const SignupForm = ({ registerUser }) => {
         </Form.Item>
 
         <Form.Item
-         label={<span style={{  backgroundColor: theme === 'dark' ? '#23272f' : '#fff', color: theme === 'dark' ? '#fff' : '',   fontWeight: 'bold' }}>Password</span>}
+            label={<span className={isDark ? "dark-light" : ""}>Password</span>}
           name="password"
+          className={isDark ? "dark-light" : ""}
           rules={[
             {
               required: true,
@@ -84,7 +92,7 @@ const SignupForm = ({ registerUser }) => {
             span: 16,
           }}
         >
-          <ThemeButton title={"Create Free Account"} />
+          <ThemeButton title={"Register"}  />
         </Form.Item>
         <Form.Item
           wrapperCol={{
