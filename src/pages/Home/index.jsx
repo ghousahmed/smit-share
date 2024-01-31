@@ -112,11 +112,21 @@ function HomePage() {
         <div className="menu-bar">
           {screenWidth.widthScreen > 768 ? (
             <ul>
-              <li className={isDark ? "dark-text" : " "}>How it works</li>
-              <li className={isDark ? "dark-text" : " "}> Download</li>
-              <li className={isDark ? "dark-text" : " "}>Upgrade</li>
-              <li className={isDark ? "dark-text" : " "}>Feedback</li>
-              <li className="menu-btn">Login / Register</li>
+              <li className={isDark ? "dark-text" : " "}>
+                <Link to={"/howitwork"}>How it works</Link>
+              </li>
+              <li className={isDark ? "dark-text" : " "}>
+                <Link to={"/download"}> Download</Link>
+              </li>
+              <li className={isDark ? "dark-text" : " "}>
+                <Link to={"/upgrade"}>Upgrade</Link>
+              </li>
+              <li className={isDark ? "dark-text" : " "}>
+                <Link to={"/feedback"}>Feedback</Link>
+              </li>
+              <li className="menu-btn">
+                <Link to={"/login"}>Login / Register</Link>
+              </li>
               <li onClick={toggleTheme}>
                 {isDark ? (
                   <MdLightMode size={24} color="white" />
@@ -142,12 +152,20 @@ function HomePage() {
           {isMenuOpen ? (
             <div className="mobile-menu">
               <ul>
-                <li className={isDark ? "dark" : " "}>How it works</li>
-                <li className={isDark ? "dark" : " "}> Download</li>
-                <li className={isDark ? "dark" : " "}>Upgrade</li>
-                <li className={isDark ? "dark" : " "}>Feedback</li>
+                <li className={isDark ? "dark" : " "}>
+                  <Link to={"/howitwork"}>How it works</Link>
+                </li>
+                <li className={isDark ? "dark" : " "}>
+                  <Link to={"/download"}> Download</Link>
+                </li>
+                <li className={isDark ? "dark" : " "}>
+                  <Link to={"/upgrade"}>Upgrade</Link>
+                </li>
+                <li className={isDark ? "dark" : " "}>
+                  <Link to={"/feedback"}>Feedback</Link>
+                </li>
                 <li className={isDark ? "dark" : "menu-btn"}>
-                  Login / Register
+                  <Link to={"/login"}>Login / Register</Link>
                 </li>
               </ul>
             </div>
