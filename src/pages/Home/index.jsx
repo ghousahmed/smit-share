@@ -112,43 +112,43 @@ function HomePage() {
         <div className="menu-bar">
           {screenWidth.widthScreen > 768 ? (
             <ul>
-             <li className={isDark ? "dark" : " "}>
-                  <Link to={"/howitwork"} style={{ textDecoration: "none" }}>
-                    How it works
-                  </Link>
-                </li>
-                {/* <li className={isDark ? "dark" : " "}>
+              <li className={isDark ? "dark" : " "}>
+                <Link to={"/howitwork"} style={{ textDecoration: "none" }}>
+                  How it works
+                </Link>
+              </li>
+              {/* <li className={isDark ? "dark" : " "}>
                   <Link to={"/download"} style={{textDecoration:"none"}}> Download</Link>
                 </li>
                 <li className={isDark ? "dark" : " "}>
                   <Link to={"/upgrade"} style={{textDecoration:"none"}}>Upgrade</Link>
                 </li> */}
-                <li className={isDark ? "dark" : " "}>
-                  <Link to={"/feedback"} style={{ textDecoration: "none" }}>
-                    Feedback
+              <li className={isDark ? "dark" : " "}>
+                <Link to={"/feedback"} style={{ textDecoration: "none" }}>
+                  Feedback
+                </Link>
+              </li>
+              <li className={isDark ? "dark" : "menu-btn"}>
+                <span>
+                  <Link
+                    className="menu-btn"
+                    to={"/login"}
+                    style={{ textDecoration: "none" }}
+                  >
+                    Login
                   </Link>
-                </li>             
-                <li className={isDark ? "dark" : "menu-btn"}>
-                  <span>
-                    <Link
-                      className="menu-btn"
-                      to={"/login"}
-                      style={{ textDecoration: "none" }}
-                    >
-                      Login
-                    </Link>
-                  </span>
-                  /
-                  <span>
-                    <Link
-                      className="menu-btn"
-                      to={"/signup"}
-                      style={{ textDecoration: "none" }}
-                    >
-                      Register
-                    </Link>
-                  </span>
-                </li>
+                </span>
+                /
+                <span>
+                  <Link
+                    className="menu-btn"
+                    to={"/signup"}
+                    style={{ textDecoration: "none" }}
+                  >
+                    Register
+                  </Link>
+                </span>
+              </li>
               <li onClick={toggleTheme}>
                 {isDark ? (
                   <MdLightMode size={24} color="white" />
@@ -189,7 +189,7 @@ function HomePage() {
                   <Link to={"/feedback"} style={{ textDecoration: "none" }}>
                     Feedback
                   </Link>
-                </li>             
+                </li>
                 <li className={isDark ? "dark" : "menu-btn"}>
                   <span>
                     <Link
@@ -212,12 +212,12 @@ function HomePage() {
                   </span>
                 </li>
                 <li onClick={toggleTheme}>
-                {isDark ? (
-                  <MdLightMode size={24} color="white" />
-                ) : (
-                  <MdDarkMode size={24} />
-                )}
-              </li>
+                  {isDark ? (
+                    <MdLightMode size={24} color="white" />
+                  ) : (
+                    <MdDarkMode size={24} />
+                  )}
+                </li>
               </ul>
             </div>
           ) : null}
