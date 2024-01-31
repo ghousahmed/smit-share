@@ -41,8 +41,8 @@ function HomePage() {
   const [files, setFiles] = useState([]);
   const [tempFiles, setTempFiles] = useState([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  
-  const { t, i18n  } = useTranslation();
+
+  const { t, i18n } = useTranslation();
 
   const handleChange = (checked) => {
     const newLanguage = checked ? 'ur' : 'en';
@@ -128,15 +128,15 @@ function HomePage() {
               <li className={isDark ? "dark-text" : " "}>{t('Feedback')}</li>
               <li className="menu-btn">{t('Login / Register')}</li>
               <li>
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <span style={{ margin: '0px 8px' }}>En</span>
-                <Switch
-                  size="small"
-                  defaultChecked={i18n.language === 'ur'}
-                  onChange={handleChange}
-                />
-                <span style={{ margin: '0px 8px' }}>Ur</span>
-              </div>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <span style={{ margin: '0px 8px' }}>En</span>
+                  <Switch
+                    size="small"
+                    defaultChecked={i18n.language === 'ur'}
+                    onChange={handleChange}
+                  />
+                  <span style={{ margin: '0px 8px' }}>Ur</span>
+                </div>
               </li>
               <li onClick={toggleTheme}>
                 {isDark ? (
@@ -168,7 +168,7 @@ function HomePage() {
                 <li className={isDark ? "dark" : " "}>{t('Upgrade')}</li>
                 <li className={isDark ? "dark" : " "}>{t('Feedback')}</li>
                 <li className={isDark ? "dark" : "menu-btn"}>
-                {t('Login / Register')}
+                  {t('Login / Register')}
                 </li>
               </ul>
             </div>
@@ -208,7 +208,7 @@ function HomePage() {
           {type === "text" ? (
             <div className="text-section">
               {screenWidth.widthScreen > 768 ? (
-                <h1 className={isDark ? "dark-light" : " "}>{t('Text')}</h1> 
+                <h1 className={isDark ? "dark-light" : " "}>{t('Text')}</h1>
               ) : null}
               <div className="resize-section">
                 <TextArea
@@ -245,7 +245,7 @@ function HomePage() {
                     <ThemeButton
                       onClick={saveChanges}
                       disabled={textValue ? false : true}
-                      title={"Save"}
+                      title={t("Save")}
                       className={isDark ? "dark-lighter" : " "}
                     />
                   )}
@@ -259,24 +259,23 @@ function HomePage() {
                   <h1 className={isDark ? "dark-light" : " "}>{t('Files')}</h1>
                 ) : null}
                 <div className="files-btn">
-
-    <div
-  onClick={() => {
-    if (files.length > 0) {
-      downloadAll(files);
-    } else {
-      // Use Ant Design Modal to display an information message.
-      Modal.info({
-        title: 'No Files to Download',
-        content: 'There are no files to download.',
-      });
-    }
-  }}
-  className="download-btn"
->
-  <FaDownload />
-  {t('Download All')}
-</div>
+                  <div
+                    onClick={() => {
+                      if (files.length > 0) {
+                        downloadAll(files);
+                      } else {
+                        // Use Ant Design Modal to display an information message.
+                        Modal.info({
+                          title: 'No Files to Download',
+                          content: 'There are no files to download.',
+                        });
+                      }
+                    }}
+                    className="download-btn"
+                  >
+                    <FaDownload />
+                    {t('Download All')}
+                  </div>
                   <div onClick={deleteAllFiles} className="delete-btn">
                     <MdDelete />
                     {t('Delete All')}
