@@ -45,10 +45,10 @@ function SignupPage() {
         <div className="menu-bar">
           {screenWidth.widthScreen > 768 ? (
             <ul>
-              <li style={styles}>How it works</li>
-              <li style={styles}>Download</li>
-              <li style={styles}>Upgrade</li>
-              <li style={styles}>Feedback </li>
+              <li style={styles}><Link to={"/howitwork"} style={{textDecoration:"none"}}>How it works</Link></li>
+              {/* <li style={styles}> <Link to={"/download"} style={{textDecoration:"none"}}> Download</Link></li>
+              <li style={styles}><Link to={"/upgrade"} style={{textDecoration:"none"}}>Upgrade</Link></li> */}
+              <li style={styles}><Link to={"/feedback"} style={{textDecoration:"none"}}>Feedback</Link> </li>
               <li className="menu-btn"><span> <Link className="menu-btn" to={"/login"} style={{textDecoration:"none"}}> Login </Link></span> / <span> Register </span> </li>
 
               <li onClick={toggleTheme}>

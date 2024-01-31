@@ -112,21 +112,43 @@ function HomePage() {
         <div className="menu-bar">
           {screenWidth.widthScreen > 768 ? (
             <ul>
-              <li className={isDark ? "dark-text" : " "}>
-                <Link to={"/howitwork"}>How it works</Link>
-              </li>
-              {/* <li className={isDark ? "dark-text" : " "}>
-                <Link to={"/download"}> Download</Link>
-              </li>
-              <li className={isDark ? "dark-text" : " "}>
-                <Link to={"/upgrade"}>Upgrade</Link>
-              </li> */}
-              <li className={isDark ? "dark-text" : " "}>
-                <Link to={"/feedback"}>Feedback</Link>
-              </li>
-              <li className="menu-btn">
-                <Link to={"/login"}>Login / Register</Link>
-              </li>
+             <li className={isDark ? "dark" : " "}>
+                  <Link to={"/howitwork"} style={{ textDecoration: "none" }}>
+                    How it works
+                  </Link>
+                </li>
+                {/* <li className={isDark ? "dark" : " "}>
+                  <Link to={"/download"} style={{textDecoration:"none"}}> Download</Link>
+                </li>
+                <li className={isDark ? "dark" : " "}>
+                  <Link to={"/upgrade"} style={{textDecoration:"none"}}>Upgrade</Link>
+                </li> */}
+                <li className={isDark ? "dark" : " "}>
+                  <Link to={"/feedback"} style={{ textDecoration: "none" }}>
+                    Feedback
+                  </Link>
+                </li>             
+                <li className={isDark ? "dark" : "menu-btn"}>
+                  <span>
+                    <Link
+                      className="menu-btn"
+                      to={"/login"}
+                      style={{ textDecoration: "none" }}
+                    >
+                      Login
+                    </Link>
+                  </span>
+                  /
+                  <span>
+                    <Link
+                      className="menu-btn"
+                      to={"/signup"}
+                      style={{ textDecoration: "none" }}
+                    >
+                      Register
+                    </Link>
+                  </span>
+                </li>
               <li onClick={toggleTheme}>
                 {isDark ? (
                   <MdLightMode size={24} color="white" />
@@ -153,20 +175,49 @@ function HomePage() {
             <div className="mobile-menu">
               <ul>
                 <li className={isDark ? "dark" : " "}>
-                  <Link to={"/howitwork"}>How it works</Link>
+                  <Link to={"/howitwork"} style={{ textDecoration: "none" }}>
+                    How it works
+                  </Link>
                 </li>
                 {/* <li className={isDark ? "dark" : " "}>
-                  <Link to={"/download"}> Download</Link>
+                  <Link to={"/download"} style={{textDecoration:"none"}}> Download</Link>
                 </li>
                 <li className={isDark ? "dark" : " "}>
-                  <Link to={"/upgrade"}>Upgrade</Link>
+                  <Link to={"/upgrade"} style={{textDecoration:"none"}}>Upgrade</Link>
                 </li> */}
                 <li className={isDark ? "dark" : " "}>
-                  <Link to={"/feedback"}>Feedback</Link>
-                </li>
+                  <Link to={"/feedback"} style={{ textDecoration: "none" }}>
+                    Feedback
+                  </Link>
+                </li>             
                 <li className={isDark ? "dark" : "menu-btn"}>
-                  <Link to={"/login"}>Login / Register</Link>
+                  <span>
+                    <Link
+                      className="menu-btn"
+                      to={"/login"}
+                      style={{ textDecoration: "none" }}
+                    >
+                      Login
+                    </Link>
+                  </span>
+                  /
+                  <span>
+                    <Link
+                      className="menu-btn"
+                      to={"/signup"}
+                      style={{ textDecoration: "none" }}
+                    >
+                      Register
+                    </Link>
+                  </span>
                 </li>
+                <li onClick={toggleTheme}>
+                {isDark ? (
+                  <MdLightMode size={24} color="white" />
+                ) : (
+                  <MdDarkMode size={24} />
+                )}
+              </li>
               </ul>
             </div>
           ) : null}
