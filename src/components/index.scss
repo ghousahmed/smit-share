@@ -9,6 +9,7 @@ $primary-dark-color: #745dff;
 $primary-color: #638eff;
 
 .text-area {
+  transition: all 0.3s ease-in-out;
   border: none;
   resize: none;
   font-size: 22px;
@@ -18,8 +19,6 @@ $primary-color: #638eff;
   padding: 10px 0;
   border: none;
   overflow: hidden;
-  // min-height: 221px;
-  // max-height: auto;
 
   &::-webkit-scrollbar {
     display: none;
@@ -62,17 +61,19 @@ $primary-color: #638eff;
 
 .drop-zone {
   width: 100%;
-  border: 1.5px dashed rgba(158, 161, 161, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
-
+  border: 1.5px dashed rgba(158, 161, 161, 0.5);
+  height: 250px;
   div {
     color: rgba(158, 161, 161, 0.5);
-    width: 50%;
+    width: 60%;
     text-align: center;
     line-height: 30px;
- 
+    min-height: 200px;
+    padding-top: 25px;
+
     span {
       color: $primary-dark-color;
     }
@@ -83,6 +84,10 @@ $primary-color: #638eff;
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
+
+  &:hover{
+    overflow: hidden;
+  }
 
   div {
     width: 100px;
