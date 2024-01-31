@@ -115,12 +115,12 @@ function HomePage() {
               <li className={isDark ? "dark-text" : " "}>
                 <Link to={"/howitwork"}>How it works</Link>
               </li>
-              <li className={isDark ? "dark-text" : " "}>
+              {/* <li className={isDark ? "dark-text" : " "}>
                 <Link to={"/download"}> Download</Link>
               </li>
               <li className={isDark ? "dark-text" : " "}>
                 <Link to={"/upgrade"}>Upgrade</Link>
-              </li>
+              </li> */}
               <li className={isDark ? "dark-text" : " "}>
                 <Link to={"/feedback"}>Feedback</Link>
               </li>
@@ -155,12 +155,12 @@ function HomePage() {
                 <li className={isDark ? "dark" : " "}>
                   <Link to={"/howitwork"}>How it works</Link>
                 </li>
-                <li className={isDark ? "dark" : " "}>
+                {/* <li className={isDark ? "dark" : " "}>
                   <Link to={"/download"}> Download</Link>
                 </li>
                 <li className={isDark ? "dark" : " "}>
                   <Link to={"/upgrade"}>Upgrade</Link>
-                </li>
+                </li> */}
                 <li className={isDark ? "dark" : " "}>
                   <Link to={"/feedback"}>Feedback</Link>
                 </li>
