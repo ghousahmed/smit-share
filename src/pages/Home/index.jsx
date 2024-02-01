@@ -53,6 +53,7 @@ function HomePage({login}) {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
   const onDrop = async (acceptedFiles) => {
     setTempFiles([...tempFiles, ...acceptedFiles]);
     let arr = [];
