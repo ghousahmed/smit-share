@@ -64,32 +64,33 @@ const SignupForm = ({ registerUser }) => {
         >
           <Input
             prefix={<UserOutlined className="site-form-item-icon" />}
-            placeholder="Email"
-            className={`input-border ${isDark ? "dark-lighter" : " "}`}
+            placeholder="Enter your email"
+            className={`input-border ${isDark ? "dark-lighter" : ""} ${isDark ? "white-placeholder" : ""}`}
           />
         </Form.Item>
 
         <Form.Item
-          label={<span className={isDark ? "dark-light" : ""}>Password</span>}
-          name="password"
-          className={isDark ? "dark-light" : ""}
-          rules={[
-            {
-              required: true,
-              message: "Please input your password!",
-            },
-            {
-              min: 6,
-              message: "Password must be greater than 6 charachter",
-            },
-          ]}
-        >
-          <Input.Password
-            prefix={<LockOutlined className="site-form-item-icon" />}
-            placeholder="Password "
-            className={`input-border ${isDark ? "dark-lighter" : " "}`}
-          />
-        </Form.Item>
+  label={<span className={isDark ? "dark-light" : ""}>Password</span>}
+  name="password"
+  className={isDark ? "dark-light" : ""}
+  rules={[
+    {
+      required: true,
+      message: "Please input your password!",
+    },
+    {
+      min: 6,
+      message: "Password must be greater than 6 characters",
+    },
+  ]}
+>
+  <Input.Password
+    prefix={<LockOutlined className="site-form-item-icon" />}
+    placeholder="Enter your passsword"
+    className={`input-border ${isDark ? "dark-lighter" : ""} ${isDark ? "white-placeholder" : ""}`}
+  />
+</Form.Item>
+
 
         <Form.Item
           wrapperCol={{

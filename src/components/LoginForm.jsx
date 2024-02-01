@@ -21,7 +21,7 @@ const LoginForm = ({ loginUser }) => {
   }, [isDark]);
 
   return (
-    <div className={`d-flex ${isDark ? "dark-lighter" : " "}`}>
+    <div className={`d-flex ${isDark ? "dark-light" : ""}`}>
       <Form
         name="trigger"
         layout="vertical"
@@ -44,7 +44,7 @@ const LoginForm = ({ loginUser }) => {
         onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
-        <Form.Item
+       <Form.Item
           label={<span className={isDark ? "dark-light" : ""}>Email</span>}
           name="email"
           validateTrigger="onBlur"
@@ -55,16 +55,18 @@ const LoginForm = ({ loginUser }) => {
               message: "Please input your email!",
             },
             {
-              pattern: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-              message: "Enter a valid email address",
+              pattern:
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+              message: "Enter valid email address",
             },
           ]}
 
         >
           <Input
             prefix={<UserOutlined className="site-form-item-icon" />}
-            placeholder="Email"
-            className={`input-border ${isDark ? "dark-light" : " "}`}
+            placeholder="Enter your email"
+            className={`input-border ${isDark ? "dark-lighter" : ""} ${isDark ? "white-placeholder" : ""}`}
+
           />
         </Form.Item>
 
@@ -79,14 +81,15 @@ const LoginForm = ({ loginUser }) => {
             },
             {
               min: 6,
-              message: "Password must be greater than 6 characters",
+              message: "Password must be greater than 6 charachter",
             },
           ]}
         >
           <Input.Password
             prefix={<LockOutlined className="site-form-item-icon" />}
-            placeholder="Password"
-            className="input-border"
+            placeholder="Enter your password "
+            className={`input-border ${isDark ? "dark-lighter" : ""} ${isDark ? "white-placeholder" : ""}`}
+
           />
         </Form.Item>
 

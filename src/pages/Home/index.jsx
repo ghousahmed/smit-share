@@ -1,4 +1,4 @@
-import { Modal } from 'antd';
+import { Modal, notification } from 'antd';
 import "./css/style.scss";
 import "../../mediaquery/mediaquery.scss";
 import {
@@ -30,9 +30,10 @@ import {
 } from "../../components/index.js";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import {auth ,signOut } from '../../db/index.js'
 import { Switch } from "antd";
 
-function HomePage() {
+function HomePage({login}) {
   const { isDark, toggleTheme } = useTheme();
   const screenWidth = useScreenWidth();
   const [type, setType] = useState("text");
@@ -47,10 +48,6 @@ function HomePage() {
   const handleChange = (checked) => {
     const newLanguage = checked ? 'ur' : 'en';
     i18n.changeLanguage(newLanguage);
-  };
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
   };
 
   const toggleMenu = () => {
@@ -147,15 +144,8 @@ function HomePage() {
               <li className={isDark ? "dark-text" : " "}> {t('Download')}</li>
               <li className={isDark ? "dark-text" : " "}>{t('Upgrade')}</li>
               <li className={isDark ? "dark-text" : " "}>{t('Feedback')}</li>
-              <li className="menu-btn">
-                <Link
-                  className="menu-btn"
-                  style={{ textDecoration: "none" }}
-                  to={"/login"}
-                >
-                  {t('Login / Register')}
-                </Link>
-              </li>
+              { login ? <li className="menu-btn" onClick={logoutUser}>{t('Logout')}</li> :
+              <li className="menu-btn"><span> <Link className="menu-btn" style={{textDecoration:"none"}} to={"/login"}> Login </Link></span>/ <span> <Link className="menu-btn" to={"/signup"} style={{textDecoration:"none"}}> Register </Link></span></li> }
               <li>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                   <span style={{ margin: '0px 8px' }}>En</span>
