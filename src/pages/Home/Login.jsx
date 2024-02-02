@@ -9,20 +9,29 @@ import { MdDarkMode } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { useTheme } from "../../context/ThemeContext";
 import { useEffect } from "react";
+import { notification } from "antd";
 import { auth, signInWithEmailAndPassword } from "../../db/index";
 
 function LoginPage() {
   let loginUser = (values) => {
     signInWithEmailAndPassword(auth, values.email, values.password)
       .then((userCredential) => {
-        // Signed in
         const user = userCredential.user;
-        <Alert message="Success Text" type="success" />;
-        console.log(user);
+        notification.success({
+          message: 'Login Success',
+          description: `Welcome, ${user.email}!`,
+          duration: 2.5,
+        });
+        // console.log(user);
       })
       .catch((error) => {
-        const errorCode = error.code;
+        
         const errorMessage = error.message;
+        notification.error({
+          message: 'Login Failed',
+          description: errorMessage,
+          duration: 2.5,
+        });
         console.log(errorMessage);
       });
   };

@@ -5,6 +5,7 @@ import LoginPage from "../pages/Home/Login";
 import SignupPage from "../pages/Home/Signup";
 import { onAuthStateChanged, auth } from "../db/index.js";
 import { useEffect, useState } from "react";
+import PageNotFound from "../components/PageNotFound.jsx";
 function AppRouter() {
   const [login, setIslogin] = useState(false);
   useEffect(() => {
@@ -35,6 +36,7 @@ function AppRouter() {
               path="/signup"
               element={login ? <Navigate to="/" /> : <SignupPage />}
             />
+             <Route path="*" element={<PageNotFound/>}/>
           </Routes>
         </BrowserRouter>
       </ThemeProvider>

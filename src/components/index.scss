@@ -231,5 +231,8 @@ body {
   .text-primary{
     color: $primary-color !important;
   }
+  .white-placeholder .ant-input::placeholder {
+    color: rgb(201, 191, 191) !important;
+  }
   
 }

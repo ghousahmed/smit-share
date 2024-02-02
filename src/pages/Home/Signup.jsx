@@ -1,5 +1,4 @@
 import "../../mediaquery/mediaquery.scss";
-import LoginForm from "../../components/LoginForm";
 import LOGO from "../../assets/logo.svg";
 import { MdLightMode } from "react-icons/md";
 import { FiMenu } from "react-icons/fi";
@@ -8,8 +7,11 @@ import { MdDarkMode } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { useTheme } from "../../context/ThemeContext";
 import SignupForm from "../../components/SignupForm";
-import { useEffect, useState } from "react";
+
+import { useEffect ,useState} from "react";
 import { auth, createUserWithEmailAndPassword } from "../../db/index";
+import { notification } from "antd";
+
 function SignupPage() {
   const registerUser = (values) => {
     // console.log(values.email);
