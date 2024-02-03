@@ -1,19 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Input } from "antd";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import ThemeButton from "./Button";
 import { useTheme } from "../context/ThemeContext";
 import { Link } from "react-router-dom";
+import "../mediaquery/mediaquery.scss";
+
 const onFinishFailed = (errorInfo) => {
   console.log("Failed:", errorInfo);
 };
+
 const SignupForm = ({ registerUser }) => {
   const [clientReady, setClientReady] = useState(false);
   const [form] = Form.useForm();
-  const { theme } = useTheme();
+
+  const { isDark, toggleTheme } = useTheme();
+
+  useEffect(() => {
+    isDark
+      ? document.body.classList.add("dark")
+      : document.body.classList.remove("dark");
+  }, [isDark]);
 
   return (
-    <div className="d-flex">
+    <div className={`d-flex ${isDark ? "dark-light" : ""}`}>
       <Form
         name="trigger"
         layout="vertical"
@@ -35,9 +45,10 @@ const SignupForm = ({ registerUser }) => {
         autoComplete="off"
       >
         <Form.Item
-          label={<span style={{  backgroundColor: theme === 'dark' ? '#23272f' : '#fff', color: theme === 'dark' ? '#fff' : '',   fontWeight: 'bold' }}>Email</span>}
+          label={<span className={isDark ? "dark-light" : ""}>Email</span>}
           name="email"
           validateTrigger="onBlur"
+          className={isDark ? "dark-light" : ""}
           rules={[
             {
               required: true,
@@ -49,34 +60,37 @@ const SignupForm = ({ registerUser }) => {
               message: "Enter valid email address",
             },
           ]}
+
         >
           <Input
             prefix={<UserOutlined className="site-form-item-icon" />}
-            placeholder="Email"
-            className="input-border"
+            placeholder="Enter your email"
+            className={`input-border ${isDark ? "dark-lighter" : ""} ${isDark ? "white-placeholder" : ""}`}
           />
         </Form.Item>
 
         <Form.Item
-         label={<span style={{  backgroundColor: theme === 'dark' ? '#23272f' : '#fff', color: theme === 'dark' ? '#fff' : '',   fontWeight: 'bold' }}>Password</span>}
-          name="password"
-          rules={[
-            {
-              required: true,
-              message: "Please input your password!",
-            },
-            {
-              min: 6,
-              message: "Password must be greater than 6 charachter",
-            },
-          ]}
-        >
-          <Input.Password
-            prefix={<LockOutlined className="site-form-item-icon" />}
-            placeholder="Password "
-            className="input-border"
-          />
-        </Form.Item>
+  label={<span className={isDark ? "dark-light" : ""}>Password</span>}
+  name="password"
+  className={isDark ? "dark-light" : ""}
+  rules={[
+    {
+      required: true,
+      message: "Please input your password!",
+    },
+    {
+      min: 6,
+      message: "Password must be greater than 6 characters",
+    },
+  ]}
+>
+  <Input.Password
+    prefix={<LockOutlined className="site-form-item-icon" />}
+    placeholder="Enter your passsword"
+    className={`input-border ${isDark ? "dark-lighter" : ""} ${isDark ? "white-placeholder" : ""}`}
+  />
+</Form.Item>
+
 
         <Form.Item
           wrapperCol={{
@@ -84,7 +98,7 @@ const SignupForm = ({ registerUser }) => {
             span: 16,
           }}
         >
-          <ThemeButton title={"Create Free Account"} />
+          <ThemeButton title={"Register"} />
         </Form.Item>
         <Form.Item
           wrapperCol={{
@@ -94,10 +108,9 @@ const SignupForm = ({ registerUser }) => {
         >
           <span className="text">Already member?</span>
           <span>
-            {" "}
             <Link className="text-primary" to={"/login"}>
-              Log In{" "}
-            </Link>{" "}
+              Log In
+            </Link>
           </span>
         </Form.Item>
       </Form>
