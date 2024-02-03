@@ -1,20 +1,27 @@
-import React, { useState } from "react";
-import { Button, Checkbox, Form, Input } from "antd";
+import React, { useState, useEffect } from "react";
+import { Button, Checkbox, Form, Input, message } from "antd";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import ThemeButton from "./Button";
 import { useTheme } from "../context/ThemeContext";
+import useScreenWidth from "../helper/screenWidth";
 import { Link } from "react-router-dom";
+import "../mediaquery/mediaquery.scss";
 
 const onFinishFailed = (errorInfo) => {
   console.log("Failed:", errorInfo);
 };
-const LoginForm = ({loginUser}) => {
+const LoginForm = ({ loginUser }) => {
   const [clientReady, setClientReady] = useState(false);
   const [form] = Form.useForm();
-  const { theme } = useTheme();
+  const { isDark, toggleTheme } = useTheme();
+  useEffect(() => {
+    isDark
+      ? document.body.classList.add("dark")
+      : document.body.classList.remove("dark");
+  }, [isDark]);
 
   return (
-    <div className="d-flex">
+    <div className={`d-flex ${isDark ? "dark-light" : ""}`}>
       <Form
         name="trigger"
         layout="vertical"
@@ -27,9 +34,9 @@ const LoginForm = ({loginUser}) => {
         style={{
           maxWidth: 600,
           marginTop: "50px",
-          backgroundColor: theme === 'dark' ? '#14171e' : '#fff', color: theme === 'dark' ? '#fff' : '',  
+          backgroundColor: isDark ? "#2d2d30" : "#fff",
+          color: isDark ? "#fff" : "",
         }}
-        
         initialValues={{
           remember: true,
         }}
@@ -37,15 +44,15 @@ const LoginForm = ({loginUser}) => {
         onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
-        <Form.Item
-          label={<span style={{  backgroundColor: theme === 'dark' ? '#23272f' : '#fff', color: theme === 'dark' ? '#fff' : '',   fontWeight: 'bold' }}>Email</span>}
+       <Form.Item
+          label={<span className={isDark ? "dark-light" : ""}>Email</span>}
           name="email"
           validateTrigger="onBlur"
+          className={isDark ? "dark-light" : ""}
           rules={[
             {
               required: true,
               message: "Please input your email!",
-              
             },
             {
               pattern:
@@ -53,65 +60,80 @@ const LoginForm = ({loginUser}) => {
               message: "Enter valid email address",
             },
           ]}
+
         >
           <Input
             prefix={<UserOutlined className="site-form-item-icon" />}
-            placeholder="Email"
-            className="input-border"
+            placeholder="Enter your email"
+            className={`input-border ${isDark ? "dark-lighter" : ""} ${isDark ? "white-placeholder" : ""}`}
+
           />
         </Form.Item>
 
         <Form.Item
-            label={<span style={{  backgroundColor: theme === 'dark' ? '#23272f' : '#fff', color: theme === 'dark' ? '#fff' : '',   fontWeight: 'bold' }}>Password</span>}
+          label={<span className={isDark ? "dark-light" : ""}>Password</span>}
           name="password"
+          className={isDark ? "dark-light" : ""}
           rules={[
             {
               required: true,
               message: "Please input your password!",
             },
             {
-             min:6,
+              min: 6,
               message: "Password must be greater than 6 charachter",
-            }
+            },
           ]}
         >
           <Input.Password
             prefix={<LockOutlined className="site-form-item-icon" />}
-            placeholder="Password "
-            className="input-border"
+            placeholder="Enter your password "
+            className={`input-border ${isDark ? "dark-lighter" : ""} ${isDark ? "white-placeholder" : ""}`}
+
           />
         </Form.Item>
 
         <Form.Item
           name="remember"
           valuePropName="checked"
-       
+          className={isDark ? "dark-light" : ""}
         >
-          <Checkbox style={{ backgroundColor: theme === 'dark' ? '#23272f' : '#fff', color: theme === 'dark' ? '#fff' : ''}}> Remember me</Checkbox>
+          <Checkbox className={isDark ? "dark-light" : ""}>
+            {" "}
+            Remember me
+          </Checkbox>
         </Form.Item>
-
         <Form.Item
+          className={isDark ? "dark-light" : ""}
           wrapperCol={{
             offset: 6,
             span: 16,
           }}
         >
-          <ThemeButton title={"Log In"}  />
+          <ThemeButton title={"Log In"} />
         </Form.Item>
+
         <Form.Item
+          style={{
+            backgroundColor: isDark ? "#2d2d30" : "",
+            color: isDark ? "#ffff" : "",
+          }}
           wrapperCol={{
             offset: 6,
             span: 16,
           }}
         >
-          <span className="text">
-
-          Don't have an account?
+          <span className="text">Don't have an account?</span>
+          <span>
+            {" "}
+            <Link className="text-primary" to={"/signup"}>
+              Sign Up
+            </Link>{" "}
           </span>
-          <span> <Link className="text-primary" to={"/signup"}>Sign Up</Link> </span>
         </Form.Item>
       </Form>
     </div>
   );
 };
+
 export default LoginForm;
