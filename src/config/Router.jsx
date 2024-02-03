@@ -3,6 +3,7 @@ import HomePage from "../pages/Home";
 import { ThemeProvider } from "../context/ThemeContext";
 import LoginPage from "../pages/Home/Login";
 import SignupPage from "../pages/Home/Signup";
+import HowItWorks from "../pages/How It Work";
 import { onAuthStateChanged, auth } from "../db/index.js";
 import { useEffect, useState } from "react";
 import PageNotFound from "../components/PageNotFound.jsx";
@@ -36,7 +37,8 @@ function AppRouter() {
               path="/signup"
               element={login ? <Navigate to="/" /> : <SignupPage />}
             />
-             <Route path="*" element={<PageNotFound/>}/>
+            <Route path="/how-it-works" element={<HowItWorks />} />
+            <Route path="*" element={<PageNotFound/>}/>
           </Routes>
         </BrowserRouter>
       </ThemeProvider>

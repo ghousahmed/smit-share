@@ -141,7 +141,9 @@ function HomePage({login}) {
         <div className="menu-bar">
           {screenWidth.widthScreen > 768 ? (
             <ul>
-              <li className={isDark ? "dark-text" : " "}>{t('How it works')}</li>
+              <Link to="/how-it-works" style={{ textDecoration: 'none', color: isDark ? '#fff' : '#000' }}>
+                  How it works
+               </Link
               <li className={isDark ? "dark-text" : " "}> {t('Download')}</li>
               <li className={isDark ? "dark-text" : " "}>{t('Upgrade')}</li>
               <li className={isDark ? "dark-text" : " "}>{t('Feedback')}</li>
@@ -183,7 +185,11 @@ function HomePage({login}) {
           {isMenuOpen ? (
             <div className="mobile-menu">
               <ul>
-                <li className={isDark ? "dark" : " "}>{t('How it works')}</li>
+                <li className={isDark ? "dark-text" : ""}>
+                  <Link to="/how-it-works" style={{ textDecoration: 'none', color: isDark ? '#fff' : '#000' }}>
+                     How it works
+                  </Link>
+                </li> 
                 <li className={isDark ? "dark" : " "}> {t('Download')}</li>
                 <li className={isDark ? "dark" : " "}>{t('Upgrade')}</li>
                 <li className={isDark ? "dark" : " "}>{t('Feedback')}</li>
@@ -196,6 +202,7 @@ function HomePage({login}) {
           }
         </div >
       </div >
+
 
       <div className="main-card">
         <div className={`card-sidebar ${isDark ? "dark" : " "}`}>
