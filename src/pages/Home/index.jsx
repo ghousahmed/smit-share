@@ -1,4 +1,4 @@
-import { Modal, notification } from 'antd';
+import { Modal, notification } from "antd";
 import "./css/style.scss";
 import "../../mediaquery/mediaquery.scss";
 import {
@@ -30,10 +30,10 @@ import {
 } from "../../components/index.js";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import {auth ,signOut } from '../../db/index.js'
+import { auth, signOut } from "../../db/index.js";
 import { Switch } from "antd";
 
-function HomePage({login}) {
+function HomePage({ login }) {
   const { isDark, toggleTheme } = useTheme();
   const screenWidth = useScreenWidth();
   const [type, setType] = useState("text");
@@ -46,7 +46,7 @@ function HomePage({login}) {
   const { t, i18n } = useTranslation();
 
   const handleChange = (checked) => {
-    const newLanguage = checked ? 'ur' : 'en';
+    const newLanguage = checked ? "ur" : "en";
     i18n.changeLanguage(newLanguage);
   };
 
@@ -103,17 +103,19 @@ function HomePage({login}) {
     });
   }, []);
   const logoutUser = () => {
-    signOut(auth).then(() => {
-      notification.success({
-        message: 'Logged Out',
-        duration: 2.5,
+    signOut(auth)
+      .then(() => {
+        notification.success({
+          message: "Logged Out",
+          duration: 2.5,
+        });
+        console.log(user);
+        console.log("out");
+      })
+      .catch((error) => {
+        console.log(error);
       });
-      console.log(user);
-      console.log("out");
-    }).catch((error) => {
-      console.log(error);
-    });
-  }
+  };
 
   useEffect(() => {
     isDark
@@ -141,23 +143,58 @@ function HomePage({login}) {
         <div className="menu-bar">
           {screenWidth.widthScreen > 768 ? (
             <ul>
-              <Link to="/how-it-works" style={{ textDecoration: 'none', color: isDark ? '#fff' : '#000' }}>
-                  How it works
-               </Link
-              <li className={isDark ? "dark-text" : " "}> {t('Download')}</li>
-              <li className={isDark ? "dark-text" : " "}>{t('Upgrade')}</li>
-              <li className={isDark ? "dark-text" : " "}>{t('Feedback')}</li>
-              { login ? <li className="menu-btn" onClick={logoutUser}>{t('Logout')}</li> :
-              <li className="menu-btn"><span> <Link className="menu-btn" style={{textDecoration:"none"}} to={"/login"}> Login </Link></span>/ <span> <Link className="menu-btn" to={"/signup"} style={{textDecoration:"none"}}> Register </Link></span></li> }
+              <Link
+                to="/how-it-works"
+                style={{
+                  textDecoration: "none",
+                  color: isDark ? "#fff" : "#000",
+                }}
+              >
+                How it works
+              </Link>
+              <li className={isDark ? "dark-text" : " "}> {t("Download")}</li>
+              <li className={isDark ? "dark-text" : " "}>{t("Upgrade")}</li>
+              <li className={isDark ? "dark-text" : " "}>{t("Feedback")}</li>
+              {login ? (
+                <li className="menu-btn" onClick={logoutUser}>
+                  {t("Logout")}
+                </li>
+              ) : (
+                <li className="menu-btn">
+                  <span>
+                    {" "}
+                    <Link
+                      className="menu-btn"
+                      style={{ textDecoration: "none" }}
+                      to={"/login"}
+                    >
+                      {" "}
+                      Login{" "}
+                    </Link>
+                  </span>
+                  /{" "}
+                  <span>
+                    {" "}
+                    <Link
+                      className="menu-btn"
+                      to={"/signup"}
+                      style={{ textDecoration: "none" }}
+                    >
+                      {" "}
+                      Register{" "}
+                    </Link>
+                  </span>
+                </li>
+              )}
               <li>
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                  <span style={{ margin: '0px 8px' }}>En</span>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <span style={{ margin: "0px 8px" }}>En</span>
                   <Switch
                     size="small"
-                    defaultChecked={i18n.language === 'ur'}
+                    defaultChecked={i18n.language === "ur"}
                     onChange={handleChange}
                   />
-                  <span style={{ margin: '0px 8px' }}>Ur</span>
+                  <span style={{ margin: "0px 8px" }}>Ur</span>
                 </div>
               </li>
               <li onClick={toggleTheme}>
@@ -186,31 +223,35 @@ function HomePage({login}) {
             <div className="mobile-menu">
               <ul>
                 <li className={isDark ? "dark-text" : ""}>
-                  <Link to="/how-it-works" style={{ textDecoration: 'none', color: isDark ? '#fff' : '#000' }}>
-                     How it works
+                  <Link
+                    to="/how-it-works"
+                    style={{
+                      textDecoration: "none",
+                      color: isDark ? "#fff" : "#000",
+                    }}
+                  >
+                    How it works
                   </Link>
-                </li> 
-                <li className={isDark ? "dark" : " "}> {t('Download')}</li>
-                <li className={isDark ? "dark" : " "}>{t('Upgrade')}</li>
-                <li className={isDark ? "dark" : " "}>{t('Feedback')}</li>
-                <li className={isDark ? "dark" : "menu-btn"}>
-                  {t('Login / Register')}
                 </li>
-              </ul >
-            </div >
-          ) : null
-          }
-        </div >
-      </div >
-
+                <li className={isDark ? "dark" : " "}> {t("Download")}</li>
+                <li className={isDark ? "dark" : " "}>{t("Upgrade")}</li>
+                <li className={isDark ? "dark" : " "}>{t("Feedback")}</li>
+                <li className={isDark ? "dark" : "menu-btn"}>
+                  {t("Login / Register")}
+                </li>
+              </ul>
+            </div>
+          ) : null}
+        </div>
+      </div>
 
       <div className="main-card">
         <div className={`card-sidebar ${isDark ? "dark" : " "}`}>
           {screenWidth.widthScreen <= 768 ? (
             type === "text" ? (
-              <h1 className={isDark ? "dark-text" : " "}>{t('Text')}</h1>
+              <h1 className={isDark ? "dark-text" : " "}>{t("Text")}</h1>
             ) : (
-              <h1 className={isDark ? "dark-text" : " "}>{t('Files')}</h1>
+              <h1 className={isDark ? "dark-text" : " "}>{t("Files")}</h1>
             )
           ) : null}
           <div>
@@ -236,7 +277,7 @@ function HomePage({login}) {
           {type === "text" ? (
             <div className="text-section">
               {screenWidth.widthScreen > 768 ? (
-                <h1 className={isDark ? "dark-light" : " "}>{t('Text')}</h1>
+                <h1 className={isDark ? "dark-light" : " "}>{t("Text")}</h1>
               ) : null}
               <div className="resize-section">
                 <TextArea
@@ -261,32 +302,30 @@ function HomePage({login}) {
                   ))}
                 </div>
                 <div className="save-btn-section">
-                  <span onClick={clearText}>{t('Clear')}</span>
-                  {
-                    isText ? (
-                      <ThemeButton
-                        onClick={() => {
-                          navigator.clipboard.writeText(textValue);
-                        }}
-                        title={"Copy"}
-                      />
-                    ) : (
-                      <ThemeButton
-                        onClick={saveChanges}
-                        disabled={textValue ? false : true}
-                        title={t("Save")}
-                        className={isDark ? "dark-lighter" : " "}
-                      />
-                    )
-                  }
-                </div >
-              </div >
-            </div >
+                  <span onClick={clearText}>{t("Clear")}</span>
+                  {isText ? (
+                    <ThemeButton
+                      onClick={() => {
+                        navigator.clipboard.writeText(textValue);
+                      }}
+                      title={"Copy"}
+                    />
+                  ) : (
+                    <ThemeButton
+                      onClick={saveChanges}
+                      disabled={textValue ? false : true}
+                      title={t("Save")}
+                      className={isDark ? "dark-lighter" : " "}
+                    />
+                  )}
+                </div>
+              </div>
+            </div>
           ) : (
             <div className="files-section">
               <div className="files-header">
                 {screenWidth.widthScreen > 768 ? (
-                  <h1 className={isDark ? "dark-light" : " "}>{t('Files')}</h1>
+                  <h1 className={isDark ? "dark-light" : " "}>{t("Files")}</h1>
                 ) : null}
                 <div className="files-btn">
                   <div
@@ -296,19 +335,19 @@ function HomePage({login}) {
                       } else {
                         // Use Ant Design Modal to display an information message.
                         Modal.info({
-                          title: 'No Files to Download',
-                          content: 'There are no files to download.',
+                          title: "No Files to Download",
+                          content: "There are no files to download.",
                         });
                       }
                     }}
                     className="download-btn"
                   >
                     <FaDownload />
-                    {t('Download All')}
+                    {t("Download All")}
                   </div>
                   <div onClick={deleteAllFiles} className="delete-btn">
                     <MdDelete />
-                    {t('Delete All')}
+                    {t("Delete All")}
                   </div>
                 </div>
               </div>
@@ -326,17 +365,19 @@ function HomePage({login}) {
                   onDrop={onDrop}
                   textElement={
                     <>
-                      {t('Drag and drop any files up to 2 files, 5Mbs each or')}{"  "}
-                      <span>{t('Browse Upgrade')}</span> {t('to get more space')}
+                      {t("Drag and drop any files up to 2 files, 5Mbs each or")}
+                      {"  "}
+                      <span>{t("Browse Upgrade")}</span>{" "}
+                      {t("to get more space")}
                     </>
                   }
                 />
               )}
             </div>
           )}
-        </div >
-      </div >
-    </div >
+        </div>
+      </div>
+    </div>
   );
 }
 
