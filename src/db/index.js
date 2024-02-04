@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import {getAuth , createUserWithEmailAndPassword ,signInWithEmailAndPassword } from "firebase/auth"
+import {getAuth , createUserWithEmailAndPassword ,signInWithEmailAndPassword , onAuthStateChanged ,signOut } from "firebase/auth"
 import { getDatabase, ref, set, onValue, remove } from "firebase/database";
 import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
@@ -23,6 +23,8 @@ export {
     auth,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
+    onAuthStateChanged,
+    signOut ,
     db,
     ref,
     set,

@@ -1,5 +1,6 @@
+import { Modal, notification } from "antd";
 import "./css/style.scss";
-import "../../mediaquery/mediaQuery.scss";
+import "../../mediaquery/mediaquery.scss";
 import {
   useTheme,
   downloadAll,
@@ -28,8 +29,11 @@ import {
   MdDarkMode,
 } from "../../components/index.js";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { auth, signOut } from "../../db/index.js";
+import { Switch } from "antd";
 
-function HomePage() {
+function HomePage({ login }) {
   const { isDark, toggleTheme } = useTheme();
   const screenWidth = useScreenWidth();
   const [type, setType] = useState("text");
@@ -38,6 +42,13 @@ function HomePage() {
   const [files, setFiles] = useState([]);
   const [tempFiles, setTempFiles] = useState([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const { t, i18n } = useTranslation();
+
+  const handleChange = (checked) => {
+    const newLanguage = checked ? "ur" : "en";
+    i18n.changeLanguage(newLanguage);
+  };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -91,6 +102,26 @@ function HomePage() {
       }
     });
   }, []);
+  const logoutUser = () => {
+    signOut(auth)
+      .then(() => {
+        notification.success({
+          message: "Logged Out",
+          duration: 2.5,
+        });
+        console.log(user);
+        console.log("out");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    isDark
+      ? document.body.classList.add("dark")
+      : document.body.classList.remove("dark");
+  }, [isDark]);
 
   useEffect(() => {
     isDark
@@ -112,42 +143,59 @@ function HomePage() {
         <div className="menu-bar">
           {screenWidth.widthScreen > 768 ? (
             <ul>
-              <li className={isDark ? "dark" : " "}>
-                <Link to={"/howitwork"} style={{ textDecoration: "none" }}>
-                  How it works
-                </Link>
-              </li>
-              {/* <li className={isDark ? "dark" : " "}>
-                  <Link to={"/download"} style={{textDecoration:"none"}}> Download</Link>
+              <Link
+                to="/how-it-works"
+                style={{
+                  textDecoration: "none",
+                  color: isDark ? "#fff" : "#000",
+                }}
+              >
+                How it works
+              </Link>
+              <li className={isDark ? "dark-text" : " "}> {t("Download")}</li>
+              <li className={isDark ? "dark-text" : " "}>{t("Upgrade")}</li>
+              <li className={isDark ? "dark-text" : " "}>{t("Feedback")}</li>
+              {login ? (
+                <li className="menu-btn" onClick={logoutUser}>
+                  {t("Logout")}
                 </li>
-                <li className={isDark ? "dark" : " "}>
-                  <Link to={"/upgrade"} style={{textDecoration:"none"}}>Upgrade</Link>
-                </li> */}
-              <li className={isDark ? "dark" : " "}>
-                <Link to={"/feedback"} style={{ textDecoration: "none" }}>
-                  Feedback
-                </Link>
-              </li>
-              <li className={isDark ? "dark" : "menu-btn"}>
-                <span>
-                  <Link
-                    className="menu-btn"
-                    to={"/login"}
-                    style={{ textDecoration: "none" }}
-                  >
-                    Login
-                  </Link>
-                </span>
-                /
-                <span>
-                  <Link
-                    className="menu-btn"
-                    to={"/signup"}
-                    style={{ textDecoration: "none" }}
-                  >
-                    Register
-                  </Link>
-                </span>
+              ) : (
+                <li className="menu-btn">
+                  <span>
+                    {" "}
+                    <Link
+                      className="menu-btn"
+                      style={{ textDecoration: "none" }}
+                      to={"/login"}
+                    >
+                      {" "}
+                      Login{" "}
+                    </Link>
+                  </span>
+                  /{" "}
+                  <span>
+                    {" "}
+                    <Link
+                      className="menu-btn"
+                      to={"/signup"}
+                      style={{ textDecoration: "none" }}
+                    >
+                      {" "}
+                      Register{" "}
+                    </Link>
+                  </span>
+                </li>
+              )}
+              <li>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <span style={{ margin: "0px 8px" }}>En</span>
+                  <Switch
+                    size="small"
+                    defaultChecked={i18n.language === "ur"}
+                    onChange={handleChange}
+                  />
+                  <span style={{ margin: "0px 8px" }}>Ur</span>
+                </div>
               </li>
               <li onClick={toggleTheme}>
                 {isDark ? (
@@ -174,22 +222,20 @@ function HomePage() {
           {isMenuOpen ? (
             <div className="mobile-menu">
               <ul>
-                <li className={isDark ? "dark" : " "}>
-                  <Link to={"/howitwork"} style={{ textDecoration: "none" }}>
+                <li className={isDark ? "dark-text" : ""}>
+                  <Link
+                    to="/how-it-works"
+                    style={{
+                      textDecoration: "none",
+                      color: isDark ? "#fff" : "#000",
+                    }}
+                  >
                     How it works
                   </Link>
                 </li>
-                {/* <li className={isDark ? "dark" : " "}>
-                  <Link to={"/download"} style={{textDecoration:"none"}}> Download</Link>
-                </li>
-                <li className={isDark ? "dark" : " "}>
-                  <Link to={"/upgrade"} style={{textDecoration:"none"}}>Upgrade</Link>
-                </li> */}
-                <li className={isDark ? "dark" : " "}>
-                  <Link to={"/feedback"} style={{ textDecoration: "none" }}>
-                    Feedback
-                  </Link>
-                </li>
+                <li className={isDark ? "dark" : " "}> {t("Download")}</li>
+                <li className={isDark ? "dark" : " "}>{t("Upgrade")}</li>
+                <li className={isDark ? "dark" : " "}>{t("Feedback")}</li>
                 <li className={isDark ? "dark" : "menu-btn"}>
                   <span>
                     <Link
@@ -228,9 +274,9 @@ function HomePage() {
         <div className={`card-sidebar ${isDark ? "dark" : " "}`}>
           {screenWidth.widthScreen <= 768 ? (
             type === "text" ? (
-              <h1 className={isDark ? "dark-text" : " "}>Text</h1>
+              <h1 className={isDark ? "dark-text" : " "}>{t("Text")}</h1>
             ) : (
-              <h1 className={isDark ? "dark-text" : " "}>Files</h1>
+              <h1 className={isDark ? "dark-text" : " "}>{t("Files")}</h1>
             )
           ) : null}
           <div>
@@ -256,7 +302,7 @@ function HomePage() {
           {type === "text" ? (
             <div className="text-section">
               {screenWidth.widthScreen > 768 ? (
-                <h1 className={isDark ? "dark-light" : " "}>Text</h1>
+                <h1 className={isDark ? "dark-light" : " "}>{t("Text")}</h1>
               ) : null}
               <div className="resize-section">
                 <TextArea
@@ -281,7 +327,7 @@ function HomePage() {
                   ))}
                 </div>
                 <div className="save-btn-section">
-                  <span onClick={clearText}>Clear</span>
+                  <span onClick={clearText}>{t("Clear")}</span>
                   {isText ? (
                     <ThemeButton
                       onClick={() => {
@@ -293,7 +339,7 @@ function HomePage() {
                     <ThemeButton
                       onClick={saveChanges}
                       disabled={textValue ? false : true}
-                      title={"Save"}
+                      title={t("Save")}
                       className={isDark ? "dark-lighter" : " "}
                     />
                   )}
@@ -304,19 +350,29 @@ function HomePage() {
             <div className="files-section">
               <div className="files-header">
                 {screenWidth.widthScreen > 768 ? (
-                  <h1 className={isDark ? "dark-light" : " "}>Files</h1>
+                  <h1 className={isDark ? "dark-light" : " "}>{t("Files")}</h1>
                 ) : null}
                 <div className="files-btn">
                   <div
-                    onClick={() => downloadAll(files)}
+                    onClick={() => {
+                      if (files.length > 0) {
+                        downloadAll(files);
+                      } else {
+                        // Use Ant Design Modal to display an information message.
+                        Modal.info({
+                          title: "No Files to Download",
+                          content: "There are no files to download.",
+                        });
+                      }
+                    }}
                     className="download-btn"
                   >
                     <FaDownload />
-                    Download All
+                    {t("Download All")}
                   </div>
                   <div onClick={deleteAllFiles} className="delete-btn">
                     <MdDelete />
-                    Delete All
+                    {t("Delete All")}
                   </div>
                 </div>
               </div>
@@ -334,8 +390,10 @@ function HomePage() {
                   onDrop={onDrop}
                   textElement={
                     <>
-                      Drag and drop any files up to 2 files, 5Mbs each or{" "}
-                      <span>Browse Upgrade</span> to get more space
+                      {t("Drag and drop any files up to 2 files, 5Mbs each or")}
+                      {"  "}
+                      <span>{t("Browse Upgrade")}</span>{" "}
+                      {t("to get more space")}
                     </>
                   }
                 />

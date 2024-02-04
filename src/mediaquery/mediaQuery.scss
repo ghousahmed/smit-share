@@ -9,12 +9,7 @@
 
 @media only screen and (max-width: 768px) {
   .container {
-    width: 100%;
-    padding: 20px;
-    margin: 0;
-    margin-top: 0;
-
-    .main-card {
+      .main-card {
       flex-direction: column;
       margin-top: 10px;
       min-height: fit-content;
