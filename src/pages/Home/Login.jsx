@@ -53,10 +53,17 @@ function LoginPage() {
         <div className="menu-bar">
           {screenWidth.widthScreen > 768 ? (
             <ul>
-              <li>How it works</li>
-              <li>Download</li>
-              <li>Upgrade</li>
-              <li>Feedback </li>
+              <li style={styles}>
+                <Link to={"/howitwork"} style={{ textDecoration: "none" }}>
+                  How it works
+                </Link>
+              </li>
+              
+              <li style={styles}>
+                <Link to={"/feedback"} style={{ textDecoration: "none" }}>
+                  Feedback
+                </Link>{" "}
+              </li>
               <li className="menu-btn">
                 <span> Login </span>/{" "}
                 <span>
@@ -90,63 +97,6 @@ function LoginPage() {
       </div>
       <div className={`main-card ${isDark ? "dark-lighter" : " "}`}>
         <LoginForm loginUser={loginUser} />
-      </div>
-    </div>
-  );
-          </Link>
-        </div>
-        <div className="menu-bar">
-          {screenWidth.widthScreen > 768 ? (
-            <ul>
-              <li style={styles}>
-                <Link to={"/howitwork"} style={{ textDecoration: "none" }}>
-                  How it works
-                </Link>
-              </li>
-              {/* <li style={styles}> <Link to={"/download"} style={{textDecoration:"none"}}> Download</Link></li>
-              <li style={styles}><Link to={"/upgrade"} style={{textDecoration:"none"}}>Upgrade</Link></li> */}
-              <li style={styles}>
-                <Link to={"/feedback"} style={{ textDecoration: "none" }}>
-                  Feedback
-                </Link>{" "}
-              </li>
-              <li className="menu-btn">
-                <span> Login </span>/{" "}
-                <span>
-                  {" "}
-                  <Link
-                    className="menu-btn"
-                    to={"/signup"}
-                    style={{ textDecoration: "none" }}
-                  >
-                    {" "}
-                    Register{" "}
-                  </Link>
-                </span>
-              </li>
-              <li onClick={toggleTheme}>
-                {" "}
-                {theme === "light" ? (
-                  <MdDarkMode size={24} />
-                ) : (
-                  <MdLightMode size={24} color="white" />
-                )}{" "}
-              </li>
-            </ul>
-          ) : (
-            <ul>
-              <li>
-                <FiMenu size={30} />
-              </li>
-            </ul>
-          )}
-        </div>
-      </div>
-      <div
-        className="main-card"
-        style={{ backgroundColor: theme === "dark" ? "rgb(20 23 30)" : "" }}
-      >
-        <LoginForm loginUser={loginUser} />{" "}
       </div>
     </div>
   );

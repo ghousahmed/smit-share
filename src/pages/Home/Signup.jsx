@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { useTheme } from "../../context/ThemeContext";
 import SignupForm from "../../components/SignupForm";
 
-import { useEffect ,useState} from "react";
+import { useEffect, useState } from "react";
 import { auth, createUserWithEmailAndPassword } from "../../db/index";
 import { notification } from "antd";
 
@@ -20,7 +20,7 @@ function SignupPage() {
         // Signed up
         const user = userCredential.user;
         notification.success({
-          message: 'Registered Successfully',
+          message: "Registered Successfully",
           description: `Welcome, ${user.email}!`,
           duration: 2.5,
         });
@@ -30,12 +30,11 @@ function SignupPage() {
         const errorCode = error.code;
         const errorMessage = error.message;
         notification.error({
-          message: 'Error Occured',
+          message: "Error Occured",
           description: `Sorry, ${errorMessage}`,
           duration: 2.5,
         });
         console.log(errorMessage);
-
       });
   };
 
@@ -49,7 +48,7 @@ function SignupPage() {
     <div className={`container ${isDark ? "dark" : " "}`}>
       <div className="header-bar">
         <div className="logo">
-          <Link to={"/"} >
+          <Link to={"/"}>
             <img src={LOGO} alt="" />
           </Link>
         </div>
@@ -61,8 +60,6 @@ function SignupPage() {
                   How it works
                 </Link>
               </li>
-              {/* <li style={styles}> <Link to={"/download"} style={{textDecoration:"none"}}> Download</Link></li>
-              <li style={styles}><Link to={"/upgrade"} style={{textDecoration:"none"}}>Upgrade</Link></li> */}
               <li style={styles}>
                 <Link to={"/feedback"} style={{ textDecoration: "none" }}>
                   Feedback
@@ -124,8 +121,8 @@ function SignupPage() {
         className="main-card"
         style={{ backgroundColor: theme === "dark" ? "rgb(20 23 30)" : "" }}
       >
-     
-      <SignupForm registerUser={registerUser} /> </div>
+        <SignupForm registerUser={registerUser} />{" "}
+      </div>
     </div>
   );
 }
