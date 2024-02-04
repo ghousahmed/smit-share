@@ -138,7 +138,9 @@ function HomePage({ login }) {
     <div className={`container ${isDark ? "dark" : " "}`}>
       <div className="header-bar">
         <div className="logo">
-          <img src={LOGO} alt="" />
+          <Link to={"/"}>
+            <img src={LOGO} alt="" />
+          </Link>
         </div>
         <div className="menu-bar">
           {screenWidth.widthScreen > 768 ? (
@@ -152,9 +154,18 @@ function HomePage({ login }) {
               >
                 How it works
               </Link>
-              <li className={isDark ? "dark-text" : " "}> {t("Download")}</li>
-              <li className={isDark ? "dark-text" : " "}>{t("Upgrade")}</li>
-              <li className={isDark ? "dark-text" : " "}>{t("Feedback")}</li>
+
+              <li className={isDark ? "dark-text" : " "}>
+                <Link
+                  to={"/feedback"}
+                  style={{
+                    textDecoration: "none",
+                    color: isDark ? "#fff" : "#000",
+                  }}
+                >
+                  {t("Feedback")}
+                </Link>
+              </li>
               {login ? (
                 <li className="menu-btn" onClick={logoutUser}>
                   {t("Logout")}
@@ -237,7 +248,32 @@ function HomePage({ login }) {
                 <li className={isDark ? "dark" : " "}>{t("Upgrade")}</li>
                 <li className={isDark ? "dark" : " "}>{t("Feedback")}</li>
                 <li className={isDark ? "dark" : "menu-btn"}>
-                  {t("Login / Register")}
+                  <span>
+                    <Link
+                      className="menu-btn"
+                      to={"/login"}
+                      style={{ textDecoration: "none" }}
+                    >
+                      Login
+                    </Link>
+                  </span>
+                  /
+                  <span>
+                    <Link
+                      className="menu-btn"
+                      to={"/signup"}
+                      style={{ textDecoration: "none" }}
+                    >
+                      Register
+                    </Link>
+                  </span>
+                </li>
+                <li onClick={toggleTheme}>
+                  {isDark ? (
+                    <MdLightMode size={24} color="white" />
+                  ) : (
+                    <MdDarkMode size={24} />
+                  )}
                 </li>
               </ul>
             </div>

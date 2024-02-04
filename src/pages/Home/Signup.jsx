@@ -8,11 +8,18 @@ import { Link } from "react-router-dom";
 import { useTheme } from "../../context/ThemeContext";
 import SignupForm from "../../components/SignupForm";
 
-import { useEffect ,useState} from "react";
+import { useEffect, useState } from "react";
 import { auth, createUserWithEmailAndPassword } from "../../db/index";
-import { notification } from "antd";
+import { Switch, notification } from "antd";
+import { useTranslation } from "react-i18next";
 
-function SignupPage() {
+function SignupPage({ login }) {
+  const { t, i18n } = useTranslation();
+
+  const handleChange = (checked) => {
+    const newLanguage = checked ? "ur" : "en";
+    i18n.changeLanguage(newLanguage);
+  };
   const registerUser = (values) => {
     // console.log(values.email);
     createUserWithEmailAndPassword(auth, values.email, values.password)
@@ -20,7 +27,7 @@ function SignupPage() {
         // Signed up
         const user = userCredential.user;
         notification.success({
-          message: 'Registered Successfully',
+          message: "Registered Successfully",
           description: `Welcome, ${user.email}!`,
           duration: 2.5,
         });
@@ -30,12 +37,11 @@ function SignupPage() {
         const errorCode = error.code;
         const errorMessage = error.message;
         notification.error({
-          message: 'Error Occured',
+          message: "Error Occured",
           description: `Sorry, ${errorMessage}`,
           duration: 2.5,
         });
         console.log(errorMessage);
-
       });
   };
 
@@ -49,18 +55,76 @@ function SignupPage() {
     <div className={`container ${isDark ? "dark" : " "}`}>
       <div className="header-bar">
         <div className="logo">
-          <Link to={"/"} >
+          <Link to={"/"}>
             <img src={LOGO} alt="" />
           </Link>
         </div>
         <div className="menu-bar">
           {screenWidth.widthScreen > 768 ? (
             <ul>
-              <li className={isDark ? "dark-text" : " "}>How it works</li>
-              <li className={isDark ? "dark-text" : " "}> Download</li>
-              <li className={isDark ? "dark-text" : " "}>Upgrade</li>
-              <li className={isDark ? "dark-text" : " "}>Feedback</li>
-              <li className="menu-btn"><span> <Link className="menu-btn" style={{ textDecoration: "none" }} to={"/login"}> Login </Link></span>/ <span> <Link className="menu-btn" to={"/signup"} style={{ textDecoration: "none" }}> Register </Link></span></li>
+              <Link
+                to="/how-it-works"
+                style={{
+                  textDecoration: "none",
+                  color: isDark ? "#fff" : "#000",
+                }}
+              >
+                How it works
+              </Link>
+
+              <li className={isDark ? "dark-text" : " "}>
+                <Link
+                  to={"/feedback"}
+                  style={{
+                    textDecoration: "none",
+                    color: isDark ? "#fff" : "#000",
+                  }}
+                >
+                  {t("Feedback")}
+                </Link>
+              </li>
+              {login ? (
+                <li className="menu-btn" onClick={logoutUser}>
+                  {t("Logout")}
+                </li>
+              ) : (
+                <li className="menu-btn">
+                  <span>
+                    {" "}
+                    <Link
+                      className="menu-btn"
+                      style={{ textDecoration: "none" }}
+                      to={"/login"}
+                    >
+                      {" "}
+                      Login{" "}
+                    </Link>
+                  </span>
+                  /{" "}
+                  <span>
+                    {" "}
+                    <Link
+                      className="menu-btn"
+                      to={"/signup"}
+                      style={{ textDecoration: "none" }}
+                    >
+                      {" "}
+                      Register{" "}
+                    </Link>
+                  </span>
+                </li>
+              )}
+              <li>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <span style={{ margin: "0px 8px" }}>En</span>
+                  <Switch
+                    size="small"
+                    defaultChecked={i18n.language === "ur"}
+                    onChange={handleChange}
+                  />
+                  <span style={{ margin: "0px 8px" }}>Ur</span>
+                </div>
+              </li>
               <li onClick={toggleTheme}>
                 {isDark ? (
                   <MdLightMode size={24} color="white" />
@@ -101,7 +165,9 @@ function SignupPage() {
       <div
         className="main-card"
         style={{ backgroundColor: theme === "dark" ? "rgb(20 23 30)" : "" }}
-      ><SignupForm registerUser={registerUser} /> </div>
+      >
+        <SignupForm registerUser={registerUser} />{" "}
+      </div>
     </div>
   );
 }

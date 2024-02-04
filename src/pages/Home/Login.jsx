@@ -9,26 +9,32 @@ import { MdDarkMode } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { useTheme } from "../../context/ThemeContext";
 import { useEffect } from "react";
-import { notification } from "antd";
+import { Switch, notification } from "antd";
 import { auth, signInWithEmailAndPassword } from "../../db/index";
+import { useTranslation } from "react-i18next";
 
-function LoginPage() {
+function LoginPage({ login }) {
+  const { t, i18n } = useTranslation();
+
+  const handleChange = (checked) => {
+    const newLanguage = checked ? "ur" : "en";
+    i18n.changeLanguage(newLanguage);
+  };
   let loginUser = (values) => {
     signInWithEmailAndPassword(auth, values.email, values.password)
       .then((userCredential) => {
         const user = userCredential.user;
         notification.success({
-          message: 'Login Success',
+          message: "Login Success",
           description: `Welcome, ${user.email}!`,
           duration: 2.5,
         });
         // console.log(user);
       })
       .catch((error) => {
-        
         const errorMessage = error.message;
         notification.error({
-          message: 'Login Failed',
+          message: "Login Failed",
           description: errorMessage,
           duration: 2.5,
         });
@@ -53,23 +59,68 @@ function LoginPage() {
         <div className="menu-bar">
           {screenWidth.widthScreen > 768 ? (
             <ul>
-              <li>How it works</li>
-              <li>Download</li>
-              <li>Upgrade</li>
-              <li>Feedback </li>
-              <li className="menu-btn">
-                <span> Login </span>/{" "}
-                <span>
-                  {" "}
-                  <Link
-                    className="menu-btn"
-                    to={"/signup"}
-                    style={{ textDecoration: "none" }}
-                  >
+              <Link
+                to="/how-it-works"
+                style={{
+                  textDecoration: "none",
+                  color: isDark ? "#fff" : "#000",
+                }}
+              >
+                How it works
+              </Link>
+
+              <li className={isDark ? "dark-text" : " "}>
+                <Link
+                  to={"/feedback"}
+                  style={{
+                    textDecoration: "none",
+                    color: isDark ? "#fff" : "#000",
+                  }}
+                >
+                  {t("Feedback")}
+                </Link>
+              </li>
+              {login ? (
+                <li className="menu-btn" onClick={logoutUser}>
+                  {t("Logout")}
+                </li>
+              ) : (
+                <li className="menu-btn">
+                  <span>
                     {" "}
-                    Register{" "}
-                  </Link>
-                </span>
+                    <Link
+                      className="menu-btn"
+                      style={{ textDecoration: "none" }}
+                      to={"/login"}
+                    >
+                      {" "}
+                      Login{" "}
+                    </Link>
+                  </span>
+                  /{" "}
+                  <span>
+                    {" "}
+                    <Link
+                      className="menu-btn"
+                      to={"/signup"}
+                      style={{ textDecoration: "none" }}
+                    >
+                      {" "}
+                      Register{" "}
+                    </Link>
+                  </span>
+                </li>
+              )}
+              <li>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <span style={{ margin: "0px 8px" }}>En</span>
+                  <Switch
+                    size="small"
+                    defaultChecked={i18n.language === "ur"}
+                    onChange={handleChange}
+                  />
+                  <span style={{ margin: "0px 8px" }}>Ur</span>
+                </div>
               </li>
               <li onClick={toggleTheme}>
                 {isDark ? (
@@ -81,8 +132,15 @@ function LoginPage() {
             </ul>
           ) : (
             <ul>
-              <li>
+              <li onClick={toggleMenu}>
                 <FiMenu size={30} />
+              </li>
+              <li onClick={toggleTheme}>
+                {isDark ? (
+                  <MdLightMode size={24} color="white" />
+                ) : (
+                  <MdDarkMode size={24} />
+                )}
               </li>
             </ul>
           )}
