@@ -139,7 +139,7 @@ function HomePage({ login }) {
       <div className="header-bar">
         <div className="logo">
           <Link to={"/"}>
-          <img src={LOGO} alt="" />
+            <img src={LOGO} alt="" />
           </Link>
         </div>
         <div className="menu-bar">
@@ -154,11 +154,18 @@ function HomePage({ login }) {
               >
                 How it works
               </Link>
-             
-              <li className={isDark ? "dark-text" : " "}><Link to={"/feedback"} style={{
-                  textDecoration: "none",
-                  color: isDark ? "#fff" : "#000",
-                }}>{t("Feedback")}</Link></li>
+
+              <li className={isDark ? "dark-text" : " "}>
+                <Link
+                  to={"/feedback"}
+                  style={{
+                    textDecoration: "none",
+                    color: isDark ? "#fff" : "#000",
+                  }}
+                >
+                  {t("Feedback")}
+                </Link>
+              </li>
               {login ? (
                 <li className="menu-btn" onClick={logoutUser}>
                   {t("Logout")}

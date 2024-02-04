@@ -30,7 +30,7 @@ function AppRouter() {
             <Route
               path="/login"
               element={
-                login ? <Navigate to="/" /> : <LoginPage setIslogin={setIslogin} />
+                login ? <Navigate to="/" /> : <LoginPage login={login} setIslogin={setIslogin} />
               }
             />
             <Route
