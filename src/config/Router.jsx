@@ -30,15 +30,24 @@ function AppRouter() {
             <Route
               path="/login"
               element={
-                login ? <Navigate to="/" /> : <LoginPage login={login} setIslogin={setIslogin} />
+                login ? (
+                  <Navigate to="/" />
+                ) : (
+                  <LoginPage login={login} setIslogin={setIslogin} />
+                )
               }
             />
             <Route
               path="/signup"
-              element={login ? <Navigate to="/" /> : <SignupPage />}
+              element={
+                login ? <Navigate to="/" /> : <SignupPage login={login} />
+              }
             />
-            <Route path="/how-it-works" element={<HowItWorks login={login} />} />
-            <Route path="*" element={<PageNotFound/>}/>
+            <Route
+              path="/how-it-works"
+              element={<HowItWorks login={login} />}
+            />
+            <Route path="*" element={<PageNotFound />} />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>

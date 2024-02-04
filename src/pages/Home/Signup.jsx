@@ -10,9 +10,16 @@ import SignupForm from "../../components/SignupForm";
 
 import { useEffect, useState } from "react";
 import { auth, createUserWithEmailAndPassword } from "../../db/index";
-import { notification } from "antd";
+import { Switch, notification } from "antd";
+import { useTranslation } from "react-i18next";
 
-function SignupPage() {
+function SignupPage({ login }) {
+  const { t, i18n } = useTranslation();
+
+  const handleChange = (checked) => {
+    const newLanguage = checked ? "ur" : "en";
+    i18n.changeLanguage(newLanguage);
+  };
   const registerUser = (values) => {
     // console.log(values.email);
     createUserWithEmailAndPassword(auth, values.email, values.password)
@@ -55,31 +62,69 @@ function SignupPage() {
         <div className="menu-bar">
           {screenWidth.widthScreen > 768 ? (
             <ul>
-              <li style={styles}>
-                <Link to={"/howitwork"} style={{ textDecoration: "none" }}>
-                  How it works
+              <Link
+                to="/how-it-works"
+                style={{
+                  textDecoration: "none",
+                  color: isDark ? "#fff" : "#000",
+                }}
+              >
+                How it works
+              </Link>
+
+              <li className={isDark ? "dark-text" : " "}>
+                <Link
+                  to={"/feedback"}
+                  style={{
+                    textDecoration: "none",
+                    color: isDark ? "#fff" : "#000",
+                  }}
+                >
+                  {t("Feedback")}
                 </Link>
               </li>
-              <li style={styles}>
-                <Link to={"/feedback"} style={{ textDecoration: "none" }}>
-                  Feedback
-                </Link>{" "}
-              </li>
-              <li className="menu-btn">
-                <span>
-                  {" "}
-                  <Link
-                    className="menu-btn"
-                    to={"/login"}
-                    style={{ textDecoration: "none" }}
-                  >
+              {login ? (
+                <li className="menu-btn" onClick={logoutUser}>
+                  {t("Logout")}
+                </li>
+              ) : (
+                <li className="menu-btn">
+                  <span>
                     {" "}
-                    Login{" "}
-                  </Link>
-                </span>{" "}
-                / <span> Register </span>{" "}
+                    <Link
+                      className="menu-btn"
+                      style={{ textDecoration: "none" }}
+                      to={"/login"}
+                    >
+                      {" "}
+                      Login{" "}
+                    </Link>
+                  </span>
+                  /{" "}
+                  <span>
+                    {" "}
+                    <Link
+                      className="menu-btn"
+                      to={"/signup"}
+                      style={{ textDecoration: "none" }}
+                    >
+                      {" "}
+                      Register{" "}
+                    </Link>
+                  </span>
+                </li>
+              )}
+              <li>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <span style={{ margin: "0px 8px" }}>En</span>
+                  <Switch
+                    size="small"
+                    defaultChecked={i18n.language === "ur"}
+                    onChange={handleChange}
+                  />
+                  <span style={{ margin: "0px 8px" }}>Ur</span>
+                </div>
               </li>
-
               <li onClick={toggleTheme}>
                 {isDark ? (
                   <MdLightMode size={24} color="white" />
