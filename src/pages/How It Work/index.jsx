@@ -47,26 +47,30 @@ function HowItWorks({ login }) {
           </Link>
         </div>
         <div className="menu-bar">
-          {screenWidth.widthScreen > 768 ? (
+        {screenWidth.widthScreen > 768 ? (
             <ul>
+              <Link
+                to="/how-it-works"
+                style={{
+                  textDecoration: "none",
+                  color: isDark ? "#fff" : "#000",
+                }}
+              >
+                How it works
+              </Link>
+
               <li className={isDark ? "dark-text" : " "}>
                 <Link
-                  to="/how-it-works"
-                  className={isDark ? "dark" : " "}
+                  to={"/feedback"}
                   style={{
                     textDecoration: "none",
-                    fontWeight: "bold",
-                    color: "#000",
+                    color: isDark ? "#fff" : "#000",
                   }}
                 >
-                  How it works
+                  {t("Feedback")}
                 </Link>
               </li>
-              <li className={isDark ? "dark-text" : " "}><Link to={"/feedback"}  style={{
-                    textDecoration: "none",
-                    color: "#000",
-                  }}>Feedback</Link></li>
-                {login ? (
+              {login ? (
                 <li className="menu-btn" onClick={logoutUser}>
                   {t("Logout")}
                 </li>
