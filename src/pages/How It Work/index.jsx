@@ -11,12 +11,20 @@ import {
   MdDarkMode,
 } from "../../components/index";
 import { Link } from "react-router-dom";
+import { Switch } from "antd";
+import { useTranslation } from "react-i18next";
 
-function HowItWorks() {
+function HowItWorks({ login }) {
   const { isDark, toggleTheme } = useTheme();
   const screenWidth = useScreenWidth();
   const [textValue, setTextValue] = useState("");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { t, i18n } = useTranslation();
+
+  const handleChange = (checked) => {
+    const newLanguage = checked ? "ur" : "en";
+    i18n.changeLanguage(newLanguage);
+  };
 
   useEffect(() => {
     updateBodyClass();
@@ -34,7 +42,9 @@ function HowItWorks() {
     <div className={`container ${isDark ? "dark" : ""}`}>
       <div className="header-bar">
         <div className="logo">
+        <Link to={"/"}>
           <img src={LOGO} alt="" />
+          </Link>
         </div>
         <div className="menu-bar">
           {screenWidth.widthScreen > 768 ? (
@@ -52,10 +62,52 @@ function HowItWorks() {
                   How it works
                 </Link>
               </li>
-              <li className={isDark ? "dark-text" : " "}> Download</li>
-              <li className={isDark ? "dark-text" : " "}>Upgrade</li>
-              <li className={isDark ? "dark-text" : " "}>Feedback</li>
-              <li className="menu-btn">Login / Register</li>
+              <li className={isDark ? "dark-text" : " "}><Link to={"/feedback"}  style={{
+                    textDecoration: "none",
+                    color: "#000",
+                  }}>Feedback</Link></li>
+                {login ? (
+                <li className="menu-btn" onClick={logoutUser}>
+                  {t("Logout")}
+                </li>
+              ) : (
+                <li className="menu-btn">
+                  <span>
+                    {" "}
+                    <Link
+                      className="menu-btn"
+                      style={{ textDecoration: "none" }}
+                      to={"/login"}
+                    >
+                      {" "}
+                      Login{" "}
+                    </Link>
+                  </span>
+                  /{" "}
+                  <span>
+                    {" "}
+                    <Link
+                      className="menu-btn"
+                      to={"/signup"}
+                      style={{ textDecoration: "none" }}
+                    >
+                      {" "}
+                      Register{" "}
+                    </Link>
+                  </span>
+                </li>
+              )}
+              <li>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <span style={{ margin: "0px 8px" }}>En</span>
+                  <Switch
+                    size="small"
+                    defaultChecked={i18n.language === "ur"}
+                    onChange={handleChange}
+                  />
+                  <span style={{ margin: "0px 8px" }}>Ur</span>
+                </div>
+              </li>
               <li onClick={toggleTheme}>
                 {isDark ? (
                   <MdLightMode size={24} color="white" />

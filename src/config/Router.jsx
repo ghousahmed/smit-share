@@ -37,7 +37,7 @@ function AppRouter() {
               path="/signup"
               element={login ? <Navigate to="/" /> : <SignupPage />}
             />
-            <Route path="/how-it-works" element={<HowItWorks />} />
+            <Route path="/how-it-works" element={<HowItWorks login={login} />} />
             <Route path="*" element={<PageNotFound/>}/>
           </Routes>
         </BrowserRouter>
