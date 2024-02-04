@@ -147,41 +147,27 @@ const Navbar = ({ login }) => {
           )}
           {isMenuOpen ? (
             <div className="mobile-menu">
-              <ul>
-                <li className={isDark ? "dark-text" : ""}>
+              <ul className={isDark ? "dark-lighter" : ""}>
+                <li>
                   <Link
                     to="/how-it-works"
-                    style={{
-                      textDecoration: "none",
-                      color: isDark ? "#fff" : "#000",
-                    }}
+                    className={isDark ? "dark-text" : ""}
                   >
                     How it works
                   </Link>
                 </li>
-                <li className={isDark ? "dark" : " "}> {t("Download")}</li>
-                <li className={isDark ? "dark" : " "}>{t("Upgrade")}</li>
-                <li className={isDark ? "dark" : " "}>{t("Feedback")}</li>
-                <li className={isDark ? "dark" : "menu-btn"}>
-                  <span>
-                    <Link
-                      className="menu-btn"
-                      to={"/login"}
-                      style={{ textDecoration: "none" }}
-                    >
-                      Login
-                    </Link>
-                  </span>
-                  /
-                  <span>
-                    <Link
-                      className="menu-btn"
-                      to={"/signup"}
-                      style={{ textDecoration: "none" }}
-                    >
-                      Register
-                    </Link>
-                  </span>
+                <li>
+                  <Link to="*" className={isDark ? "dark-text" : ""}>
+                    Feedback
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className={`menu-btn ${isDark ? "dark-text" : ""}`}
+                    to={"/login"}
+                  >
+                    Login
+                  </Link>
                 </li>
                 <li onClick={toggleTheme}>
                   {isDark ? (

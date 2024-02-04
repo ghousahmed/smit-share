@@ -4,20 +4,20 @@ import { useTheme } from "../../components/index";
 import Navbar from "../../components/Navbar";
 
 function HowItWorks({ login }) {
-  const { isDark, toggleTheme } = useTheme();
+  const { isDark } = useTheme();
   return (
     <div className={`container ${isDark ? "dark" : ""}`}>
       <Navbar login={login} />
-      <div className="main-card">
-        <div className={`how_it_work-container ${isDark ? "dark-light" : " "}`}>
-          <div className={`topcard ${isDark ? "dark-light" : " "}`}>
-            <h2 className={`${isDark ? "dark-light" : " "}`}>How It Works</h2>
+      <div className={`main-card ${isDark ? "dark-light" : " "}`}>
+        <div className="how_it_work-container">
+          <div className="topcard">
+            <h2 className={isDark ? "dark-text" : " "}>How It Works</h2>
             <p>
               SMIT-Share (SS) is easy solution to share files, text and links to
               everyone.
             </p>
           </div>
-          <div className={`bottomcard ${isDark ? "dark-light" : " "}`}>
+          <div className="bottomcard">
             <div className="step number">
               <h1 className={isDark ? "dark-text" : " "}>1.</h1>
               <h3 className={isDark ? "dark-text" : " "}>

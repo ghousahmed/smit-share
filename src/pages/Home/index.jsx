@@ -1,6 +1,7 @@
 import "./css/style.scss";
 import "../../mediaquery/mediaquery.scss";
 import {
+  Navbar,
   useTheme,
   downloadAll,
   uploadFile,
@@ -26,10 +27,8 @@ import {
   useTranslation,
 } from "../../components/index.js";
 
-import Navbar from "../../components/Navbar.jsx";
-
 function HomePage({ login }) {
-  const { isDark, toggleTheme } = useTheme();
+  const { isDark } = useTheme();
   const screenWidth = useScreenWidth();
   const { t, i18n } = useTranslation();
   const [isText, setIsText] = useState(false);

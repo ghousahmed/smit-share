@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 // Firebase
-import { db, ref, set, onValue, remove, auth, signOut} from "../db/index.js";
+import { db, ref, set, onValue, remove, auth, signOut } from "../db/index.js";
 // Helper Functions
 import downloadAll from "../helper/downloadAll.js";
 import uploadFile from "../firebase/uploadFile.js";
@@ -12,6 +12,8 @@ import ThemeButton from "../components/Button";
 import DropZone from "../components/DropZone";
 import FilesList from "../components/FilesList";
 import { useTheme } from "../context/ThemeContext.jsx";
+import Navbar from "../components/Navbar";
+
 //Ant Design
 import { Switch, Modal, notification } from "antd";
 // Translations
@@ -30,6 +32,7 @@ import { MdLightMode } from "react-icons/md";
 import { MdDarkMode } from "react-icons/md";
 // Export
 export {
+    Navbar,
     useTheme,
     downloadAll,
     uploadFile,
