@@ -7,8 +7,14 @@ import HowItWorks from "../pages/How It Work";
 import { onAuthStateChanged, auth } from "../db/index.js";
 import { useEffect, useState } from "react";
 import PageNotFound from "../components/PageNotFound.jsx";
+import { I18nextProvider, useTranslation } from "react-i18next";
+import i18nn from "../helper/i18n";
+
 function AppRouter() {
+
   const [login, setIslogin] = useState(false);
+  const { i18n } = useTranslation();
+
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -21,27 +27,41 @@ function AppRouter() {
       }
     });
   }, []);
+
   return (
     <>
-      <ThemeProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<HomePage login={login} />} />
-            <Route
-              path="/login"
-              element={
-                login ? <Navigate to="/" /> : <LoginPage setIslogin={setIslogin} />
-              }
-            />
-            <Route
-              path="/signup"
-              element={login ? <Navigate to="/" /> : <SignupPage />}
-            />
-            <Route path="/how-it-works" element={<HowItWorks />} />
-            <Route path="*" element={<PageNotFound/>}/>
-          </Routes>
-        </BrowserRouter>
-      </ThemeProvider>
+      <div dir={i18n.language === "ur" ? "rtl" : "ltr"}>
+        <I18nextProvider i18n={i18nn}>
+          <ThemeProvider>
+            <BrowserRouter>
+              <Routes>
+                <Route path="/" element={<HomePage login={login} />} />
+                <Route
+                  path="/login"
+                  element={
+                    login ? (
+                      <Navigate to="/" />
+                    ) : (
+                      <LoginPage login={login} setIslogin={setIslogin} />
+                    )
+                  }
+                />
+                <Route
+                  path="/signup"
+                  element={
+                    login ? <Navigate to="/" /> : <SignupPage login={login} />
+                  }
+                />
+                <Route
+                  path="/how-it-works"
+                  element={<HowItWorks login={login} />}
+                />
+                <Route path="*" element={<PageNotFound />} />
+              </Routes>
+            </BrowserRouter>
+          </ThemeProvider>
+        </I18nextProvider>
+      </div>
     </>
   );
 }

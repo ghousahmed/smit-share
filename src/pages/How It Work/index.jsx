@@ -1,133 +1,38 @@
 import "./style.scss";
 import "./mediaQuery.scss";
-import {
-  useTheme,
-  useScreenWidth,
-  useEffect,
-  useState,
-  LOGO,
-  FiMenu,
-  MdLightMode,
-  MdDarkMode,
-} from "../../components/index";
-import { Link } from "react-router-dom";
+import { useTheme } from "../../components/index";
+import Navbar from "../../components/Navbar";
 
-function HowItWorks() {
-  const { isDark, toggleTheme } = useTheme();
-  const screenWidth = useScreenWidth();
-  const [textValue, setTextValue] = useState("");
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  useEffect(() => {
-    updateBodyClass();
-  }, [isDark]);
-
-  const updateBodyClass = () => {
-    document.body.classList.toggle("dark", isDark);
-  };
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
+function HowItWorks({ login }) {
+  const { isDark } = useTheme();
   return (
     <div className={`container ${isDark ? "dark" : ""}`}>
-      <div className="header-bar">
-        <div className="logo">
-          <img src={LOGO} alt="" />
-        </div>
-        <div className="menu-bar">
-          {screenWidth.widthScreen > 768 ? (
-            <ul>
-              <li className={isDark ? "dark-text" : " "}>
-                <Link
-                  to="/how-it-works"
-                  className={isDark ? "dark" : " "}
-                  style={{
-                    textDecoration: "none",
-                    fontWeight: "bold",
-                    color: "#000",
-                  }}
-                >
-                  How it works
-                </Link>
-              </li>
-              <li className={isDark ? "dark-text" : " "}> Download</li>
-              <li className={isDark ? "dark-text" : " "}>Upgrade</li>
-              <li className={isDark ? "dark-text" : " "}>Feedback</li>
-              <li className="menu-btn">Login / Register</li>
-              <li onClick={toggleTheme}>
-                {isDark ? (
-                  <MdLightMode size={24} color="white" />
-                ) : (
-                  <MdDarkMode size={24} />
-                )}
-              </li>
-            </ul>
-          ) : (
-            <ul>
-              <li onClick={toggleMenu}>
-                <FiMenu size={30} />
-              </li>
-              <li onClick={toggleTheme}>
-                {isDark ? (
-                  <MdLightMode size={24} color="white" />
-                ) : (
-                  <MdDarkMode size={24} />
-                )}
-              </li>
-            </ul>
-          )}
-          {isMenuOpen ? (
-            <div className="mobile-menu">
-              <ul style={{ backgroundColor: isDark ? "#252526" : "#f4f4f4" }}>
-                <li className={isDark ? "dark-text" : ""}>
-                  <Link
-                    to="/how-it-works"
-                    style={{
-                      textDecoration: "none",
-                      color: isDark ? "#fff" : "#000",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    How it works
-                  </Link>
-                </li>
-                <li className={isDark ? "dark" : " "}>Download</li>
-                <li className={isDark ? "dark" : " "}>Upgrade</li>
-                <li className={isDark ? "dark" : " "}>Feedback</li>
-                <li className="menu-btn">Login / Register</li>
-              </ul>
-            </div>
-          ) : null}
-        </div>
-      </div>
-
-      <div className="main-card">
-        <div className={`how_it_work-container ${isDark ? "dark-light" : " "}`}>
-          <div className={`topcard ${isDark ? "dark-light" : " "}`}>
-            <h2 className={`${isDark ? "dark-light" : " "}`}>How It Works</h2>
+      <Navbar login={login} />
+      <div className={`main-card ${isDark ? "dark-light" : " "}`}>
+        <div className="how_it_work-container">
+          <div className="topcard">
+            <h2 className={isDark ? "dark-text" : " "}>How It Works</h2>
             <p>
-              AirForShare (AFS) is easy solution to share files, text and links
-              within the same Wi-Fi Network.
+              SMIT-Share (SS) is easy solution to share files, text and links to
+              everyone.
             </p>
           </div>
-          <div className={`bottomcard ${isDark ? "dark-light" : " "}`}>
-            <div className="step">
-              <h1 className={`number ${isDark ? "dark-light" : " "}`}>1.</h1>
-              <h3 className={`number ${isDark ? "dark-light" : " "}`}>
+          <div className="bottomcard">
+            <div className="step number">
+              <h1 className={isDark ? "dark-text" : " "}>1.</h1>
+              <h3 className={isDark ? "dark-text" : " "}>
                 Connect your devices to the <span>network</span>
               </h3>
             </div>
-            <div className="step">
-              <h1 className={`number ${isDark ? "dark-light" : " "}`}>2.</h1>
-              <h3 className={`number ${isDark ? "dark-light" : " "}`}>
+            <div className="step number">
+              <h1 className={isDark ? "dark-text" : " "}>2.</h1>
+              <h3 className={isDark ? "dark-text" : " "}>
                 <span>Upload</span> to AirForShare anything you want
               </h3>
             </div>
             <div className="step">
-              <h1 className={`number ${isDark ? "dark-light" : " "}`}>3.</h1>
-              <h3 className={`number ${isDark ? "dark-light" : " "}`}>
+              <h1 className={isDark ? "dark-text" : " "}>3.</h1>
+              <h3 className={isDark ? "dark-text" : " "}>
                 View and manage from any <span>devices</span> *
               </h3>
             </div>

@@ -1,55 +1,60 @@
-import "../../mediaquery/mediaquery.scss";
-import "../../pages/Home/css/style.scss";
-import LoginForm from "../../components/LoginForm";
-import LOGO from "../../assets/logo.svg";
-import { MdLightMode } from "react-icons/md";
-import { FiMenu } from "react-icons/fi";
-import useScreenWidth from "../../helper/screenWidth";
-import { MdDarkMode } from "react-icons/md";
-import { Link } from "react-router-dom";
-import { useTheme } from "../../context/ThemeContext";
-import { useEffect } from "react";
-import { Switch, notification } from "antd";
-import { auth, signInWithEmailAndPassword } from "../../db/index";
-import { useTranslation } from "react-i18next";
+import "../pages/Home/css/style.scss";
+import "../mediaquery/mediaquery.scss";
+import {
+  useTheme,
+  useScreenWidth,
+  useEffect,
+  useState,
+  auth,
+  signOut,
+  LOGO,
+  FiMenu,
+  MdLightMode,
+  MdDarkMode,
+  Link,
+  Switch,
+  notification,
+  useTranslation,
+} from "../components/index.js";
 
-function LoginPage({ login }) {
+const Navbar = ({ login }) => {
+  const { isDark, toggleTheme } = useTheme();
+  const screenWidth = useScreenWidth();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { t, i18n } = useTranslation();
 
   const handleChange = (checked) => {
     const newLanguage = checked ? "ur" : "en";
     i18n.changeLanguage(newLanguage);
   };
-  let loginUser = (values) => {
-    signInWithEmailAndPassword(auth, values.email, values.password)
-      .then((userCredential) => {
-        const user = userCredential.user;
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const logoutUser = () => {
+    signOut(auth)
+      .then(() => {
         notification.success({
-          message: "Login Success",
-          description: `Welcome, ${user.email}!`,
+          message: "Logged Out",
           duration: 2.5,
         });
-        // console.log(user);
+        console.log(user);
+        console.log("out");
       })
       .catch((error) => {
-        const errorMessage = error.message;
-        notification.error({
-          message: "Login Failed",
-          description: errorMessage,
-          duration: 2.5,
-        });
-        console.log(errorMessage);
+        console.log(error);
       });
   };
-  const screenWidth = useScreenWidth();
-  const { isDark, toggleTheme } = useTheme();
+
   useEffect(() => {
     isDark
       ? document.body.classList.add("dark")
       : document.body.classList.remove("dark");
   }, [isDark]);
+
   return (
-    <div className="container">
+    <div className={isDark ? "dark" : " "}>
       <div className="header-bar">
         <div className="logo">
           <Link to={"/"}>
@@ -87,26 +92,22 @@ function LoginPage({ login }) {
               ) : (
                 <li className="menu-btn">
                   <span>
-                    {" "}
                     <Link
                       className="menu-btn"
                       style={{ textDecoration: "none" }}
                       to={"/login"}
                     >
-                      {" "}
-                      Login{" "}
+                      Login
                     </Link>
                   </span>
-                  /{" "}
+                  /
                   <span>
-                    {" "}
                     <Link
                       className="menu-btn"
                       to={"/signup"}
                       style={{ textDecoration: "none" }}
                     >
-                      {" "}
-                      Register{" "}
+                      Register
                     </Link>
                   </span>
                 </li>
@@ -144,12 +145,44 @@ function LoginPage({ login }) {
               </li>
             </ul>
           )}
+          {isMenuOpen ? (
+            <div className="mobile-menu">
+              <ul className={isDark ? "dark-lighter" : ""}>
+                <li>
+                  <Link
+                    to="/how-it-works"
+                    className={isDark ? "dark-text" : ""}
+                  >
+                    How it works
+                  </Link>
+                </li>
+                <li>
+                  <Link to="*" className={isDark ? "dark-text" : ""}>
+                    Feedback
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className={`menu-btn ${isDark ? "dark-text" : ""}`}
+                    to={"/login"}
+                  >
+                    Login
+                  </Link>
+                </li>
+                <li onClick={toggleTheme}>
+                  {isDark ? (
+                    <MdLightMode size={24} color="white" />
+                  ) : (
+                    <MdDarkMode size={24} />
+                  )}
+                </li>
+              </ul>
+            </div>
+          ) : null}
         </div>
-      </div>
-      <div className={`main-card ${isDark ? "dark-lighter" : " "}`}>
-        <LoginForm loginUser={loginUser} />
       </div>
     </div>
   );
-}
-export default LoginPage;
+};
+
+export default Navbar;
