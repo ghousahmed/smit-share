@@ -12,12 +12,16 @@ import ThemeButton from "../components/Button";
 import DropZone from "../components/DropZone";
 import FilesList from "../components/FilesList";
 import { useTheme } from "../context/ThemeContext.jsx";
+<<<<<<< Updated upstream
 import Navbar from "../components/Navbar";
 
 //Ant Design
 import { Switch, Modal, notification } from "antd";
 // Translations
 import { useTranslation } from "react-i18next";
+=======
+import Footer from "../components/Footer.jsx"
+>>>>>>> Stashed changes
 // Assets
 import LOGO from "../assets/logo.svg";
 import TEXT_GREY from "../assets/text-grey.svg";
@@ -30,6 +34,8 @@ import { MdDelete } from "react-icons/md";
 import { FiMenu } from "react-icons/fi";
 import { MdLightMode } from "react-icons/md";
 import { MdDarkMode } from "react-icons/md";
+import { FaGithub } from "react-icons/fa";
+import { TbWorld } from "react-icons/tb";
 // Export
 export {
     Navbar,
@@ -60,9 +66,15 @@ export {
     FiMenu,
     MdLightMode,
     MdDarkMode,
+<<<<<<< Updated upstream
     Link,
     Switch,
     Modal,
     notification,
     useTranslation,
+=======
+    Footer,
+    FaGithub,
+    TbWorld
+>>>>>>> Stashed changes
 };
