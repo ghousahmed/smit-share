@@ -7,6 +7,8 @@ import HowItWorks from "../pages/How It Work";
 import { onAuthStateChanged, auth } from "../db/index.js";
 import { useEffect, useState } from "react";
 import PageNotFound from "../components/PageNotFound.jsx";
+import FeedBack from "../pages/feedback/index.jsx";
+
 function AppRouter() {
   const [login, setIslogin] = useState(false);
   useEffect(() => {
@@ -21,6 +23,7 @@ function AppRouter() {
       }
     });
   }, []);
+  
   return (
     <>
       <ThemeProvider>
@@ -38,6 +41,7 @@ function AppRouter() {
               element={login ? <Navigate to="/" /> : <SignupPage />}
             />
             <Route path="/how-it-works" element={<HowItWorks />} />
+            <Route path="/feedback" element={<FeedBack login={login} />} />
             <Route path="*" element={<PageNotFound/>}/>
           </Routes>
         </BrowserRouter>

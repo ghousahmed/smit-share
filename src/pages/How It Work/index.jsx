@@ -15,7 +15,6 @@ import { Link } from "react-router-dom";
 function HowItWorks() {
   const { isDark, toggleTheme } = useTheme();
   const screenWidth = useScreenWidth();
-  const [textValue, setTextValue] = useState("");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -34,7 +33,9 @@ function HowItWorks() {
     <div className={`container ${isDark ? "dark" : ""}`}>
       <div className="header-bar">
         <div className="logo">
+          <Link to='/'>
           <img src={LOGO} alt="" />
+          </Link>
         </div>
         <div className="menu-bar">
           {screenWidth.widthScreen > 768 ? (
@@ -52,9 +53,18 @@ function HowItWorks() {
                   How it works
                 </Link>
               </li>
-              <li className={isDark ? "dark-text" : " "}> Download</li>
+              <li className={isDark ? "dark-text" : " "}>Download</li>
               <li className={isDark ? "dark-text" : " "}>Upgrade</li>
-              <li className={isDark ? "dark-text" : " "}>Feedback</li>
+              <li className={isDark ? "dark-text" : " "}><Link
+                to="/feedback"
+                className={isDark ? "dark" : " "}
+                style={{
+                  textDecoration: "none",
+                  color: "#4a4a4a",
+                }}
+              >
+                Feedback
+              </Link></li>
               <li className="menu-btn">Login / Register</li>
               <li onClick={toggleTheme}>
                 {isDark ? (
@@ -79,7 +89,7 @@ function HowItWorks() {
             </ul>
           )}
           {isMenuOpen ? (
-            <div className="mobile-menu">
+            <div className={`mobile-menu ${isDark ? "dark" : ""}`}>
               <ul style={{ backgroundColor: isDark ? "#252526" : "#f4f4f4" }}>
                 <li className={isDark ? "dark-text" : ""}>
                   <Link
@@ -87,7 +97,6 @@ function HowItWorks() {
                     style={{
                       textDecoration: "none",
                       color: isDark ? "#fff" : "#000",
-                      fontWeight: "bold",
                     }}
                   >
                     How it works
@@ -95,7 +104,10 @@ function HowItWorks() {
                 </li>
                 <li className={isDark ? "dark" : " "}>Download</li>
                 <li className={isDark ? "dark" : " "}>Upgrade</li>
-                <li className={isDark ? "dark" : " "}>Feedback</li>
+                <li className={isDark ? "dark" : " "}><Link style={{
+                  textDecoration: "none",
+                  color: isDark ? "#fff" : "#4a4a4a89",
+                }} to='/feedback'>Feedback</Link></li>
                 <li className="menu-btn">Login / Register</li>
               </ul>
             </div>

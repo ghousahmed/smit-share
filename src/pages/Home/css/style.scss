@@ -245,3 +245,22 @@ body {
     }
   }
 }
+
+.footer {
+  margin: 30px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #818181;
+  font-size: 14px;
+  font-family: "openSans";
+  font-weight: lighter;
+  span {
+    text-align: center;
+    .link {
+      text-decoration: none;
+      color: $primary-dark-color;
+    }
+  }
+}

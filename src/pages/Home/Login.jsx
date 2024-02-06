@@ -53,10 +53,12 @@ function LoginPage() {
         <div className="menu-bar">
           {screenWidth.widthScreen > 768 ? (
             <ul>
-              <li>How it works</li>
-              <li>Download</li>
-              <li>Upgrade</li>
-              <li>Feedback </li>
+              <li><Link className={isDark ? "dark-text" : ""} to='/how-it-works' style={{textDecoration: "none",  color: isDark ? '' : '#3e3e42' }}>How it works</Link></li>
+              <li className={isDark ? "dark-text" : ""}>Download</li>
+              <li className={isDark ? "dark-text" : ""}>Upgrade</li>
+              <li><Link className={isDark ? "dark-text" : ""} to='/feedback' style={{textDecoration: "none",  color: isDark ? '' : '#3e3e42' }}>
+              Feedback
+              </Link> </li>
               <li className="menu-btn">
                 <span> Login </span>/{" "}
                 <span>
@@ -90,6 +92,13 @@ function LoginPage() {
       </div>
       <div className={`main-card ${isDark ? "dark-lighter" : " "}`}>
         <LoginForm loginUser={loginUser} />
+      </div>
+      <div className="footer">
+        <span>
+          © 2023-2024 AirForShare.com <br />
+          Made in<Link className="link" to="https://www.linkedin.com/company/saylanimasstraining/?originalSubdomain=pk"> SMIT.com </Link>
+          with ❤️
+        </span>
       </div>
     </div>
   );

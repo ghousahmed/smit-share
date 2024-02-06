@@ -27,6 +27,7 @@ $dark-theme-lighter: #3e3e42;
   color: $white !important;
 }
 
+
 body {
   background-color: $body-background;
   font-family: "Open Sans", sans-serif;
@@ -81,13 +82,14 @@ body {
     width: 100%;
     left: 0;
     top: 13%;
-    background-color: $dark-theme; 
+    padding-top: 25px;
     ul {
+      box-shadow: inset 0 -5px 5px -5px rgba(255, 255, 255, 0.3);
+      padding-bottom: 20px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       text-align: center;
-      background-color: $white;
       li {
         padding: 10px 0px;
         border-bottom: 1px solid #ccc;

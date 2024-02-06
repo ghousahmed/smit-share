@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { useTheme } from "../../context/ThemeContext";
 import SignupForm from "../../components/SignupForm";
 
-import { useEffect ,useState} from "react";
+import { useEffect, useState } from "react";
 import { auth, createUserWithEmailAndPassword } from "../../db/index";
 import { notification } from "antd";
 
@@ -56,10 +56,16 @@ function SignupPage() {
         <div className="menu-bar">
           {screenWidth.widthScreen > 768 ? (
             <ul>
-              <li className={isDark ? "dark-text" : " "}>How it works</li>
+              <li><Link style={{ textDecoration: 'none', color: !isDark ? '#2d2d30' : '' }} className={isDark ? "dark-text" : " "} to='/how-it-works'>
+                How it works
+              </Link></li>
               <li className={isDark ? "dark-text" : " "}> Download</li>
               <li className={isDark ? "dark-text" : " "}>Upgrade</li>
-              <li className={isDark ? "dark-text" : " "}>Feedback</li>
+              <li>
+                <Link style={{ textDecoration: 'none', color: !isDark ? '#2d2d30' : '' }} className={isDark ? "dark-text" : " "} to='/feedback'>
+                  Feedback
+                </Link>
+              </li>
               <li className="menu-btn"><span> <Link className="menu-btn" style={{ textDecoration: "none" }} to={"/login"}> Login </Link></span>/ <span> <Link className="menu-btn" to={"/signup"} style={{ textDecoration: "none" }}> Register </Link></span></li>
               <li onClick={toggleTheme}>
                 {isDark ? (
@@ -86,10 +92,10 @@ function SignupPage() {
           {isMenuOpen ? (
             <div className="mobile-menu">
               <ul>
-                <li className={isDark ? "dark" : " "}>How it works</li>
+                <li><Link className={isDark ? "dark" : " "} to='/how-it-works' style={{textDecoration: "none",  color: !isDark ? '#fff' : '' }}>How it works</Link></li>
                 <li className={isDark ? "dark" : " "}> Download</li>
                 <li className={isDark ? "dark" : " "}>Upgrade</li>
-                <li className={isDark ? "dark" : " "}>Feedback</li>
+                <li><Link className={isDark ? "dark" : " "} to='/feedback' style={{textDecoration: "none",  color: !isDark ? '#fff' : '' }}>Feedback</Link></li>
                 <li className={isDark ? "dark" : "menu-btn"}>
                   Login / Register
                 </li>
@@ -102,6 +108,13 @@ function SignupPage() {
         className="main-card"
         style={{ backgroundColor: theme === "dark" ? "rgb(20 23 30)" : "" }}
       ><SignupForm registerUser={registerUser} /> </div>
+      <div className="footer">
+        <span>
+          © 2023-2024 AirForShare.com <br />
+          Made in<Link className="link" to="https://www.linkedin.com/company/saylanimasstraining/?originalSubdomain=pk"> SMIT.com </Link>
+          with ❤️
+        </span>
+      </div>
     </div>
   );
 }

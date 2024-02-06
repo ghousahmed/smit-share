@@ -147,14 +147,17 @@ function HomePage({ login }) {
                 to="/how-it-works"
                 style={{
                   textDecoration: "none",
-                  color: isDark ? "#fff" : "#000",
+                  color: isDark ? "#fff" : "#4a4a4a",
                 }}
               >
                 How it works
               </Link>
               <li className={isDark ? "dark-text" : " "}> {t("Download")}</li>
               <li className={isDark ? "dark-text" : " "}>{t("Upgrade")}</li>
-              <li className={isDark ? "dark-text" : " "}>{t("Feedback")}</li>
+              <li className={isDark ? "dark-text" : " "}><Link style={{
+                textDecoration: "none",
+                color: isDark ? "#fff" : "#4a4a4a",
+              }} to='/feedback'>{t("Feedback")}</Link></li>
               {login ? (
                 <li className="menu-btn" onClick={logoutUser}>
                   {t("Logout")}
@@ -220,14 +223,14 @@ function HomePage({ login }) {
             </ul>
           )}
           {isMenuOpen ? (
-            <div className="mobile-menu">
-              <ul>
-                <li className={isDark ? "dark-text" : ""}>
+            <div className={`mobile-menu ${isDark ? "dark" : ""}`}>
+              <ul className={isDark ? "dark" : ""}>
+                <li className={isDark ? "dark" : ""}>
                   <Link
                     to="/how-it-works"
                     style={{
                       textDecoration: "none",
-                      color: isDark ? "#fff" : "#000",
+                      color: isDark ? "#fff" : "#4a4a4a9e",
                     }}
                   >
                     How it works
@@ -235,7 +238,12 @@ function HomePage({ login }) {
                 </li>
                 <li className={isDark ? "dark" : " "}> {t("Download")}</li>
                 <li className={isDark ? "dark" : " "}>{t("Upgrade")}</li>
-                <li className={isDark ? "dark" : " "}>{t("Feedback")}</li>
+                <li className={isDark ? "dark" : " "}><Link style={{
+                  textDecoration: "none",
+                  color: isDark ? "#fff" : "#4a4a4a9e",
+                }} to='/feedback'>
+                  {t("Feedback")}
+                </Link></li>
                 <li className={isDark ? "dark" : "menu-btn"}>
                   {t("Login / Register")}
                 </li>
@@ -376,6 +384,13 @@ function HomePage({ login }) {
             </div>
           )}
         </div>
+      </div>
+      <div className="footer">
+        <span>
+          © 2023-2024 AirForShare.com <br />
+          Made in<Link className="link" to="https://www.linkedin.com/company/saylanimasstraining/?originalSubdomain=pk"> SMIT.com </Link>
+          with ❤️
+        </span>
       </div>
     </div>
   );
