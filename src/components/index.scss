@@ -30,8 +30,7 @@ $white: #fff;
   color: $white !important;
 }
 body {
-  background-color: $body-background ;
-  font-family: "Open Sans", sans-serif;
+  background-color: $body-background;
   transition: all 0.3s ease;
 }
 .text-area {
@@ -92,6 +91,7 @@ body {
   align-items: center;
   border: 1.5px dashed rgba(158, 161, 161, 0.5);
   height: 250px;
+  background-color: $body-background;
   div {
     color: rgba(158, 161, 161, 0.5);
     width: 60%;
@@ -111,7 +111,7 @@ body {
   flex-wrap: wrap;
   gap: 6px;
 
-  &:hover{
+  &:hover {
     overflow: hidden;
   }
 
@@ -207,26 +207,25 @@ body {
     }
   }
 }
-.d-flex{
+.d-flex {
   display: flex;
- 
-  width: 100%  !important;
+
+  width: 100% !important;
   justify-content: center !important;
   align-items: center !important;
-  .input-border{
+  .input-border {
     border: 0 !important;
     border-radius: 0px !important;
     border-bottom: 2px solid black !important;
     width: 450px;
   }
-  .text{
+  .text {
     color: $light-color !important;
   }
-  .text-primary{
+  .text-primary {
     color: $primary-color !important;
   }
   .white-placeholder .ant-input::placeholder {
     color: rgb(201, 191, 191) !important;
   }
-  
 }

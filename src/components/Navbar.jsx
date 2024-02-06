@@ -64,16 +64,17 @@ const Navbar = ({ login }) => {
         <div className="menu-bar">
           {screenWidth.widthScreen > 768 ? (
             <ul>
-              <Link
-                to="/how-it-works"
-                style={{
-                  textDecoration: "none",
-                  color: isDark ? "#fff" : "#000",
-                  fontSize: "14px",
-                }}
-              >
-                How it works
-              </Link>
+              <li>
+                <Link
+                  to="/how-it-works"
+                  style={{
+                    textDecoration: "none",
+                    color: isDark ? "#fff" : "#000",
+                  }}
+                >
+                  {t("How it works")}
+                </Link>
+              </li>
 
               <li className={isDark ? "dark-text" : " "}>
                 <Link
@@ -111,6 +112,7 @@ const Navbar = ({ login }) => {
                     size="small"
                     defaultChecked={i18n.language === "ur"}
                     onChange={handleChange}
+                    className={isDark ? "dark-text" : null}
                   />
                   <span style={{ margin: "0px 8px" }}>Ur</span>
                 </div>

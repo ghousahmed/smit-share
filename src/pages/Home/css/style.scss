@@ -31,12 +31,20 @@ body {
   transition: all 0.3s ease-in-out;
 }
 
+
+
 .container {
   transition: all 0.3s ease-in-out;
   width: 900px;
   margin: 0 auto;
   margin-top: 50px;
   position: relative;
+  .en {
+    font-size: 16px;
+  }
+  .ur {
+    font-size: 8px;
+  }
 }
 
 .header-bar {
@@ -131,6 +139,7 @@ body {
 .card-container {
   padding: 30px 50px 0px;
   width: 100%;
+  min-height: 450px;
 
   div {
     h1 {
@@ -138,7 +147,7 @@ body {
       font-weight: 700;
       line-height: 0.85;
       letter-spacing: 0.6px;
-      color: #000;
+      color: #2d2d30;
       margin-bottom: 28px;
     }
   }
@@ -164,6 +173,7 @@ body {
         overflow: hidden;
         border-radius: 5px;
         min-height: 200px;
+        background-color: $body-background;
       }
     }
 

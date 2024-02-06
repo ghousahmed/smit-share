@@ -92,13 +92,22 @@ function HomePage({ login }) {
       : document.body.classList.remove("dark");
   }, [isDark]);
 
+  const getFontFamily = () => {
+    switch (i18n.language) {
+      case "ur":
+        return "urdu-font";
+      default:
+        return "english-font";
+    }
+  };
+
   var expression =
     /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
   var regex = new RegExp(expression);
   const links = textValue.match(regex) || [];
 
   return (
-    <div className={`container ${isDark ? "dark" : " "}`}>
+    <div className={`container ${getFontFamily()} ${isDark ? "dark" : " "}`}>
       <Navbar login={login} />
       <div className="main-card">
         <div className={`card-sidebar ${isDark ? "dark" : " "}`}>
