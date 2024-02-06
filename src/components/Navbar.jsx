@@ -69,6 +69,7 @@ const Navbar = ({ login }) => {
                 style={{
                   textDecoration: "none",
                   color: isDark ? "#fff" : "#000",
+                  fontSize: "14px",
                 }}
               >
                 How it works
@@ -91,29 +92,20 @@ const Navbar = ({ login }) => {
                 </li>
               ) : (
                 <li className="menu-btn">
-                  <span>
-                    <Link
-                      className="menu-btn"
-                      style={{ textDecoration: "none" }}
-                      to={"/login"}
-                    >
-                      Login
-                    </Link>
-                  </span>
-                  /
-                  <span>
-                    <Link
-                      className="menu-btn"
-                      to={"/signup"}
-                      style={{ textDecoration: "none" }}
-                    >
-                      Register
-                    </Link>
-                  </span>
+                  <Link
+                    className="menu-btn"
+                    style={{ textDecoration: "none" }}
+                    to={"/login"}
+                  >
+                    Login
+                  </Link>
                 </li>
               )}
               <li>
-                <div style={{ display: "flex", alignItems: "center" }}>
+                <div
+                  style={{ display: "flex", alignItems: "center" }}
+                  className={isDark ? "dark-text" : null}
+                >
                   <span style={{ margin: "0px 8px" }}>En</span>
                   <Switch
                     size="small"
