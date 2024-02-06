@@ -15,25 +15,14 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 
-// const firebaseConfig = {
-//     apiKey: "AIzaSyDG6-ZhFAuf2xkIVjieFKPzYXylqsASeXU",
-//     authDomain: "smit-batch-10.firebaseapp.com",
-//     projectId: "smit-batch-10",
-//     storageBucket: "smit-batch-10.appspot.com",
-//     messagingSenderId: "333213670128",
-//     appId: "1:333213670128:web:b7d83af5afed979bafc035",
-//     databaseURL: "https://smit-batch-10-default-rtdb.asia-southeast1.firebasedatabase.app"
-// };
-
 const firebaseConfig = {
-  apiKey: "AIzaSyA1QokcJF8cCoEmEsOmGlTmwXthBYVfFBU",
-  authDomain: "job-portal-31600.firebaseapp.com",
-  databaseURL: "https://job-portal-31600-default-rtdb.firebaseio.com",
-  projectId: "job-portal-31600",
-  storageBucket: "job-portal-31600.appspot.com",
-  messagingSenderId: "656299741363",
-  appId: "1:656299741363:web:75ac2026a8a4851cf5a0c6",
-  measurementId: "G-0BGYZPP097"
+    apiKey: "AIzaSyDG6-ZhFAuf2xkIVjieFKPzYXylqsASeXU",
+    authDomain: "smit-batch-10.firebaseapp.com",
+    projectId: "smit-batch-10",
+    storageBucket: "smit-batch-10.appspot.com",
+    messagingSenderId: "333213670128",
+    appId: "1:333213670128:web:b7d83af5afed979bafc035",
+    databaseURL: "https://smit-batch-10-default-rtdb.asia-southeast1.firebasedatabase.app"
 };
 
 const app = initializeApp(firebaseConfig);
