@@ -32,7 +32,7 @@ $white: #fff;
 body {
   background-color: $body-background ;
   font-family: "Open Sans", sans-serif;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease;
 }
 .text-area {
   transition: all 0.3s ease-in-out;
@@ -176,12 +176,6 @@ body {
     position: absolute;
   }
 }
-
-// .container {
-//   width: 900px;
-//   margin: 0 auto;
-//   margin-top: 50px;
-// }
 
 .header-bar {
   display: flex;
