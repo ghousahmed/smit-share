@@ -1,8 +1,24 @@
 @font-face {
-    font-family: Poppins-Regular;
-    src: url(./assets/fonts/Poppins/Poppins-Regular.ttf);
+  font-family: "Poppins-Regular";
+  src: url(./assets/fonts/Poppins/Poppins-Regular.ttf);
+}
+@font-face {
+  font-family: "Attari";
+  src: url(./assets/fonts/Attari/Attari_Font.ttf);
 }
 
 * {
-    font-family: Poppins-Regular;
+  .english-font {
+    font-family: "Poppins-Regular", sans-serif;
+  }
+  .urdu-font {
+    font-family: "Attari", sans-serif;
+    .menu-bar {
+      ul {
+        a {
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
 }

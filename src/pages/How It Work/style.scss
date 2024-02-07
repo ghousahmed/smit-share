@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-
 $white: #fff;
 $light-color: #4a4a4a;
 $body-background: #f4f4f4;
@@ -30,7 +28,6 @@ $dark-theme-lighter: #3e3e42;
 
 body {
   background-color: $body-background;
-  font-family: "Open Sans", sans-serif;
   transition: all 0.3s ease-in-out;
 }
 
@@ -67,7 +64,7 @@ body {
       color: $light-color;
       font-size: 14px;
       cursor: pointer;
-      svg{
+      svg {
         margin-top: 3px !important;
       }
     }
@@ -82,7 +79,7 @@ body {
     width: 100%;
     left: 0;
     top: 13%;
-    padding-top: 25px;
+    background-color: $dark-theme;
     ul {
       box-shadow: inset 0 -5px 5px -5px rgba(255, 255, 255, 0.3);
       padding-bottom: 20px;
@@ -97,7 +94,7 @@ body {
           border-bottom: none;
         }
         &.dark {
-          color: $white; 
+          color: $white;
         }
       }
     }
@@ -204,7 +201,7 @@ body {
   }
 }
 .how_it_work-container {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
