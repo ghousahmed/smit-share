@@ -179,7 +179,9 @@ function HomePage({ login }) {
                       onClick={saveChanges}
                       disabled={textValue ? false : true}
                       title={t("Save")}
-                      className={isDark ? "dark-lighter" : " "}
+                      className={`${getFontFamily()} ${
+                        isDark ? "dark-lighter" : " "
+                      }`}
                     />
                   )}
                 </div>

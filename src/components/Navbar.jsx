@@ -98,7 +98,7 @@ const Navbar = ({ login }) => {
                     style={{ textDecoration: "none" }}
                     to={"/login"}
                   >
-                    Login
+                    {t("Login")}
                   </Link>
                 </li>
               )}
@@ -127,15 +127,23 @@ const Navbar = ({ login }) => {
             </ul>
           ) : (
             <ul>
+              <li>
+                <div
+                  style={{ display: "flex", alignItems: "center" }}
+                  className={isDark ? "dark-text" : null}
+                >
+                  <span style={{ margin: "0px 8px" }}>En</span>
+                  <Switch
+                    size="small"
+                    defaultChecked={i18n.language === "ur"}
+                    onChange={handleChange}
+                    className={isDark ? "dark-text" : null}
+                  />
+                  <span style={{ margin: "0px 8px" }}>Ur</span>
+                </div>
+              </li>
               <li onClick={toggleMenu}>
                 <FiMenu size={30} />
-              </li>
-              <li onClick={toggleTheme}>
-                {isDark ? (
-                  <MdLightMode size={24} color="white" />
-                ) : (
-                  <MdDarkMode size={24} />
-                )}
               </li>
             </ul>
           )}
@@ -147,12 +155,12 @@ const Navbar = ({ login }) => {
                     to="/how-it-works"
                     className={isDark ? "dark-text" : ""}
                   >
-                    How it works
+                    {t("How it works")}
                   </Link>
                 </li>
                 <li>
                   <Link to="*" className={isDark ? "dark-text" : ""}>
-                    Feedback
+                    {t("Feedback")}
                   </Link>
                 </li>
                 <li>
@@ -160,7 +168,7 @@ const Navbar = ({ login }) => {
                     className={`menu-btn ${isDark ? "dark-text" : ""}`}
                     to={"/login"}
                   >
-                    Login
+                    {t("Login")}
                   </Link>
                 </li>
                 <li onClick={toggleTheme}>

@@ -14,5 +14,6 @@
   "Clear": "Clear",
   "Copy": "Copy",
   "Save": "Save",
-  "Logout":"Logout"
+  "Logout":"Logout",
+  "Login":"Login"
 }
