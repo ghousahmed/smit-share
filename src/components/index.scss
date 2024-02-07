@@ -34,9 +34,8 @@ $white: #fff;
 }
 
 body {
-  background-color: $body-background ;
-  font-family: "Open Sans", sans-serif;
-  transition: all 0.3s ease-in-out;
+  background-color: $body-background;
+  transition: all 0.3s ease;
 }
 
 .text-area {
@@ -97,6 +96,7 @@ body {
   align-items: center;
   border: 1.5px dashed rgba(158, 161, 161, 0.5);
   height: 250px;
+  background-color: $body-background;
 
   div {
     color: rgba(158, 161, 161, 0.5);
@@ -183,12 +183,6 @@ body {
   }
 }
 
-// .container {
-//   width: 900px;
-//   margin: 0 auto;
-//   margin-top: 50px;
-// }
-
 .header-bar {
   display: flex;
   justify-content: space-between;
@@ -251,6 +245,7 @@ body {
 .footerArea {
   text-align: center;
   padding: 20px;
+
 }
 
 .linksContainer {

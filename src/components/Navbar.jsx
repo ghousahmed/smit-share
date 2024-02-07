@@ -64,15 +64,17 @@ const Navbar = ({ login }) => {
         <div className="menu-bar">
           {screenWidth.widthScreen > 768 ? (
             <ul>
-              <Link
-                to="/how-it-works"
-                style={{
-                  textDecoration: "none",
-                  color: isDark ? "#fff" : "#000",
-                }}
-              >
-                How it works
-              </Link>
+              <li>
+                <Link
+                  to="/how-it-works"
+                  style={{
+                    textDecoration: "none",
+                    color: isDark ? "#fff" : "#000",
+                  }}
+                >
+                  {t("How it works")}
+                </Link>
+              </li>
 
               <li className={isDark ? "dark-text" : " "}>
                 <Link
@@ -91,34 +93,26 @@ const Navbar = ({ login }) => {
                 </li>
               ) : (
                 <li className="menu-btn">
-                  <span>
-                    <Link
-                      className="menu-btn"
-                      style={{ textDecoration: "none" }}
-                      to={"/login"}
-                    >
-                      Login
-                    </Link>
-                  </span>
-                  /
-                  <span>
-                    <Link
-                      className="menu-btn"
-                      to={"/signup"}
-                      style={{ textDecoration: "none" }}
-                    >
-                      Register
-                    </Link>
-                  </span>
+                  <Link
+                    className="menu-btn"
+                    style={{ textDecoration: "none" }}
+                    to={"/login"}
+                  >
+                    {t("Login")}
+                  </Link>
                 </li>
               )}
               <li>
-                <div style={{ display: "flex", alignItems: "center" }}>
+                <div
+                  style={{ display: "flex", alignItems: "center" }}
+                  className={isDark ? "dark-text" : null}
+                >
                   <span style={{ margin: "0px 8px" }}>En</span>
                   <Switch
                     size="small"
                     defaultChecked={i18n.language === "ur"}
                     onChange={handleChange}
+                    className={isDark ? "dark-text" : null}
                   />
                   <span style={{ margin: "0px 8px" }}>Ur</span>
                 </div>
@@ -133,15 +127,23 @@ const Navbar = ({ login }) => {
             </ul>
           ) : (
             <ul>
+              <li>
+                <div
+                  style={{ display: "flex", alignItems: "center" }}
+                  className={isDark ? "dark-text" : null}
+                >
+                  <span style={{ margin: "0px 8px" }}>En</span>
+                  <Switch
+                    size="small"
+                    defaultChecked={i18n.language === "ur"}
+                    onChange={handleChange}
+                    className={isDark ? "dark-text" : null}
+                  />
+                  <span style={{ margin: "0px 8px" }}>Ur</span>
+                </div>
+              </li>
               <li onClick={toggleMenu}>
                 <FiMenu size={30} />
-              </li>
-              <li onClick={toggleTheme}>
-                {isDark ? (
-                  <MdLightMode size={24} color="white" />
-                ) : (
-                  <MdDarkMode size={24} />
-                )}
               </li>
             </ul>
           )}
@@ -153,12 +155,12 @@ const Navbar = ({ login }) => {
                     to="/how-it-works"
                     className={isDark ? "dark-text" : ""}
                   >
-                    How it works
+                    {t("How it works")}
                   </Link>
                 </li>
                 <li>
                   <Link to="*" className={isDark ? "dark-text" : ""}>
-                    Feedback
+                    {t("Feedback")}
                   </Link>
                 </li>
                 <li>
@@ -166,7 +168,7 @@ const Navbar = ({ login }) => {
                     className={`menu-btn ${isDark ? "dark-text" : ""}`}
                     to={"/login"}
                   >
-                    Login
+                    {t("Login")}
                   </Link>
                 </li>
                 <li onClick={toggleTheme}>
