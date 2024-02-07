@@ -11,7 +11,6 @@ import { I18nextProvider, useTranslation } from "react-i18next";
 import i18nn from "../helper/i18n";
 
 function AppRouter() {
-
   const [login, setIslogin] = useState(false);
   const { i18n } = useTranslation();
 
