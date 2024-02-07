@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react";
 function TextArea({ value, onChange, className }) {
   const { isDark, toggleTheme } = useTheme();
   const textareaRef = useRef();
-  const resizeTextArea = (event) => {
+  const resizeTextArea = () => {
     textareaRef.current.value.length >= 200
       ? ((textareaRef.current.style.height = "240px"),
         (textareaRef.current.style.height =

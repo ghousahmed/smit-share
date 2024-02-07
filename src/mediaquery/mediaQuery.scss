@@ -68,6 +68,11 @@
   }
 }
 @media only screen and (max-width: 500px) {
+  .menu-bar {
+    ul {
+      gap: 5px !important;
+    }
+  }
   .drop-zone {
     div {
       width: 100% !important;
