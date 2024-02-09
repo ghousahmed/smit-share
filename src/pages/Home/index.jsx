@@ -23,16 +23,13 @@ import {
   TEXT_GREY,
   FaDownload,
   MdDelete,
-<<<<<<< Updated upstream
   Modal,
   useTranslation,
-=======
   FiMenu,
   MdLightMode,
   MdDarkMode,
   Footer,
-  FaGithub
->>>>>>> Stashed changes
+  FaGithub,
 } from "../../components/index.js";
 
 function HomePage({ login }) {
@@ -249,7 +246,7 @@ function HomePage({ login }) {
           )}
         </div>
       </div>
-      <Footer /> 
+      <Footer />
     </div>
   );
 }

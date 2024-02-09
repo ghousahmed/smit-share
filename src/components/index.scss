@@ -239,13 +239,11 @@ body {
   .white-placeholder .ant-input::placeholder {
     color: rgb(201, 191, 191) !important;
   }
-
 }
 
 .footerArea {
   text-align: center;
   padding: 20px;
-
 }
 
 .linksContainer {
@@ -257,11 +255,11 @@ body {
   padding: 20px;
 }
 
-.para{
-  font-size: x-large;
+.para {
+  font-size: 18px;
 }
 
-.sirGithub{
+.sirGithub {
   padding: 5px;
   font-size: medium;
   margin-bottom: 0px;
@@ -269,7 +267,7 @@ body {
   font-size: 20px;
 }
 
-.sirGithub:hover{
+.sirGithub:hover {
   color: #864bff;
   font-size: 25px;
   transition: 0.5s;
