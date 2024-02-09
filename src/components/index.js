@@ -12,16 +12,12 @@ import ThemeButton from "../components/Button";
 import DropZone from "../components/DropZone";
 import FilesList from "../components/FilesList";
 import { useTheme } from "../context/ThemeContext.jsx";
-<<<<<<< Updated upstream
 import Navbar from "../components/Navbar";
-
+import Footer from "../components/Footer.jsx"
 //Ant Design
 import { Switch, Modal, notification } from "antd";
 // Translations
 import { useTranslation } from "react-i18next";
-=======
-import Footer from "../components/Footer.jsx"
->>>>>>> Stashed changes
 // Assets
 import LOGO from "../assets/logo.svg";
 import TEXT_GREY from "../assets/text-grey.svg";
@@ -66,15 +62,12 @@ export {
     FiMenu,
     MdLightMode,
     MdDarkMode,
-<<<<<<< Updated upstream
     Link,
     Switch,
     Modal,
     notification,
     useTranslation,
-=======
     Footer,
     FaGithub,
     TbWorld
->>>>>>> Stashed changes
 };
