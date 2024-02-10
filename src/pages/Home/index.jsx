@@ -25,6 +25,11 @@ import {
   MdDelete,
   Modal,
   useTranslation,
+  FiMenu,
+  MdLightMode,
+  MdDarkMode,
+  Footer,
+  FaGithub,
 } from "../../components/index.js";
 
 function HomePage({ login }) {
@@ -248,6 +253,9 @@ function HomePage({ login }) {
           with ❤️
         </span>
       </div>
+
+      <Footer />
+
     </div>
   );
 }

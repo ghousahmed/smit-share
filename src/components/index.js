@@ -13,7 +13,7 @@ import DropZone from "../components/DropZone";
 import FilesList from "../components/FilesList";
 import { useTheme } from "../context/ThemeContext.jsx";
 import Navbar from "../components/Navbar";
-
+import Footer from "../components/Footer.jsx"
 //Ant Design
 import { Switch, Modal, notification } from "antd";
 // Translations
@@ -30,6 +30,8 @@ import { MdDelete } from "react-icons/md";
 import { FiMenu } from "react-icons/fi";
 import { MdLightMode } from "react-icons/md";
 import { MdDarkMode } from "react-icons/md";
+import { FaGithub } from "react-icons/fa";
+import { TbWorld } from "react-icons/tb";
 // Export
 export {
     Navbar,
@@ -65,4 +67,7 @@ export {
     Modal,
     notification,
     useTranslation,
+    Footer,
+    FaGithub,
+    TbWorld
 };

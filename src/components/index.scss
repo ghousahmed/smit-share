@@ -17,22 +17,27 @@ $white: #fff;
   background-color: $dark-theme !important;
   color: $white !important;
 }
+
 .dark-light {
   background-color: $dark-theme-light !important;
   color: $white !important;
 }
+
 .dark-lighter {
   background-color: $dark-theme-lighter !important;
   color: $white !important;
   border: none !important;
 }
+
 .dark-text {
   color: $white !important;
 }
+
 body {
   background-color: $body-background;
   transition: all 0.3s ease;
 }
+
 .text-area {
   transition: all 0.3s ease-in-out;
   border: none;
@@ -92,6 +97,7 @@ body {
   border: 1.5px dashed rgba(158, 161, 161, 0.5);
   height: 250px;
   background-color: $body-background;
+
   div {
     color: rgba(158, 161, 161, 0.5);
     width: 60%;
@@ -208,25 +214,79 @@ body {
     }
   }
 }
+
 .d-flex {
   display: flex;
 
   width: 100% !important;
   justify-content: center !important;
   align-items: center !important;
+
   .input-border {
     border: 0 !important;
     border-radius: 0px !important;
     border-bottom: 2px solid black !important;
     width: 450px;
   }
+
   .text {
     color: $light-color !important;
   }
+
   .text-primary {
     color: $primary-color !important;
   }
+
   .white-placeholder .ant-input::placeholder {
     color: rgb(201, 191, 191) !important;
   }
+}
+
+.footerArea {
+  text-align: center;
+  padding: 20px;
+}
+
+.linksContainer {
+  display: flex;
+  margin: 0 auto;
+  justify-content: space-evenly;
+  width: 200px;
+  height: 20px;
+  padding: 20px;
+}
+
+.para {
+  font-size: 18px;
+}
+
+.sirGithub {
+  padding: 5px;
+  font-size: medium;
+  margin-bottom: 0px;
+  font-weight: 900;
+  font-size: 20px;
+}
+
+.sirGithub:hover {
+  color: #864bff;
+  font-size: 25px;
+  transition: 0.5s;
+  margin-bottom: 0;
+}
+
+.links {
+  height: 30px;
+  width: 30px;
+  color: #735fff;
+}
+
+.links:hover {
+  color: #864bff;
+  cursor: pointer;
+}
+
+.sirGithub {
+  color: #a496fd;
+  text-decoration: none;
 }
