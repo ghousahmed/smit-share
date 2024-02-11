@@ -1,6 +1,6 @@
 # Project Title
 
-SMIT Share
+## SMIT Share
 
 ## Description
 
