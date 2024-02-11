@@ -242,51 +242,17 @@ body {
   }
 }
 
-.footerArea {
-  text-align: center;
-  padding: 20px;
-}
-
-.linksContainer {
+.footer {
   display: flex;
-  margin: 0 auto;
-  justify-content: space-evenly;
-  width: 200px;
-  height: 20px;
+  align-items: center;
   padding: 20px;
-}
+  justify-content: center;
+  text-align: center;
+  gap: 10px;
 
-.para {
-  font-size: 18px;
-}
+  .footer-link {
+    color: #000;
+    line-height: 10px;
 
-.sirGithub {
-  padding: 5px;
-  font-size: medium;
-  margin-bottom: 0px;
-  font-weight: 900;
-  font-size: 20px;
-}
-
-.sirGithub:hover {
-  color: #864bff;
-  font-size: 25px;
-  transition: 0.5s;
-  margin-bottom: 0;
-}
-
-.links {
-  height: 30px;
-  width: 30px;
-  color: #735fff;
-}
-
-.links:hover {
-  color: #864bff;
-  cursor: pointer;
-}
-
-.sirGithub {
-  color: #a496fd;
-  text-decoration: none;
+  }
 }
