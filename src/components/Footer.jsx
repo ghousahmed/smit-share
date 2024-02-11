@@ -1,26 +1,22 @@
+import "./index.scss";
 import { FaGithub } from "react-icons/fa";
-import { TbWorld } from "react-icons/tb";
-
+import { Link, useTheme } from "../components/index";
 function Footer() {
-  const link = () => {
-    window.location = "https://github.com/ghousahmed/smit-share";
-  };
-  const webLink = () => {
-    window.location = "https://saylaniwelfare.com/en";
-  };
+  const { isDark } = useTheme();
   return (
-    <div className="footerArea">
-      <p className="para">
-        Powered By @SMIT Batch 10 ( MWF )<br />
-        <a className="sirGithub" href="https://github.com/ghousahmed">
-          Sir Ghous Ahmed
-        </a>{" "}
-      </p>
-      <div className="linksContainer">
-        <FaGithub className="links" onClick={link} />
-        <TbWorld className="links" onClick={webLink} />
+    <>
+      <div className="footer">
+        <p>Made with ❤️ BY SMIT BATCH 10 ||</p>
+        <Link
+          onClick={() =>
+            window.open("https://github.com/ghousahmed/smit-share", "_blank")
+          }
+          className="footer-link"
+        >
+          <FaGithub target="_blank" className={isDark ? "dark-text" : null} />
+        </Link>
       </div>
-    </div>
+    </>
   );
 }
 

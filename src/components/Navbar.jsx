@@ -112,7 +112,7 @@ const Navbar = ({ login }) => {
                     size="small"
                     defaultChecked={i18n.language === "ur"}
                     onChange={handleChange}
-                    className={isDark ? "dark-text" : null}
+                    // className={isDark ? "dark-light" : null}
                   />
                   <span style={{ margin: "0px 8px" }}>Ur</span>
                 </div>
