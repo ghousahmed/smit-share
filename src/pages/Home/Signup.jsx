@@ -62,6 +62,7 @@ function SignupPage({ login }) {
         <div className="menu-bar">
           {screenWidth.widthScreen > 768 ? (
             <ul>
+
               <Link
                 to="/how-it-works"
                 style={{
@@ -150,10 +151,10 @@ function SignupPage({ login }) {
           {isMenuOpen ? (
             <div className="mobile-menu">
               <ul>
-                <li className={isDark ? "dark" : " "}>How it works</li>
+                <li><Link className={isDark ? "dark" : " "} to='/how-it-works' style={{textDecoration: "none",  color: !isDark ? '#fff' : '' }}>How it works</Link></li>
                 <li className={isDark ? "dark" : " "}> Download</li>
                 <li className={isDark ? "dark" : " "}>Upgrade</li>
-                <li className={isDark ? "dark" : " "}>Feedback</li>
+                <li><Link className={isDark ? "dark" : " "} to='/feedback' style={{textDecoration: "none",  color: !isDark ? '#fff' : '' }}>Feedback</Link></li>
                 <li className={isDark ? "dark" : "menu-btn"}>
                   Login / Register
                 </li>
@@ -165,8 +166,14 @@ function SignupPage({ login }) {
       <div
         className="main-card"
         style={{ backgroundColor: theme === "dark" ? "rgb(20 23 30)" : "" }}
-      >
-        <SignupForm registerUser={registerUser} />{" "}
+      ><SignupForm registerUser={registerUser} /> </div>
+      <div className="footer">
+        <span>
+          © 2023-2024 AirForShare.com <br />
+          Made in<Link className="link" to="https://www.linkedin.com/company/saylanimasstraining/?originalSubdomain=pk"> SMIT.com </Link>
+          with ❤️
+        </span>
+
       </div>
     </div>
   );

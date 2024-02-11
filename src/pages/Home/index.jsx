@@ -246,7 +246,16 @@ function HomePage({ login }) {
           )}
         </div>
       </div>
+      <div className="footer">
+        <span>
+          © 2023-2024 AirForShare.com <br />
+          Made in<Link className="link" to="https://www.linkedin.com/company/saylanimasstraining/?originalSubdomain=pk"> SMIT.com </Link>
+          with ❤️
+        </span>
+      </div>
+
       <Footer />
+
     </div>
   );
 }

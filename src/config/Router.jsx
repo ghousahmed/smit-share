@@ -7,8 +7,10 @@ import HowItWorks from "../pages/How It Work";
 import { onAuthStateChanged, auth } from "../db/index.js";
 import { useEffect, useState } from "react";
 import PageNotFound from "../components/PageNotFound.jsx";
+import FeedBack from "../pages/feedback/index.jsx";
 import { I18nextProvider, useTranslation } from "react-i18next";
 import i18nn from "../helper/i18n";
+
 
 function AppRouter() {
   const [login, setIslogin] = useState(false);
@@ -26,6 +28,7 @@ function AppRouter() {
       }
     });
   }, []);
+
 
   return (
     <>

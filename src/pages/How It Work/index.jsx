@@ -3,6 +3,7 @@ import "./mediaQuery.scss";
 import { useTheme } from "../../components/index";
 import Navbar from "../../components/Navbar";
 
+
 function HowItWorks({ login }) {
   const { isDark } = useTheme();
   return (

@@ -1,7 +1,19 @@
 import { initializeApp } from "firebase/app";
-import {getAuth , createUserWithEmailAndPassword ,signInWithEmailAndPassword , onAuthStateChanged ,signOut } from "firebase/auth"
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut,
+} from "firebase/auth";
+import { collection, addDoc, getFirestore } from "firebase/firestore";
 import { getDatabase, ref, set, onValue, remove } from "firebase/database";
-import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import {
+  getStorage,
+  ref as storageRef,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
 
 const firebaseConfig = {
     apiKey: "AIzaSyDG6-ZhFAuf2xkIVjieFKPzYXylqsASeXU",
@@ -14,24 +26,28 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app)
+const auth = getAuth(app);
 const db = getDatabase();
 const storage = getStorage();
+const fireStore = getFirestore(app);
 
 export {
-    app,
-    auth,
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
-    onAuthStateChanged,
-    signOut ,
-    db,
-    ref,
-    set,
-    onValue,
-    remove,
-    storage,
-    storageRef,
-    uploadBytesResumable,
-    getDownloadURL
-}
+  app,
+  auth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut,
+  db,
+  ref,
+  set,
+  onValue,
+  remove,
+  storage,
+  storageRef,
+  uploadBytesResumable,
+  getDownloadURL,
+  collection,
+  addDoc,
+  fireStore,
+};

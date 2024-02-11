@@ -87,6 +87,7 @@ function LoginPage({ login }) {
               ) : (
                 <li className="menu-btn">
                   <span>
+
                     {" "}
                     <Link
                       className="menu-btn"
@@ -148,6 +149,13 @@ function LoginPage({ login }) {
       </div>
       <div className={`main-card ${isDark ? "dark-lighter" : " "}`}>
         <LoginForm loginUser={loginUser} />
+      </div>
+      <div className="footer">
+        <span>
+          © 2023-2024 AirForShare.com <br />
+          Made in<Link className="link" to="https://www.linkedin.com/company/saylanimasstraining/?originalSubdomain=pk"> SMIT.com </Link>
+          with ❤️
+        </span>
       </div>
     </div>
   );
