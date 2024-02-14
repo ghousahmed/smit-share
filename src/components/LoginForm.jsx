@@ -44,7 +44,7 @@ const LoginForm = ({ loginUser }) => {
         onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
-       <Form.Item
+        <Form.Item
           label={<span className={isDark ? "dark-light" : ""}>Email</span>}
           name="email"
           validateTrigger="onBlur"
@@ -60,13 +60,13 @@ const LoginForm = ({ loginUser }) => {
               message: "Enter valid email address",
             },
           ]}
-
         >
           <Input
             prefix={<UserOutlined className="site-form-item-icon" />}
             placeholder="Enter your email"
-            className={`input-border ${isDark ? "dark-lighter" : ""} ${isDark ? "white-placeholder" : ""}`}
-
+            className={`input-border ${isDark ? "dark-lighter" : ""} ${
+              isDark ? "white-placeholder" : ""
+            }`}
           />
         </Form.Item>
 
@@ -88,8 +88,9 @@ const LoginForm = ({ loginUser }) => {
           <Input.Password
             prefix={<LockOutlined className="site-form-item-icon" />}
             placeholder="Enter your password "
-            className={`input-border ${isDark ? "dark-lighter" : ""} ${isDark ? "white-placeholder" : ""}`}
-
+            className={`input-border ${isDark ? "dark-lighter" : ""} ${
+              isDark ? "white-placeholder" : ""
+            }`}
           />
         </Form.Item>
 
@@ -110,7 +111,10 @@ const LoginForm = ({ loginUser }) => {
             span: 16,
           }}
         >
-          <ThemeButton title={"Log In"} />
+          <ThemeButton
+            title={"Log In"}
+            className={isDark ? "dark-lighter" : ""}
+          />
         </Form.Item>
 
         <Form.Item
