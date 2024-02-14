@@ -27,7 +27,7 @@ function HowItWorks({ login }) {
             <div className="step number">
               <h1 className={isDark ? "dark-text" : " "}>2.</h1>
               <h3 className={isDark ? "dark-text" : " "}>
-                <span>Upload</span> to AirForShare anything you want
+                <span>Upload</span> to SMIT-Share anything you want
               </h3>
             </div>
             <div className="step">

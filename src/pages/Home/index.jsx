@@ -25,12 +25,7 @@ import {
   MdDelete,
   Modal,
   useTranslation,
-  FiMenu,
-  MdLightMode,
-  MdDarkMode,
   Footer,
-  FaGithub,
-  Link,
 } from "../../components/index.js";
 
 function HomePage({ login }) {
