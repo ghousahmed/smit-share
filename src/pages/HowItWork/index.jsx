@@ -3,11 +3,11 @@ import "./mediaQuery.scss";
 import { useTheme } from "../../components/index";
 import Navbar from "../../components/Navbar";
 
-function HowItWorks({ login }) {
+function HowItWorks() {
   const { isDark } = useTheme();
   return (
     <div className={`container ${isDark ? "dark" : ""}`}>
-      <Navbar login={login} />
+      <Navbar />
       <div className={`main-card ${isDark ? "dark-light" : " "}`}>
         <div className="how_it_work-container">
           <div className="topcard">
