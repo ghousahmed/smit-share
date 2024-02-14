@@ -4,9 +4,11 @@
     padding: 20px;
     margin: 0;
     margin-top: 0;
+
     .menu-bar {
       .mobile-menu {
         background-color: unset;
+
         a {
           color: #252526;
         }
@@ -22,25 +24,30 @@
       margin-top: 10px;
       min-height: fit-content;
       box-shadow: none;
+
       .card-sidebar {
         width: 100%;
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding-left: 20px;
+
         div {
           display: flex;
           margin: 0;
+
           div {
             border-radius: 5px 5px 0 0;
             margin: unset;
           }
         }
       }
+
       .drop-zone {
         height: 190px;
       }
     }
+
     .card-container {
       padding: 20px;
       width: 100%;
@@ -56,6 +63,7 @@
         .resize-section {
           min-height: 230px;
         }
+
         .save-btn-section {
           padding: 0;
         }
@@ -67,12 +75,15 @@
     }
   }
 }
+
 @media only screen and (max-width: 500px) {
+
   .menu-bar {
     ul {
       gap: 5px !important;
     }
   }
+
   .drop-zone {
     div {
       width: 100% !important;
@@ -82,6 +93,7 @@
       padding: 25px !important;
     }
   }
+
   .text-footer {
     flex-direction: column-reverse;
     align-items: flex-start;
@@ -91,12 +103,14 @@
       width: 100%;
       display: flex;
       flex-direction: column;
+
       span {
         font-size: 18px !important;
         width: 100%;
         margin: 10px auto !important;
         text-align: center;
       }
+
       button {
         width: 100%;
       }
@@ -110,4 +124,34 @@
       overflow: scroll;
     }
   }
+
+  .d-flex {
+
+    .input-border {
+      width: 100% !important;
+    }
+  }
+
+  form#trigger {
+    width: 100%;
+  }
+
+  .theme-btn {
+    width: 100% !important;
+  }
+
+  .ant-col.ant-col-16.ant-col-offset-4.ant-form-item-control.css-dev-only-do-not-override-1b0bdye {
+    margin: auto;
+  }
+
+  .ant-col.ant-col-16.ant-col-offset-8.ant-form-item-control.css-dev-only-do-not-override-1b0bdye {
+    margin: auto;
+    text-align: center;
+  }
+
+  .ant-col.ant-col-16.ant-col-offset-6.ant-form-item-control.css-dev-only-do-not-override-1b0bdye {
+    margin-left: 0;
+    text-align: center;
+  }
+
 }
