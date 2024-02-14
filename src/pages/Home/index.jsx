@@ -194,28 +194,33 @@ function HomePage({ login }) {
                 {screenWidth.widthScreen > 768 ? (
                   <h1 className={isDark ? "dark-light" : " "}>{t("Files")}</h1>
                 ) : null}
-                <div className="files-btn">
-                  <div
-                    onClick={() => {
-                      if (files.length > 0) {
-                        downloadAll(files);
-                      } else {
-                        Modal.info({
-                          title: "No Files to Download",
-                          content: "There are no files to download.",
-                        });
-                      }
-                    }}
-                    className="download-btn"
-                  >
-                    <FaDownload />
-                    {t("Download All")}
+                {/*=============================================================
+              add delete files check agar hai to icon dikhao warna hide rakha 
+                 ===============================================================*/}
+                {files.length > 0 && (
+                  <div className="files-btn">
+                    <div
+                      onClick={() => {
+                        if (files.length > 0) {
+                          downloadAll(files);
+                        } else {
+                          Modal.info({
+                            title: "No Files to Download",
+                            content: "There are no files to download.",
+                          });
+                        }
+                      }}
+                      className="download-btn"
+                    >
+                      <FaDownload />
+                      {t("Download All")}
+                    </div>
+                    <div onClick={deleteAllFiles} className="delete-btn">
+                      <MdDelete />
+                      {t("Delete All")}
+                    </div>
                   </div>
-                  <div onClick={deleteAllFiles} className="delete-btn">
-                    <MdDelete />
-                    {t("Delete All")}
-                  </div>
-                </div>
+                )}
               </div>
               {tempFiles.length || files.length ? (
                 <FilesList
